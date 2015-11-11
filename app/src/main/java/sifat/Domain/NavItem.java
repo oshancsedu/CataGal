@@ -5,28 +5,22 @@ package sifat.Domain;
  */
 public class NavItem {
 
-    String item;
-    int image;
+    private String mName;
+    private int mThumbnail;
 
-    public NavItem(int image, String item)
-    {
-        this.image=image;
-        this.item=item;
+    public String getName() {
+        return mName;
     }
 
-    public String getItem() {
-        return item;
+    public void setName(String name) {
+        this.mName = name;
     }
 
-    public void setItem(String item) {
-        this.item = item;
+    public int getThumbnail() {
+        return mThumbnail;
     }
 
-    public int getImage() {
-        return image;
-    }
-
-    public void setImage(int image) {
-        this.image = image;
+    public void setThumbnail(int thumbnail) {
+        this.mThumbnail = thumbnail;
     }
 }

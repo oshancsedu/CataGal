@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_margin="1dp"
+    android:padding="2dp"
+    android:background="@color/white"
+    android:weightSum="5">
+
+    <ImageView
+        android:layout_weight="3"
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:id="@+id/ivProductImage"
+        android:src="@drawable/leopard"/>
+
+    <TextView
+        android:textColor="@color/app_theme_color"
+        android:layout_weight="2"
+        android:id="@+id/tvProductName"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:textAlignment="center"
+        android:padding="16dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        tools:text="Sample text"/>
+
+</LinearLayout>
