@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
@@ -66,8 +67,11 @@ public class ProductViewActivity extends ActionBarActivity {
         Bundle product=intent.getExtras();
         productInfo = (ProductInfo) product.getSerializable(SINGLE_PRODUCT_DETAIL);
 
-        showToast(this,productInfo.getName());
-
+        /*Log.i("Product","Size :"+productInfo.getProduct_images().size());
+        Log.i("Product","Number :"+productInfo.getProduct_images().get(0));
+        showToast(this, "" + productInfo.getProduct_images().get(0));
+        showToast(this,""+productInfo.getProduct_images().get(1));
+        showToast(this,""+productInfo.getProduct_images().get(2));*/
 
         tvSize=(TextView)findViewById(R.id.tvSize);
         tvSize.setText(productInfo.getSize());
@@ -105,7 +109,7 @@ public class ProductViewActivity extends ActionBarActivity {
     }
 
     private List<Integer> getBgRes(){
-        return Lists.newArrayList(1, 2, 3);
+        return productInfo.getProduct_images();
     }
 
 

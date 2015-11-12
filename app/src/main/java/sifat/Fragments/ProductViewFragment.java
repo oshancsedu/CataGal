@@ -37,7 +37,7 @@ public class ProductViewFragment extends Fragment {
         imageView = (ImageView) getView().findViewById(R.id.image);
         InputStream ims = null;
         try {
-            ims = getActivity().getAssets().open("bg"+bgRes+".png");
+            ims = getActivity().getAssets().open(bgRes+".jpg");
             // load image as Drawable
             Drawable d = Drawable.createFromStream(ims, null);
             imageView.setImageDrawable(d);
