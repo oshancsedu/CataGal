@@ -2,6 +2,7 @@ package sifat.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,9 +11,16 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.security.Provider;
+import java.util.ArrayList;
+
 import ca.barrenechea.widget.recyclerview.decoration.StickyHeaderAdapter;
+import sifat.Domain.ProductInfo;
+import sifat.Provider.ProductInfoProvider;
 import sifat.catagal.ProductViewActivity;
 import sifat.catagal.R;
+
+import static sifat.Utilities.CommonUtilities.*;
 
 /**
  * Created by sifat on 11/12/2015.
@@ -22,8 +30,12 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
 
     private LayoutInflater mInflater;
     static Context context;
+    private static ArrayList<ProductInfo> productInfos = new ArrayList<>();
+    private ProductInfoProvider provider;
 
     public ProductListAdapter(Context context) {
+        provider=ProductInfoProvider.getProvider();
+        productInfos = provider.getProductInfos();
         this.context=context;
         mInflater = LayoutInflater.from(context);
     }
@@ -37,25 +49,19 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
         Log.i("recycler", "onBindViewHolder");
-        viewHolder.item.setText("Item " + i);
+        viewHolder.item.setText(productInfos.get(i).getName());
     }
 
     @Override
     public int getItemCount() {
-        return 50;
+        return productInfos.size();
     }
 
     @Override
     public long getHeaderId(int position) {
 
-        Log.i("recycler","getHeaderid");
-        if(position>10 && position<22)
-            return 10;
-        else if (position>=22 && position<=30)
-            return 22;
-        else if(position>30)
-            return 30;
-        else return 0;
+        Log.i("recycler", "getHeaderid");
+        return (long) productInfos.get(position).getHeader();
     }
 
     @Override
@@ -67,8 +73,23 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
 
     @Override
     public void onBindHeaderViewHolder(HeaderHolder viewholder, int position) {
-        Log.i("recycler","onBindHeaderViewHolder");
-        viewholder.header.setText("Header " + getHeaderId(position));
+        Log.i("recycler", "onBindHeaderViewHolder");
+
+        String header=getHeaderName(getHeaderId(position));
+
+        viewholder.header.setText(header);
+    }
+
+    private String getHeaderName(long headerId) {
+
+        if(headerId==1)
+            return "Family Pack";
+        else if(headerId==2)
+            return "Regular Pack";
+        else if(headerId==3)
+            return "Mini Pack";
+        else
+            return "Tin";
     }
 
 
@@ -87,6 +108,9 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
             //Log.i("recycler","Item Clicked at "+getPosition());
             Toast.makeText(context, "Clicked at :"+getPosition(), Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(context, ProductViewActivity.class);
+            Bundle product=new Bundle();
+            product.putSerializable(SINGLE_PRODUCT_DETAIL,productInfos.get(getPosition()));
+            intent.putExtras(product);
             context.startActivity(intent);
         }
     }

@@ -8,6 +8,8 @@ import android.widget.Toast;
  */
 public class CommonUtilities {
 
+    public static final String SINGLE_PRODUCT_DETAIL="singleProductDetail";
+
     public static void showToast(Context context,String message)
     {
         Toast.makeText(context,message,Toast.LENGTH_SHORT).show();

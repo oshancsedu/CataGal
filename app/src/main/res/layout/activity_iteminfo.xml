@@ -25,6 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:background="@color/app_theme_color"
             android:orientation="horizontal">
             <ImageView
                 android:id="@+id/ivBanner"
@@ -62,6 +63,9 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="2"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:paddingBottom="2dp"
             android:background="@color/app_theme_color"
             android:orientation="vertical">
 
@@ -90,6 +94,34 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="1dp"
+                        android:background="@color/white"
+                        android:orientation="horizontal"
+                        android:padding="10dp"
+                        android:weightSum="2">
+
+                        <TextView
+                            android:id="@+id/tvSizeTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="Size"
+                            android:textColor="@color/app_theme_color" />
+
+                        <TextView
+                            android:id="@+id/tvSize"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="left"
+                            android:text="Family"
+                            android:textColor="@color/app_theme_color" />
+                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"

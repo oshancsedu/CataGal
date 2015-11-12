@@ -1,5 +1,6 @@
 package sifat.catagal;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -7,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.common.collect.Lists;
 
@@ -18,7 +20,10 @@ import github.chenupt.multiplemodel.viewpager.ModelPagerAdapter;
 import github.chenupt.multiplemodel.viewpager.PagerModelManager;
 import github.chenupt.springindicator.SpringIndicator;
 import github.chenupt.springindicator.viewpager.ScrollerViewPager;
+import sifat.Domain.ProductInfo;
 import sifat.Fragments.ProductViewFragment;
+
+import static sifat.Utilities.CommonUtilities.*;
 
 /**
  * Created by sifat on 11/11/2015.
@@ -27,6 +32,8 @@ public class ProductViewActivity extends ActionBarActivity {
 
     ScrollerViewPager viewPager;
     private ImageView ivBanner;
+    private ProductInfo productInfo;
+    private TextView tvProductName,tvSize,tvUnit,tvValidity,tvMrp1,tvMrp2,tvUnitTitle,tvMrp1Title,tvMrp2Title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,9 +62,36 @@ public class ProductViewActivity extends ActionBarActivity {
     private void init()
     {
         ivBanner= (ImageView) findViewById(R.id.ivBanner);
+        Intent intent = this.getIntent();
+        Bundle product=intent.getExtras();
+        productInfo = (ProductInfo) product.getSerializable(SINGLE_PRODUCT_DETAIL);
+
+        showToast(this,productInfo.getName());
+
+
+        tvSize=(TextView)findViewById(R.id.tvSize);
+        tvSize.setText(productInfo.getSize());
+        tvProductName=(TextView)findViewById(R.id.tvHeader);
+        tvProductName.setText(productInfo.getName());
+        tvUnit=(TextView)findViewById(R.id.tvUnit);
+        tvUnit.setText(productInfo.getUnit());
+        tvValidity=(TextView)findViewById(R.id.tvValidity);
+        tvValidity.setText(productInfo.getValidity());
+        tvMrp1=(TextView)findViewById(R.id.tvMRP1);
+        tvMrp1.setText(productInfo.getMrp1());
+        tvMrp2=(TextView)findViewById(R.id.tvMRP2);
+        tvMrp2.setText(productInfo.getMrp2());
+        tvUnitTitle=(TextView)findViewById(R.id.tvUnitTitle);
+        tvUnitTitle.setText(productInfo.getUnitTitle());
+        tvMrp1Title=(TextView)findViewById(R.id.tvMRP1Title);
+        tvMrp1Title.setText(productInfo.getMrp1Title());
+        tvMrp2Title=(TextView)findViewById(R.id.tvMRP2Title);
+        tvMrp2Title.setText(productInfo.getMrp2Title());
+
+
         InputStream ims = null;
         try {
-            ims = getAssets().open("banner.jpg");
+            ims = getAssets().open(productInfo.getBanner());
             // load image as Drawable
             Drawable d = Drawable.createFromStream(ims, null);
             ivBanner.setImageDrawable(d);
@@ -93,6 +127,4 @@ public class ProductViewActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-
 }
