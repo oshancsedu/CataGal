@@ -67,12 +67,6 @@ public class ProductViewActivity extends ActionBarActivity {
         Bundle product=intent.getExtras();
         productInfo = (ProductInfo) product.getSerializable(SINGLE_PRODUCT_DETAIL);
 
-        /*Log.i("Product","Size :"+productInfo.getProduct_images().size());
-        Log.i("Product","Number :"+productInfo.getProduct_images().get(0));
-        showToast(this, "" + productInfo.getProduct_images().get(0));
-        showToast(this,""+productInfo.getProduct_images().get(1));
-        showToast(this,""+productInfo.getProduct_images().get(2));*/
-
         tvSize=(TextView)findViewById(R.id.tvSize);
         tvSize.setText(productInfo.getSize());
         tvProductName=(TextView)findViewById(R.id.tvHeader);

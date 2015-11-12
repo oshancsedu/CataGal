@@ -104,14 +104,6 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
 
         @Override
         public void onClick(View v) {
-            //Toast(this,"",Toast.LENGTH_SHORT).show();
-            //Log.i("recycler","Item Clicked at "+getPosition());
-            Toast.makeText(context, "Clicked at :"+getPosition(), Toast.LENGTH_SHORT).show();
-            Log.i("Product",productInfos.get(getPosition()).getName());
-            Log.i("Product", "" + productInfos.get(getPosition()).getProduct_images().get(0));
-            Log.i("Product", "" + productInfos.get(getPosition()).getProduct_images().get(1));
-            Log.i("Product", "" + productInfos.get(getPosition()).getProduct_images().get(2));
-
             Intent intent = new Intent(context, ProductViewActivity.class);
             Bundle product=new Bundle();
             product.putSerializable(SINGLE_PRODUCT_DETAIL,productInfos.get(getPosition()));
