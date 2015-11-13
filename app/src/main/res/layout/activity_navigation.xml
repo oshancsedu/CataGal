@@ -1,20 +1,31 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/app_theme_color">
+
 
     <com.lukedeighton.wheelview.WheelView
         android:id="@+id/wheelview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:emptyItemColor="@color/green_900"
+        app:emptyItemColor="@color/white"
         app:repeatItems="true"
         app:rotatableWheelDrawable="false"
         app:selectionAngle="90.0"
-        app:selectionColor="#fff"
+        app:selectionColor="@color/app_theme_color"
         app:selectionPadding="4dp"
-        app:wheelColor="#fff"
+        app:wheelColor="@color/app_theme_color"
         app:wheelItemCount="4"
-        app:wheelItemRadius="65dp"
-        app:wheelRadius="176dp" />
+        app:wheelItemRadius="50dp"
+        app:wheelRadius="150dp" />
+
+    <ImageView
+        android:id="@+id/ivCompanyName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/company_name" />
 </RelativeLayout>
