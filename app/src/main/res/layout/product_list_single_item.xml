@@ -1,13 +1,15 @@
 <com.andexert.library.RippleView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ripple="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/rect"
+    android:id="@+id/rvSingleItem"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     ripple:rv_alpha="50"
     ripple:rv_color="@color/app_theme_color"
     ripple:rv_type="rectangle"
-    ripple:rv_zoom="true">
+    ripple:rv_zoom="true"
+    ripple:rv_zoomDuration="200"
+    ripple:rv_zoomScale="0.97">
 
     <LinearLayout
         android:layout_width="match_parent"

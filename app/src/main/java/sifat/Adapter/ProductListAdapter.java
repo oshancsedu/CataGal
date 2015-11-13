@@ -73,15 +73,11 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
 
     @Override
     public void onBindHeaderViewHolder(HeaderHolder viewholder, int position) {
-        Log.i("recycler", "onBindHeaderViewHolder");
-
         String header=getHeaderName(getHeaderId(position));
-
         viewholder.header.setText(header);
     }
 
     private String getHeaderName(long headerId) {
-
         if(headerId==1)
             return "Family Pack";
         else if(headerId==2)
@@ -100,7 +96,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
             super(itemView);
             //itemView.setOnClickListener(this);
             item = (TextView) itemView.findViewById(R.id.tvProductName);
-            rippleView = (RippleView) itemView.findViewById(R.id.rect);
+            rippleView = (RippleView) itemView.findViewById(R.id.rvSingleItem);
             rippleView.setOnRippleCompleteListener(this);
         }
 
