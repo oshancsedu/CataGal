@@ -212,7 +212,6 @@ public class ProductInfoProvider {
         /*******
          * Tin
          * *******/
-
         productInfo = new ProductInfo("Orange Cake Biscuit ", "Tin", "1 Carton", "4 Tin", "Minimum 9 months", "Carton MRP", "800 tk", "Tin MRP", "200 tk", "banner.jpg", 4);
         product_images.add(100041);
         product_images.add(100042);

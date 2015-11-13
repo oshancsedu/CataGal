@@ -9,9 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.security.Provider;
+import com.andexert.library.RippleView;
+
 import java.util.ArrayList;
 
 import ca.barrenechea.widget.recyclerview.decoration.StickyHeaderAdapter;
@@ -20,7 +20,7 @@ import sifat.Provider.ProductInfoProvider;
 import sifat.catagal.ProductViewActivity;
 import sifat.catagal.R;
 
-import static sifat.Utilities.CommonUtilities.*;
+import static sifat.Utilities.CommonUtilities.SINGLE_PRODUCT_DETAIL;
 
 /**
  * Created by sifat on 11/12/2015.
@@ -28,9 +28,9 @@ import static sifat.Utilities.CommonUtilities.*;
 public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.ViewHolder> implements
         StickyHeaderAdapter<ProductListAdapter.HeaderHolder> {
 
-    private LayoutInflater mInflater;
     static Context context;
     private static ArrayList<ProductInfo> productInfos = new ArrayList<>();
+    private LayoutInflater mInflater;
     private ProductInfoProvider provider;
 
     public ProductListAdapter(Context context) {
@@ -95,11 +95,12 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
 
     static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         public TextView item;
-
+        public RippleView rippleView;
         public ViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
             item = (TextView) itemView.findViewById(R.id.tvProductName);
+            //rippleView=itemView.findViewById()
         }
 
         @Override
@@ -117,7 +118,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
 
         public HeaderHolder(View itemView) {
             super(itemView);
-            header = (TextView) itemView;
+            header = (TextView) itemView.findViewById(R.id.tvListHeader);
         }
     }
 }

@@ -1,31 +1,41 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.andexert.library.RippleView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ripple="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rect"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:layout_margin="1dp"
-    android:padding="2dp"
-    android:background="@color/white"
-    android:weightSum="5">
+    ripple:rv_alpha="50"
+    ripple:rv_color="@color/app_theme_color"
+    ripple:rv_type="rectangle"
+    ripple:rv_zoom="true">
 
-    <ImageView
-        android:layout_weight="3"
-        android:layout_width="wrap_content"
-        android:layout_height="70dp"
-        android:id="@+id/ivProductImage"
-        android:src="@drawable/leopard"/>
-
-    <TextView
-        android:textColor="@color/app_theme_color"
-        android:layout_weight="2"
-        android:id="@+id/tvProductName"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_vertical"
-        android:textAlignment="center"
-        android:padding="16dp"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        tools:text="Sample text"/>
+        android:layout_height="wrap_content"
+        android:layout_margin="1dp"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:padding="2dp"
+        android:weightSum="5">
 
-</LinearLayout>
+        <ImageView
+            android:id="@+id/ivProductImage"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:layout_weight="3"
+            android:src="@drawable/leopard" />
+
+        <TextView
+            android:id="@+id/tvProductName"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center_vertical"
+            android:padding="16dp"
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/app_theme_color"
+            tools:text="Sample text" />
+
+    </LinearLayout>
+</com.andexert.library.RippleView>
