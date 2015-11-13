@@ -8,24 +8,24 @@ import sifat.Domain.ProductInfo;
 /**
  * Created by sifat on 11/11/2015.
  */
-public class ProductInfoProvider {
+public class BiscuitInfoProvider {
 
-    private volatile static ProductInfoProvider productInfoProvider;
+    private volatile static BiscuitInfoProvider biscuitInfoProvider;
     private static ArrayList<ProductInfo> productInfos = new ArrayList<>();
     private static List<Integer> product_images =  new ArrayList<>();
 
-    private ProductInfoProvider() {
+    private BiscuitInfoProvider() {
     }
 
-    public static ProductInfoProvider getProvider() {
-        if (productInfoProvider == null) {
-            synchronized (ProductInfoProvider.class) {
-                if (productInfoProvider == null)
+    public static BiscuitInfoProvider getProvider() {
+        if (biscuitInfoProvider == null) {
+            synchronized (BiscuitInfoProvider.class) {
+                if (biscuitInfoProvider == null)
                     setProductInfos();
-                    productInfoProvider = new ProductInfoProvider();
+                biscuitInfoProvider = new BiscuitInfoProvider();
             }
         }
-        return productInfoProvider;
+        return biscuitInfoProvider;
     }
 
     public static void setProductInfos() {

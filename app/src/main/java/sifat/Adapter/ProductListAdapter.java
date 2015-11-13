@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 import ca.barrenechea.widget.recyclerview.decoration.StickyHeaderAdapter;
 import sifat.Domain.ProductInfo;
-import sifat.Provider.ProductInfoProvider;
+import sifat.Provider.BiscuitInfoProvider;
 import sifat.catagal.ProductViewActivity;
 import sifat.catagal.R;
 
@@ -31,10 +31,10 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
     static Context context;
     private static ArrayList<ProductInfo> productInfos = new ArrayList<>();
     private LayoutInflater mInflater;
-    private ProductInfoProvider provider;
+    private BiscuitInfoProvider provider;
 
     public ProductListAdapter(Context context) {
-        provider=ProductInfoProvider.getProvider();
+        provider = BiscuitInfoProvider.getProvider();
         productInfos = provider.getProductInfos();
         this.context=context;
         mInflater = LayoutInflater.from(context);
@@ -93,21 +93,32 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
     }
 
 
-    static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, RippleView.OnRippleCompleteListener {
         public TextView item;
         public RippleView rippleView;
         public ViewHolder(View itemView) {
             super(itemView);
-            itemView.setOnClickListener(this);
+            //itemView.setOnClickListener(this);
             item = (TextView) itemView.findViewById(R.id.tvProductName);
-            //rippleView=itemView.findViewById()
+            rippleView = (RippleView) itemView.findViewById(R.id.rect);
+            rippleView.setOnRippleCompleteListener(this);
         }
 
         @Override
         public void onClick(View v) {
+            changeActivity();
+        }
+
+        @Override
+        public void onComplete(RippleView rippleView) {
+            Log.i("Ripple", "Position " + getPosition());
+            changeActivity();
+        }
+
+        public void changeActivity() {
             Intent intent = new Intent(context, ProductViewActivity.class);
-            Bundle product=new Bundle();
-            product.putSerializable(SINGLE_PRODUCT_DETAIL,productInfos.get(getPosition()));
+            Bundle product = new Bundle();
+            product.putSerializable(SINGLE_PRODUCT_DETAIL, productInfos.get(getPosition()));
             intent.putExtras(product);
             context.startActivity(intent);
         }
