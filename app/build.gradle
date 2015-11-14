@@ -33,5 +33,6 @@ dependencies {
     compile 'ca.barrenechea.header-decor:header-decor:0.2.2'
     compile 'com.mikhaellopez:circularimageview:2.0.2'
     compile 'com.github.lukedeighton:wheelview:0.3.1'
+    compile 'com.github.chenupt.android:dragtoplayout:1.2.1@aar'
 
 }
