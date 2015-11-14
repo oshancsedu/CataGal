@@ -10,4 +10,6 @@ import sifat.Domain.ProductInfo;
 public interface ProductInfoProvider {
 
     public ArrayList<ProductInfo> getProductInfos();
+
+    public ArrayList<String> getHeader();
 }

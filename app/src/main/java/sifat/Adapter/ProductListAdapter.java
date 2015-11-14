@@ -34,12 +34,14 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
 
     static Context context;
     private static ArrayList<ProductInfo> productInfos = new ArrayList<>();
+    private static ArrayList<String> headers = new ArrayList<>();
     private LayoutInflater mInflater;
     private BiscuitInfoProvider provider;
 
     public ProductListAdapter(Context context) {
         provider = BiscuitInfoProvider.getProvider();
         productInfos = provider.getProductInfos();
+        headers = provider.getHeader();
         this.context=context;
         mInflater = LayoutInflater.from(context);
     }
@@ -53,7 +55,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
         Log.i("recycler", "onBindViewHolder");
-        viewHolder.item.setText(productInfos.get(i).getName());
+        viewHolder.item.setText(productInfos.get(i).getSize());
 
         InputStream ims = null;
         try {
@@ -94,14 +96,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
     }
 
     private String getHeaderName(long headerId) {
-        if(headerId==1)
-            return "Family Pack";
-        else if(headerId==2)
-            return "Regular Pack";
-        else if(headerId==3)
-            return "Mini Pack";
-        else
-            return "Tin";
+        return headers.get((int) headerId - 1);
     }
 
 

@@ -29,4 +29,11 @@ public class CandyInfoProvider implements ProductInfoProvider {
     public ArrayList<ProductInfo> getProductInfos() {
         return null;
     }
+
+    @Override
+    public ArrayList<String> getHeader() {
+        return null;
+    }
+
+
 }

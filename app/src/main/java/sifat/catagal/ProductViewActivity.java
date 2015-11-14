@@ -5,7 +5,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
@@ -24,7 +23,7 @@ import github.chenupt.springindicator.viewpager.ScrollerViewPager;
 import sifat.Domain.ProductInfo;
 import sifat.Fragments.ProductViewFragment;
 
-import static sifat.Utilities.CommonUtilities.*;
+import static sifat.Utilities.CommonUtilities.SINGLE_PRODUCT_DETAIL;
 
 /**
  * Created by sifat on 11/11/2015.
@@ -69,8 +68,11 @@ public class ProductViewActivity extends ActionBarActivity {
 
         tvSize=(TextView)findViewById(R.id.tvSize);
         tvSize.setText(productInfo.getSize());
+
         tvProductName=(TextView)findViewById(R.id.tvHeader);
-        tvProductName.setText(productInfo.getName());
+        tvProductName.setText("Product Info");
+        //tvProductName.setVisibility(View.GONE);
+
         tvUnit=(TextView)findViewById(R.id.tvUnit);
         tvUnit.setText(productInfo.getUnit());
         tvValidity=(TextView)findViewById(R.id.tvValidity);
