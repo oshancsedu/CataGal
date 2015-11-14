@@ -1,4 +1,5 @@
 <com.andexert.library.RippleView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:ripple="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/rvSingleItem"
@@ -17,27 +18,43 @@
         android:layout_margin="1dp"
         android:background="@color/white"
         android:orientation="horizontal"
-        android:padding="2dp"
-        android:weightSum="5">
+        android:padding="2dp">
 
-        <ImageView
+        <!--ImageView
             android:id="@+id/ivProductImage"
             android:layout_width="wrap_content"
             android:layout_height="70dp"
             android:layout_weight="3"
-            android:src="@drawable/leopard" />
+            android:src="@drawable/leopard" /-->
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2">
+
+            <com.mikhaellopez.circularimageview.CircularImageView
+                android:id="@+id/ivProductImage"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/leopard"
+                app:border="true"
+                app:border_color="@color/app_theme_color"
+                app:border_width="2dp"
+                app:shadow="true"
+                app:shadow_color="@android:color/black"
+                app:shadow_radius="10" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/tvProductName"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="2"
+            android:layout_weight="4"
             android:gravity="center_vertical"
             android:padding="16dp"
-            android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/app_theme_color"
             tools:text="Sample text" />
 
     </LinearLayout>
-</com.andexert.library.RippleView>
+</com.andexert.library.RippleView><!--android:textAlignment="left"-->
