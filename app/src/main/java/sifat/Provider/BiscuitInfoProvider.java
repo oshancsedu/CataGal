@@ -8,7 +8,7 @@ import sifat.Domain.ProductInfo;
 /**
  * Created by sifat on 11/11/2015.
  */
-public class BiscuitInfoProvider {
+public class BiscuitInfoProvider implements ProductInfoProvider {
 
     private volatile static BiscuitInfoProvider biscuitInfoProvider;
     private static ArrayList<ProductInfo> productInfos = new ArrayList<>();
@@ -222,6 +222,7 @@ public class BiscuitInfoProvider {
 
     }
 
+    @Override
     public ArrayList<ProductInfo> getProductInfos()
     {
         return productInfos;

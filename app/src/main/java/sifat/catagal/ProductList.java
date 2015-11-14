@@ -23,7 +23,6 @@ public class ProductList extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_list);
         init();
-
     }
 
     private void init() {

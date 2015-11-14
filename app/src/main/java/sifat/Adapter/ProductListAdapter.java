@@ -2,6 +2,7 @@ package sifat.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -11,7 +12,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.andexert.library.RippleView;
+import com.mikhaellopez.circularimageview.CircularImageView;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 import ca.barrenechea.widget.recyclerview.decoration.StickyHeaderAdapter;
@@ -50,6 +54,18 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
         Log.i("recycler", "onBindViewHolder");
         viewHolder.item.setText(productInfos.get(i).getName());
+
+        InputStream ims = null;
+        try {
+            ims = context.getAssets().open(productInfos.get(i).getBanner());//"100011.jpg"
+            // load image as Drawable
+            Drawable d = Drawable.createFromStream(ims, null);
+            viewHolder.circularImageView.setImageDrawable(d);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
     }
 
     @Override
@@ -92,11 +108,14 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
     static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, RippleView.OnRippleCompleteListener {
         public TextView item;
         public RippleView rippleView;
+        public CircularImageView circularImageView;
+
         public ViewHolder(View itemView) {
             super(itemView);
             //itemView.setOnClickListener(this);
             item = (TextView) itemView.findViewById(R.id.tvProductName);
             rippleView = (RippleView) itemView.findViewById(R.id.rvSingleItem);
+            circularImageView = (CircularImageView) itemView.findViewById(R.id.civProductImage);
             rippleView.setOnRippleCompleteListener(this);
         }
 

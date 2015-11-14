@@ -1,9 +1,13 @@
 package sifat.Provider;
 
+import java.util.ArrayList;
+
+import sifat.Domain.ProductInfo;
+
 /**
  * Created by sifat on 11/13/2015.
  */
 public interface ProductInfoProvider {
 
-    void setProductInfos();
+    public ArrayList<ProductInfo> getProductInfos();
 }

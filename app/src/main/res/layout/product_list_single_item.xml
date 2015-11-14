@@ -33,16 +33,17 @@
             android:layout_weight="2">
 
             <com.mikhaellopez.circularimageview.CircularImageView
-                android:id="@+id/ivProductImage"
+                android:id="@+id/civProductImage"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:src="@drawable/leopard"
                 app:border="true"
                 app:border_color="@color/app_theme_color"
-                app:border_width="2dp"
+                app:border_width="3dp"
                 app:shadow="true"
                 app:shadow_color="@android:color/black"
-                app:shadow_radius="10" />
+                app:shadow_radius="7" />
+
         </LinearLayout>
 
         <TextView
