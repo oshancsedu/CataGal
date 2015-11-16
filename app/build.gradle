@@ -35,4 +35,5 @@ dependencies {
     compile 'com.github.lukedeighton:wheelview:0.3.1'
     compile 'com.github.chenupt.android:dragtoplayout:1.2.1@aar'
     compile 'de.greenrobot:eventbus:2.4.0'
+    compile 'com.github.flavienlaurent.datetimepicker:library:+'
 }

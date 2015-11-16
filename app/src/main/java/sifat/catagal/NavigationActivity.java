@@ -30,7 +30,7 @@ public class NavigationActivity extends Activity {
 
         final WheelView wheelView = (WheelView) findViewById(R.id.wheelview);
         navItems.add(R.drawable.biscuit);
-        navItems.add(R.drawable.candey);
+        navItems.add(R.drawable.candy);
         navItems.add(R.drawable.shanks);
         navItems.add(R.drawable.flour);
 
