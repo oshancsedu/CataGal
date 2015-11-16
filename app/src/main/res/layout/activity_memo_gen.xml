@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/appbar"
+        layout="@layout/app_bar" />
+
+
+    <github.chenupt.dragtoplayout.DragTopLayout
+        android:id="@+id/drag_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:background="@color/white">
+
+        <include layout="@layout/product_info_detail" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvProductList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/app_theme_color"
+            android:clipToPadding="false" />
+    </github.chenupt.dragtoplayout.DragTopLayout>
+</LinearLayout>

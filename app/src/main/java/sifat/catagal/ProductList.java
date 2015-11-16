@@ -1,10 +1,13 @@
 package sifat.catagal;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import ca.barrenechea.widget.recyclerview.decoration.StickyHeaderDecoration;
 import sifat.Adapter.ProductListAdapter;
@@ -42,4 +45,25 @@ public class ProductList extends ActionBarActivity {
         list.setAdapter(adapter);
         list.addItemDecoration(decor, 0);
     }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_about) {
+            Intent intent = new Intent(this, MemoGenActivity.class);
+            startActivity(intent);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
 }

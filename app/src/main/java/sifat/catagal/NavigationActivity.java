@@ -3,7 +3,6 @@ package sifat.catagal;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import com.lukedeighton.wheelview.WheelView;
 
@@ -60,7 +59,7 @@ public class NavigationActivity extends Activity {
             @Override
             public void onWheelItemClick(WheelView parent, int position, boolean isSelected) {
                 String msg = String.valueOf(position) + " " + isSelected;
-                Toast.makeText(NavigationActivity.this, msg, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(NavigationActivity.this, msg, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(NavigationActivity.this, ProductList.class);
                 startActivity(intent);
             }
