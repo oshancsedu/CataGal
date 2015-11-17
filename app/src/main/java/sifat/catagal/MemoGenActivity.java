@@ -9,8 +9,8 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.devspark.robototextview.widget.RobotoTextView;
 import com.fourmob.datetimepicker.date.DatePickerDialog;
 
 import java.util.Calendar;
@@ -36,6 +36,8 @@ public class MemoGenActivity extends ActionBarActivity implements View.OnClickLi
     private DatePickerDialog datePickerDialog;
     private Spinner spDistributor, spAreaCode, spAreaName;
     private MemoBasicInfoProvider memoBasicInfoProvider;
+    private RobotoTextView tvOrderDate;
+    private String orderDate, supplyDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +55,7 @@ public class MemoGenActivity extends ActionBarActivity implements View.OnClickLi
 
         datePickerDialog = DatePickerDialog.newInstance(this, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH), true);
 
-        memoBasicInfoProvider = MemoBasicInfoProvider.getProvider();
+        memoBasicInfoProvider = MemoBasicInfoProvider.getProvider(this);
 
         spDistributor = (Spinner) findViewById(R.id.spDistributor);
         spAreaName = (Spinner) findViewById(R.id.spAreaName);
@@ -74,6 +76,9 @@ public class MemoGenActivity extends ActionBarActivity implements View.OnClickLi
         dragTopLayout = (DragTopLayout) findViewById(R.id.drag_layout);
         tvSelectDate = (TextView) findViewById(R.id.tvSupplyDateSelector);
         tvSelectDate.setOnClickListener(this);
+
+        tvOrderDate = (RobotoTextView) findViewById(R.id.tvOrderDate);
+        tvOrderDate.setText("Order Date:\n" + getOrderingDate());
 
         recyclerView = (RecyclerView) findViewById(R.id.rvMemoList);
         recyclerView.setHasFixedSize(true);
@@ -134,7 +139,20 @@ public class MemoGenActivity extends ActionBarActivity implements View.OnClickLi
 
     @Override
     public void onDateSet(DatePickerDialog datePickerDialog, int year, int month, int day) {
-        Toast.makeText(MemoGenActivity.this, "new date:" + year + "-" + month + "-" + day, Toast.LENGTH_LONG).show();
-        tvSelectDate.setText("Supply Date: " + year + "-" + month + "-" + day);
+        //Toast.makeText(MemoGenActivity.this, "new date:" + year + "-" + month + "-" + day, Toast.LENGTH_LONG).show();
+        month++;
+        supplyDate = year + "-" + month + "-" + day;
+        tvSelectDate.setText("Supply Date: " + supplyDate);
     }
+
+    public String getOrderingDate() {
+        Calendar c = Calendar.getInstance();
+        int year = c.get(Calendar.YEAR);
+        int monthInt = c.get(Calendar.MONTH);
+        monthInt++;
+        int day = c.get(Calendar.DAY_OF_MONTH);
+        orderDate = year + "-" + monthInt + "-" + day;
+        return orderDate;
+    }
+
 }

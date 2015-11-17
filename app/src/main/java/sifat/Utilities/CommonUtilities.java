@@ -10,6 +10,14 @@ public class CommonUtilities {
 
     public static final String SINGLE_PRODUCT_DETAIL="singleProductDetail";
 
+
+    public static final String DATABASE_NAME = "Bengal";
+    public static final int DATABASE_VERSION = 1;
+    public static final String TABLE_MEMO_BASIC_INFO = "basic_memo_info";
+    public static final String COL_AREA_NAME = "areaName";
+    public static final String COL_AREA_CODE = "areaCode";
+    public static final String COL_DISTRIBUTOR_NAME = "distributorName";
+
     public static void showToast(Context context,String message)
     {
         Toast.makeText(context,message,Toast.LENGTH_SHORT).show();
