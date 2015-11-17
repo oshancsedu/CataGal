@@ -36,4 +36,7 @@ dependencies {
     compile 'com.github.chenupt.android:dragtoplayout:1.2.1@aar'
     compile 'de.greenrobot:eventbus:2.4.0'
     compile 'com.github.flavienlaurent.datetimepicker:library:+'
+    compile 'info.hoang8f:fbutton:1.0.5'
+    compile 'com.github.johnkil.android-robototextview:robototextview:2.4.3'
+    compile 'com.iangclifton.android:floatlabel:1.0.4'
 }

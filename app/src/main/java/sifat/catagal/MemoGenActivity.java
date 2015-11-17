@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,7 +19,8 @@ import ca.barrenechea.widget.recyclerview.decoration.StickyHeaderDecoration;
 import de.greenrobot.event.EventBus;
 import github.chenupt.dragtoplayout.AttachUtil;
 import github.chenupt.dragtoplayout.DragTopLayout;
-import sifat.Adapter.ProductListAdapter;
+import sifat.Adapter.MemoAdapter;
+import sifat.Provider.MemoBasicInfoProvider;
 
 /**
  * Created by sifat on 11/16/2015.
@@ -33,6 +35,7 @@ public class MemoGenActivity extends ActionBarActivity implements View.OnClickLi
     private TextView tvSelectDate;
     private DatePickerDialog datePickerDialog;
     private Spinner spDistributor, spAreaCode, spAreaName;
+    private MemoBasicInfoProvider memoBasicInfoProvider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,23 +46,39 @@ public class MemoGenActivity extends ActionBarActivity implements View.OnClickLi
 
     private void init() {
 
-        spDistributor = (Spinner) findViewById(R.id.spDistributor);
-        spAreaName = (Spinner) findViewById(R.id.spAreaName);
-        spAreaCode = (Spinner) findViewById(R.id.spAreaCode);
-        dragTopLayout = (DragTopLayout) findViewById(R.id.drag_layout);
-        tvSelectDate = (TextView) findViewById(R.id.tvSupplyDateSelector);
-        tvSelectDate.setOnClickListener(this);
-        recyclerView = (RecyclerView) findViewById(R.id.rvProductList);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        setAdapterAndDecor(recyclerView);
-
         toolbar = (Toolbar) findViewById(R.id.appbar);
         setSupportActionBar(toolbar);
 
         final Calendar calendar = Calendar.getInstance();
 
         datePickerDialog = DatePickerDialog.newInstance(this, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH), true);
+
+        memoBasicInfoProvider = MemoBasicInfoProvider.getProvider();
+
+        spDistributor = (Spinner) findViewById(R.id.spDistributor);
+        spAreaName = (Spinner) findViewById(R.id.spAreaName);
+        spAreaCode = (Spinner) findViewById(R.id.spAreaCode);
+
+        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this, R.layout.spinner_header_item, memoBasicInfoProvider.getAreaCodes());
+        spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item);
+        spAreaCode.setAdapter(spinnerArrayAdapter);
+
+        spinnerArrayAdapter = new ArrayAdapter<String>(this, R.layout.spinner_header_item, memoBasicInfoProvider.getDistributorNames());
+        spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item);
+        spDistributor.setAdapter(spinnerArrayAdapter);
+
+        spinnerArrayAdapter = new ArrayAdapter<String>(this, R.layout.spinner_header_item, memoBasicInfoProvider.getAreaNames());
+        spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item);
+        spAreaName.setAdapter(spinnerArrayAdapter);
+
+        dragTopLayout = (DragTopLayout) findViewById(R.id.drag_layout);
+        tvSelectDate = (TextView) findViewById(R.id.tvSupplyDateSelector);
+        tvSelectDate.setOnClickListener(this);
+
+        recyclerView = (RecyclerView) findViewById(R.id.rvMemoList);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        setAdapterAndDecor(recyclerView);
 
         // attach top listener
         recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -89,7 +108,7 @@ public class MemoGenActivity extends ActionBarActivity implements View.OnClickLi
 
 
     protected void setAdapterAndDecor(RecyclerView list) {
-        final ProductListAdapter adapter = new ProductListAdapter(this);
+        final MemoAdapter adapter = new MemoAdapter(this);
         decor = new StickyHeaderDecoration(adapter);
 
         list.setAdapter(adapter);

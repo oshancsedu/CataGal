@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.devspark.robototextview.widget.RobotoTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/tvListHeader"
     android:layout_width="match_parent"
@@ -12,4 +13,5 @@
     android:textAlignment="center"
     android:textAppearance="?android:attr/textAppearanceLarge"
     android:textColor="#FFF"
-    tools:text="Sample text"></TextView>
+    app:typeface="roboto_italic"
+    tools:text="Sample text" />

@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="10dp"
+    android:background="@color/app_theme_color"
     android:orientation="vertical"
-    android:padding="10dp">
+    android:padding="2dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,8 +15,7 @@
         android:orientation="horizontal"
         android:padding="5dp">
 
-
-        <TextView
+        <com.devspark.robototextview.widget.RobotoTextView
             android:id="@+id/reporterID"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -24,10 +25,11 @@
             android:text="Reporter ID:\n100228"
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@color/app_theme_color" />
+            android:textColor="@color/app_theme_color_minor"
+            app:typeface="roboto_thin_italic" />
 
 
-        <TextView
+        <com.devspark.robototextview.widget.RobotoTextView
             android:id="@+id/tvOrderDate"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -37,7 +39,8 @@
             android:text="Order Date:\n2015-11-31"
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@color/app_theme_color" />
+            android:textColor="@color/app_theme_color_minor"
+            app:typeface="roboto_thin_italic" />
 
 
     </LinearLayout>
@@ -46,29 +49,36 @@
         android:id="@+id/spDistributor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="5dp"
+        android:background="@color/app_theme_color_minor" />
 
     <Spinner
         android:id="@+id/spAreaCode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="5dp"
+        android:background="@color/app_theme_color_minor" />
 
     <Spinner
         android:id="@+id/spAreaName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="5dp"
+        android:background="@color/app_theme_color_minor" />
 
-    <TextView
+    <com.devspark.robototextview.widget.RobotoTextView
         android:id="@+id/tvSupplyDateSelector"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="5dp"
+        android:background="@color/app_theme_color_minor"
         android:padding="5dp"
-        android:text="Select Supply Date"
+        android:text="SELECT SUPPLY DATE"
         android:textAlignment="center"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/app_theme_color" />
+        android:textColor="@color/app_theme_color"
+        app:typeface="roboto_thin_italic" />
 </LinearLayout>
