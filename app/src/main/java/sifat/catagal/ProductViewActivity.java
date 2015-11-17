@@ -74,15 +74,15 @@ public class ProductViewActivity extends ActionBarActivity {
         //tvProductName.setVisibility(View.GONE);
 
         tvUnit=(TextView)findViewById(R.id.tvUnit);
-        tvUnit.setText(productInfo.getUnit());
+        tvUnit.setText(productInfo.getQuantity());
         tvValidity=(TextView)findViewById(R.id.tvValidity);
         tvValidity.setText(productInfo.getValidity());
         tvMrp1=(TextView)findViewById(R.id.tvMRP1);
-        tvMrp1.setText(productInfo.getMrp1());
+        tvMrp1.setText(productInfo.getMrp1() + " tk");
         tvMrp2=(TextView)findViewById(R.id.tvMRP2);
-        tvMrp2.setText(productInfo.getMrp2());
+        tvMrp2.setText(productInfo.getMrp2() + " tk");
         tvUnitTitle=(TextView)findViewById(R.id.tvUnitTitle);
-        tvUnitTitle.setText(productInfo.getUnitTitle());
+        tvUnitTitle.setText(productInfo.getConatiner());
         tvMrp1Title=(TextView)findViewById(R.id.tvMRP1Title);
         tvMrp1Title.setText(productInfo.getMrp1Title());
         tvMrp2Title=(TextView)findViewById(R.id.tvMRP2Title);

@@ -6,8 +6,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
+import com.iangclifton.android.floatlabel.FloatLabel;
 import com.mikhaellopez.circularimageview.CircularImageView;
 
 import java.util.ArrayList;
@@ -17,6 +19,7 @@ import sifat.Domain.ProductInfo;
 import sifat.Provider.BiscuitInfoProvider;
 import sifat.catagal.R;
 
+import static sifat.Utilities.CommonUtilities.showToast;
 /**
  * Created by sifat on 11/17/2015.
  */
@@ -47,8 +50,13 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
         Log.i("recycler", "onBindViewHolder");
         viewHolder.tvPackSize.setText(productInfos.get(i).getSize());
-
-
+        viewHolder.tvContainer.setText(productInfos.get(i).getConatiner());
+        viewHolder.tvQuantity.setText(productInfos.get(i).getQuantity());
+        if (!productInfos.get(i).getSize().equalsIgnoreCase("Tin"))
+            viewHolder.tvPrice.setText(productInfos.get(i).getMrp1Title() + " : " + productInfos.get(i).getMrp1() + " tk");
+        else
+            viewHolder.tvPrice.setText(productInfos.get(i).getMrp2Title() + " : " + productInfos.get(i).getMrp2() + " tk");
+        viewHolder.etAmount.setText("");
     }
 
     @Override
@@ -82,26 +90,47 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
 
 
     static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public TextView tvPackSize;
 
+        public TextView tvPackSize, tvContainer, tvQuantity, tvPrice;
         public CircularImageView circularImageView;
+        public FloatLabel etAmount;
+        public Button btCalculate, btSendMemo;
 
         public ViewHolder(View itemView) {
             super(itemView);
             //itemView.setOnClickListener(this);
             tvPackSize = (TextView) itemView.findViewById(R.id.tvPackSize);
-
+            tvContainer = (TextView) itemView.findViewById(R.id.tvContainer);
+            tvQuantity = (TextView) itemView.findViewById(R.id.tvQuantity);
+            tvPrice = (TextView) itemView.findViewById(R.id.tvPrice);
+            etAmount = (FloatLabel) itemView.findViewById(R.id.etAmount);
+            btCalculate = (Button) itemView.findViewById(R.id.btCalculate);
+            btCalculate.setOnClickListener(this);
+            btSendMemo = (Button) itemView.findViewById(R.id.btSendMemo);
+            btSendMemo.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-            sendMemoInfo();
-            calculatePrice();
+            if (v.getId() == R.id.btSendMemo)
+                sendMemoInfo();
+            else if (v.getId() == R.id.btCalculate)
+                calculatePrice();
         }
 
 
         public void calculatePrice() {
-
+            String temp_quantity = etAmount.getEditText().getText().toString();
+            //showToast(context,"q :"+temp_quantity );
+            if (temp_quantity == null || temp_quantity.equalsIgnoreCase("")) {
+                showToast(context, "Enter Amount");
+            } else {
+                int quantity = Integer.parseInt(temp_quantity), i = getPosition();
+                if (!productInfos.get(i).getSize().equalsIgnoreCase("Tin"))
+                    tvPrice.setText("Cost: " + productInfos.get(i).getMrp1() * quantity + " tk");
+                else
+                    tvPrice.setText("Cost: " + productInfos.get(i).getMrp2() * quantity + " tk");
+            }
         }
 
         public void sendMemoInfo() {

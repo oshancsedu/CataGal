@@ -8,21 +8,21 @@ import java.util.List;
  * Created by sifat on 11/11/2015.
  */
 public class ProductInfo implements Serializable{
-    int product_id,header;
-    String name,unit,validity,mrp1,mrp2,banner,unitTitle,mrp1Title,mrp2Title,size;
+    int product_id, header, mrp1, mrp2;
+    String name, quantity, validity, banner, conatiner, mrp1Title, mrp2Title, size, unit, packing, pricePerUnit;
     List<Integer> product_images =  new ArrayList<>();
 
-    public ProductInfo(String name,String size,String unitTitle,String unit,String validity,String mrp1Title,String mrp1,String mrp2Title,String mrp2,String banner,int header)
+    public ProductInfo(String name, String size, String container, String quantity, String validity, String mrp1Title, int mrp1, String mrp2Title, int mrp2, String banner, int header)
     {
         this.size=size;
         this.name=name;
-        this.unit=unit;
+        this.quantity = quantity;
         this.validity=validity;
         this.mrp1=mrp1;
         this.mrp2=mrp2;
         this.banner=banner;
         this.header=header;
-        this.unitTitle=unitTitle;
+        this.conatiner = container;
         this.mrp1Title=mrp1Title;
         this.mrp2Title=mrp2Title;
     }
@@ -39,12 +39,12 @@ public class ProductInfo implements Serializable{
         return name;
     }
 
-    public String getUnit() {
-        return unit;
+    public String getQuantity() {
+        return quantity;
     }
 
-    public String getUnitTitle() {
-        return unitTitle;
+    public String getConatiner() {
+        return conatiner;
     }
 
     public String getMrp1Title() {
@@ -59,11 +59,11 @@ public class ProductInfo implements Serializable{
         return validity;
     }
 
-    public String getMrp1() {
+    public int getMrp1() {
         return mrp1;
     }
 
-    public String getMrp2() {
+    public int getMrp2() {
         return mrp2;
     }
 
@@ -85,5 +85,29 @@ public class ProductInfo implements Serializable{
 
     public int getHeader() {
         return header;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+
+    public String getPacking() {
+        return packing;
+    }
+
+    public void setPacking(String packing) {
+        this.packing = packing;
+    }
+
+    public String getPricePerUnit() {
+        return pricePerUnit;
+    }
+
+    public void setPricePerUnit(String pricePerUnit) {
+        this.pricePerUnit = pricePerUnit;
     }
 }
