@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="3dp"
-        android:background="@color/red_900"
+        android:background="@color/light_green_800"
         android:padding="7dp"
         android:text="Family Pack"
         android:textAlignment="center"
@@ -101,15 +101,32 @@
         android:hint="Put your comment"
         android:textColor="@color/app_theme_color" />
 
-    <info.hoang8f.widget.FButton
-        android:id="@+id/btSendMemo"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="4dp"
-        android:padding="5dp"
-        android:text="Send"
-        android:textColor="@android:color/white"
-        fbutton:buttonColor="@color/cyan_800"
-        fbutton:shadowEnabled="true" />
+        android:layout_height="wrap_content">
+
+        <info.hoang8f.widget.FButton
+            android:id="@+id/btAddItem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="4dp"
+            android:padding="5dp"
+            android:text="Add"
+            android:textColor="@android:color/white"
+            fbutton:buttonColor="@color/cyan_800"
+            fbutton:shadowEnabled="true" />
+
+        <info.hoang8f.widget.FButton
+            android:id="@+id/btRemoveItem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="4dp"
+            android:padding="5dp"
+            android:text="Remove"
+            android:textColor="@android:color/white"
+            fbutton:buttonColor="@color/red_700"
+            fbutton:shadowEnabled="true" />
+    </RelativeLayout>
 </LinearLayout>

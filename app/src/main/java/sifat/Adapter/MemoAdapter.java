@@ -15,11 +15,12 @@ import com.mikhaellopez.circularimageview.CircularImageView;
 import java.util.ArrayList;
 
 import ca.barrenechea.widget.recyclerview.decoration.StickyHeaderAdapter;
-import sifat.Domain.ProductInfo;
+import sifat.Domain.MemoProductInfo;
 import sifat.Provider.BiscuitInfoProvider;
 import sifat.catagal.R;
 
 import static sifat.Utilities.CommonUtilities.showToast;
+
 /**
  * Created by sifat on 11/17/2015.
  */
@@ -27,17 +28,41 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
         StickyHeaderAdapter<MemoAdapter.HeaderHolder> {
 
     static Context context;
-    private static ArrayList<ProductInfo> productInfos = new ArrayList<>();
+    private static ArrayList<MemoProductInfo> memoProductInfos = new ArrayList<>();
+    private static ArrayList<MemoProductInfo> addedProduct = new ArrayList<>();
     private static ArrayList<String> headers = new ArrayList<>();
+    private static TextView tvTotalCost, tvItemAdded;
+    private static int totalItemAdded, totalCost;
     private LayoutInflater mInflater;
     private BiscuitInfoProvider provider;
 
-    public MemoAdapter(Context context) {
+    public MemoAdapter(Context context, TextView tvTotalCost, TextView tvItemAdded) {
         provider = BiscuitInfoProvider.getProvider();
-        productInfos = provider.getProductInfos();
+        memoProductInfos = provider.getProductMemoInfo();
         headers = provider.getHeader();
         this.context = context;
         mInflater = LayoutInflater.from(context);
+        this.tvItemAdded = tvItemAdded;
+        this.tvTotalCost = tvTotalCost;
+        totalCost = 0;
+        totalItemAdded = 0;
+    }
+
+    public static void setCosttv(TextView tvPrice, int i) {
+        if (memoProductInfos.get(i).getCost() == 0)
+            tvPrice.setText("1 " + memoProductInfos.get(i).getSellingUnit() + " : " + memoProductInfos.get(i).getCostPerUnit() + " tk");
+        else
+            tvPrice.setText("Cost: " + memoProductInfos.get(i).getCost() + " tk");
+    }
+
+    public static void btnToggle(boolean flag, Button btAddItem, Button btRemoveItem) {
+        if (flag) {
+            btRemoveItem.setVisibility(View.GONE);
+            btAddItem.setVisibility(View.VISIBLE);
+        } else {
+            btRemoveItem.setVisibility(View.VISIBLE);
+            btAddItem.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -49,26 +74,27 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
         Log.i("recycler", "onBindViewHolder");
-        viewHolder.tvPackSize.setText(productInfos.get(i).getSize());
-        viewHolder.tvContainer.setText(productInfos.get(i).getConatiner());
-        viewHolder.tvQuantity.setText(productInfos.get(i).getQuantity());
-        if (!productInfos.get(i).getSize().equalsIgnoreCase("Tin"))
-            viewHolder.tvPrice.setText(productInfos.get(i).getMrp1Title() + " : " + productInfos.get(i).getMrp1() + " tk");
-        else
-            viewHolder.tvPrice.setText(productInfos.get(i).getMrp2Title() + " : " + productInfos.get(i).getMrp2() + " tk");
+        btnToggle(!memoProductInfos.get(i).isAdded(), viewHolder.btAddItem, viewHolder.btRemoveItem);
+        viewHolder.tvPackSize.setText(memoProductInfos.get(i).getProductSize());
+        viewHolder.tvContainer.setText("Unit: " + memoProductInfos.get(i).getSellingUnit());
+        viewHolder.tvQuantity.setText("Packing: " + memoProductInfos.get(i).getPacking());
+        setCosttv(viewHolder.tvPrice, i);
+        if (memoProductInfos.get(i).getQuantity() == 0)
         viewHolder.etAmount.setText("");
+        else
+            viewHolder.etAmount.setText("" + memoProductInfos.get(i).getQuantity());
     }
 
     @Override
     public int getItemCount() {
-        return productInfos.size();
+        return memoProductInfos.size();
     }
 
     @Override
     public long getHeaderId(int position) {
 
         Log.i("recycler", "getHeaderid");
-        return (long) productInfos.get(position).getHeader();
+        return (long) memoProductInfos.get(position).getHeader();
     }
 
     @Override
@@ -88,17 +114,15 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
         return headers.get((int) headerId - 1);
     }
 
-
     static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public TextView tvPackSize, tvContainer, tvQuantity, tvPrice;
         public CircularImageView circularImageView;
         public FloatLabel etAmount;
-        public Button btCalculate, btSendMemo;
+        public Button btCalculate, btAddItem, btRemoveItem;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            //itemView.setOnClickListener(this);
             tvPackSize = (TextView) itemView.findViewById(R.id.tvPackSize);
             tvContainer = (TextView) itemView.findViewById(R.id.tvContainer);
             tvQuantity = (TextView) itemView.findViewById(R.id.tvQuantity);
@@ -106,35 +130,60 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
             etAmount = (FloatLabel) itemView.findViewById(R.id.etAmount);
             btCalculate = (Button) itemView.findViewById(R.id.btCalculate);
             btCalculate.setOnClickListener(this);
-            btSendMemo = (Button) itemView.findViewById(R.id.btSendMemo);
-            btSendMemo.setOnClickListener(this);
+            btAddItem = (Button) itemView.findViewById(R.id.btAddItem);
+            btAddItem.setOnClickListener(this);
+            btRemoveItem = (Button) itemView.findViewById(R.id.btRemoveItem);
+            btRemoveItem.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-            if (v.getId() == R.id.btSendMemo)
-                sendMemoInfo();
+            if (v.getId() == R.id.btAddItem)
+                addToBucket();
             else if (v.getId() == R.id.btCalculate)
                 calculatePrice();
+            else if (v.getId() == R.id.btRemoveItem)
+                removeFromBucket();
         }
 
 
         public void calculatePrice() {
             String temp_quantity = etAmount.getEditText().getText().toString();
             //showToast(context,"q :"+temp_quantity );
+            int i = getPosition();
             if (temp_quantity == null || temp_quantity.equalsIgnoreCase("")) {
+                if (memoProductInfos.get(i).getQuantity() == 0)
                 showToast(context, "Enter Amount");
+                memoProductInfos.get(i).setQuantity(0);
+                memoProductInfos.get(i).setCost(0);
             } else {
-                int quantity = Integer.parseInt(temp_quantity), i = getPosition();
-                if (!productInfos.get(i).getSize().equalsIgnoreCase("Tin"))
-                    tvPrice.setText("Cost: " + productInfos.get(i).getMrp1() * quantity + " tk");
-                else
-                    tvPrice.setText("Cost: " + productInfos.get(i).getMrp2() * quantity + " tk");
+                int quantity = Integer.parseInt(temp_quantity);
+                memoProductInfos.get(i).setQuantity(quantity);
+                memoProductInfos.get(i).setCost(memoProductInfos.get(i).getCostPerUnit() * quantity);
+            }
+            MemoAdapter.setCosttv(tvPrice, i);
+        }
+
+        public void addToBucket() {
+            int i = getPosition();
+            showToast(context, "" + addedProduct.indexOf(memoProductInfos.get(i)));
+            if (addedProduct.indexOf(memoProductInfos.get(i)) == -1) {
+                memoProductInfos.get(i).setIsAdded(true);
+                addedProduct.add(memoProductInfos.get(i));
+                tvItemAdded.setText("Total Item Ordered " + addedProduct.size());
+                btnToggle(!memoProductInfos.get(i).isAdded(), btAddItem, btRemoveItem);
             }
         }
 
-        public void sendMemoInfo() {
-
+        public void removeFromBucket() {
+            int i = getPosition();
+            showToast(context, "" + addedProduct.indexOf(memoProductInfos.get(i)));
+            if (addedProduct.indexOf(memoProductInfos.get(i)) != -1) {
+                memoProductInfos.get(i).setIsAdded(false);
+                addedProduct.remove(memoProductInfos.get(i));
+                tvItemAdded.setText("Total Item Ordered " + addedProduct.size());
+                btnToggle(!memoProductInfos.get(i).isAdded(), btAddItem, btRemoveItem);
+            }
         }
     }
 

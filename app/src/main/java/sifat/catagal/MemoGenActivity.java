@@ -1,6 +1,8 @@
 package sifat.catagal;
 
+import android.app.FragmentManager;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -20,8 +22,10 @@ import de.greenrobot.event.EventBus;
 import github.chenupt.dragtoplayout.AttachUtil;
 import github.chenupt.dragtoplayout.DragTopLayout;
 import sifat.Adapter.MemoAdapter;
+import sifat.Fragments.ConfirmationMemoFragment;
 import sifat.Provider.MemoBasicInfoProvider;
 
+import static sifat.Utilities.CommonUtilities.CONFIRM_FRAG_TAG;
 /**
  * Created by sifat on 11/16/2015.
  */
@@ -32,12 +36,13 @@ public class MemoGenActivity extends ActionBarActivity implements View.OnClickLi
     private RecyclerView recyclerView;
     private StickyHeaderDecoration decor;
     private Toolbar toolbar;
-    private TextView tvSelectDate;
+    private TextView tvSelectDate, tvItemAdded, tvTotalCost;
     private DatePickerDialog datePickerDialog;
     private Spinner spDistributor, spAreaCode, spAreaName;
     private MemoBasicInfoProvider memoBasicInfoProvider;
     private RobotoTextView tvOrderDate;
     private String orderDate, supplyDate;
+    private FloatingActionButton fabSendMemo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +55,12 @@ public class MemoGenActivity extends ActionBarActivity implements View.OnClickLi
 
         toolbar = (Toolbar) findViewById(R.id.appbar);
         setSupportActionBar(toolbar);
+
+        fabSendMemo = (FloatingActionButton) findViewById(R.id.fab);
+        fabSendMemo.setOnClickListener(this);
+
+        tvItemAdded = (TextView) findViewById(R.id.tvTotalItemOrder);
+        tvTotalCost = (TextView) findViewById(R.id.tvTotalCost);
 
         final Calendar calendar = Calendar.getInstance();
 
@@ -107,13 +118,21 @@ public class MemoGenActivity extends ActionBarActivity implements View.OnClickLi
             datePickerDialog.setYearRange(2010, 2036);
             datePickerDialog.setCloseOnSingleTapDay(false);
             datePickerDialog.show(getSupportFragmentManager(), DATEPICKER_TAG);
+        } else if (v.getId() == R.id.fab) {
+            showConfirmationDialog();
         }
     }
 
+    private void showConfirmationDialog() {
+        FragmentManager fragmentManager = getFragmentManager();
+        ConfirmationMemoFragment memoFragment = new ConfirmationMemoFragment();
+
+        memoFragment.show(fragmentManager, CONFIRM_FRAG_TAG);
+    }
 
 
     protected void setAdapterAndDecor(RecyclerView list) {
-        final MemoAdapter adapter = new MemoAdapter(this);
+        final MemoAdapter adapter = new MemoAdapter(this, tvTotalCost, tvItemAdded);
         decor = new StickyHeaderDecoration(adapter);
 
         list.setAdapter(adapter);

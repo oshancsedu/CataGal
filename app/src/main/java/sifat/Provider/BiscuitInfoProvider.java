@@ -3,6 +3,7 @@ package sifat.Provider;
 import java.util.ArrayList;
 import java.util.List;
 
+import sifat.Domain.MemoProductInfo;
 import sifat.Domain.ProductInfo;
 
 /**
@@ -14,6 +15,7 @@ public class BiscuitInfoProvider implements ProductInfoProvider {
     private static ArrayList<ProductInfo> productInfos = new ArrayList<>();
     private static List<Integer> product_images =  new ArrayList<>();
     private static ArrayList<String> headers = new ArrayList<>();
+    private static ArrayList<MemoProductInfo> memoProductInfos = new ArrayList<>();
 
     private BiscuitInfoProvider() {
     }
@@ -49,6 +51,7 @@ public class BiscuitInfoProvider implements ProductInfoProvider {
 
     public static void setProductInfos() {
         ProductInfo productInfo;
+        MemoProductInfo memoProductInfo;
 
         /*******
          * Master Slices
@@ -65,6 +68,10 @@ public class BiscuitInfoProvider implements ProductInfoProvider {
         productInfos.add(productInfo);
         product_images = new ArrayList<>();
 
+        memoProductInfo = new MemoProductInfo("Bengal Master Slice", "Family Pack", "6 pack/carton", "Carton", 210, 35, 1);
+        memoProductInfos.add(memoProductInfo);
+
+
         productInfo = new ProductInfo("Bengal Master Slices ", "Regular Pack", "1 Carton", "24 packet", "Minimum 6 months", "Carton MRP", 240, "Packet MRP", 10,
                 "master_slice_banner.jpg", 1);
         /*productInfo.setUnit("Carton");
@@ -76,6 +83,9 @@ public class BiscuitInfoProvider implements ProductInfoProvider {
         productInfo.setProduct_images(product_images);
         productInfos.add(productInfo);
         product_images = new ArrayList<>();
+
+        memoProductInfo = new MemoProductInfo("Bengal Master Slice", "Regular Pack", "24 pack/carton", "Carton", 240, 10, 1);
+        memoProductInfos.add(memoProductInfo);
 
 
         productInfo = new ProductInfo("Bengal Master Slices ", "Mini Pack", "1 Carton", "40 packet", "Minimum 6 months", "Carton MRP", 200, "Packet MRP", 5,
@@ -90,11 +100,15 @@ public class BiscuitInfoProvider implements ProductInfoProvider {
         productInfos.add(productInfo);
         product_images = new ArrayList<>();
 
+        memoProductInfo = new MemoProductInfo("Bengal Master Slice", "Mini Pack", "40 pack/carton", "Carton", 200, 5, 1);
+        memoProductInfos.add(memoProductInfo);
+
+
         /********
          * Pine-Apple Cream
          * ******/
 
-        productInfo = new ProductInfo("Pine-Apple Cream", "Family Pack", "1 Carton", "8 Packet", "Minimum 6 months", "Carton MRP", 200, "Packet MRP", 25,
+        productInfo = new ProductInfo("Bengal Pine-Apple Cream", "Family Pack", "1 Carton", "8 Packet", "Minimum 6 months", "Carton MRP", 200, "Packet MRP", 25,
                 "pine_apple_cream_banner.jpg", 2);
         /*productInfo.setUnit("Carton");
         productInfo.setPacking("8 pack/carton");
@@ -106,8 +120,11 @@ public class BiscuitInfoProvider implements ProductInfoProvider {
         productInfos.add(productInfo);
         product_images = new ArrayList<>();
 
+        memoProductInfo = new MemoProductInfo("Bengal Pine-Apple Cream", "Family Pack", "8 pack/carton", "Carton", 200, 25, 2);
+        memoProductInfos.add(memoProductInfo);
 
-        productInfo = new ProductInfo("Pine-Apple Cream ", "Regular Pack", "1 Carton", "20 packet", "Minimum 6 months", "Carton MRP", 200, "Packet MRP", 10,
+
+        productInfo = new ProductInfo("Bengal Pine-Apple Cream", "Regular Pack", "1 Carton", "20 packet", "Minimum 6 months", "Carton MRP", 200, "Packet MRP", 10,
                 "pine_apple_cream_banner.jpg", 2);
         productInfo.setUnit("Carton");
         productInfo.setPacking("6 pack/carton");
@@ -118,6 +135,9 @@ public class BiscuitInfoProvider implements ProductInfoProvider {
         productInfo.setProduct_images(product_images);
         productInfos.add(productInfo);
         product_images = new ArrayList<>();
+
+        memoProductInfo = new MemoProductInfo("Bengal Pine-Apple Cream", "Regular Pack", "20 pack/carton", "Carton", 200, 10, 2);
+        memoProductInfos.add(memoProductInfo);
 
 
         productInfo = new ProductInfo("Pine-Apple Cream ", "Mini Pack", "1 Carton", "40 packet", "Minimum 6 months", "Carton MRP", 200, "Packet MRP", 5,
@@ -132,11 +152,14 @@ public class BiscuitInfoProvider implements ProductInfoProvider {
         productInfos.add(productInfo);
         product_images = new ArrayList<>();
 
+        memoProductInfo = new MemoProductInfo("Bengal Pine-Apple Cream", "Mini Pack", "40 pack/carton", "Carton", 200, 5, 2);
+        memoProductInfos.add(memoProductInfo);
+
         /********
          * Digestives Biscuit
          * ******/
 
-        productInfo = new ProductInfo("Digestives Biscuit", "Family Pack", "1 Carton", "8 Box", "Minimum 6 months", "Carton MRP", 480, "Packet MRP", 60,
+        productInfo = new ProductInfo("Nutribake Digestives Biscuit", "Family Pack", "1 Carton", "8 Box", "Minimum 6 months", "Carton MRP", 480, "Packet MRP", 60,
                 "banner.jpg", 3);
         product_images.add(100021);
         product_images.add(100022);
@@ -144,6 +167,9 @@ public class BiscuitInfoProvider implements ProductInfoProvider {
         productInfo.setProduct_images(product_images);
         productInfos.add(productInfo);
         product_images = new ArrayList<>();
+
+        memoProductInfo = new MemoProductInfo("Nutribake Digestives Biscuit", "Family Pack", "8 box/carton", "Carton", 480, 60, 3);
+        memoProductInfos.add(memoProductInfo);
 
 
         productInfo = new ProductInfo("Digestives Biscuit", "Mini Pack", "1 Carton", "40 packet", "Minimum 6 months", "Carton MRP", 192, "Packet MRP", 8,
@@ -155,11 +181,14 @@ public class BiscuitInfoProvider implements ProductInfoProvider {
         productInfos.add(productInfo);
         product_images = new ArrayList<>();
 
+        memoProductInfo = new MemoProductInfo("Nutribake Digestives Biscuit", "Mini Pack", "40 pack/carton", "Carton", 192, 8, 3);
+        memoProductInfos.add(memoProductInfo);
+
 
         /********
          * Orange Cake Biscuit
          * *****/
-        productInfo = new ProductInfo("Orange Cake Biscuit", "Family Pack", "1 Carton", "5 packet", "Minimum 6 months", "Carton MRP", 200, "Packet MRP", 40,
+        productInfo = new ProductInfo("Bengal Orange Cake Biscuit", "Family Pack", "1 Carton", "5 packet", "Minimum 6 months", "Carton MRP", 200, "Packet MRP", 40,
                 "orange_cake_banner.jpg", 4);
         product_images.add(100021);
         product_images.add(100022);
@@ -168,7 +197,10 @@ public class BiscuitInfoProvider implements ProductInfoProvider {
         productInfos.add(productInfo);
         product_images = new ArrayList<>();
 
-        productInfo = new ProductInfo("Orange Cake Biscuit ", "Regular Pack", "1 Carton", "24 packet", "Minimum 6 months", "Carton MRP", 288, "Packet MRP", 12,
+        memoProductInfo = new MemoProductInfo("Bengal Orange Cake Biscuit", "Family Pack", "5 pack/carton", "Carton", 200, 40, 4);
+        memoProductInfos.add(memoProductInfo);
+
+        productInfo = new ProductInfo("Bengal Orange Cake Biscuit ", "Regular Pack", "1 Carton", "24 packet", "Minimum 6 months", "Carton MRP", 288, "Packet MRP", 12,
                 "orange_cake_banner.jpg", 4);
         product_images.add(100041);
         product_images.add(100042);
@@ -176,6 +208,9 @@ public class BiscuitInfoProvider implements ProductInfoProvider {
         productInfo.setProduct_images(product_images);
         productInfos.add(productInfo);
         product_images = new ArrayList<>();
+
+        memoProductInfo = new MemoProductInfo("Bengal Orange Cake Biscuit", "Regular Pack", "24 pack/carton", "Carton", 288, 12, 4);
+        memoProductInfos.add(memoProductInfo);
 
 
         productInfo = new ProductInfo("Orange Cake Biscuit ", "Tin", "1 Carton", "4 Tin", "Minimum 9 months", "Carton MRP", 800, "Tin MRP", 200,
@@ -187,11 +222,14 @@ public class BiscuitInfoProvider implements ProductInfoProvider {
         productInfos.add(productInfo);
         product_images = new ArrayList<>();
 
+        memoProductInfo = new MemoProductInfo("Bengal Orange Cake Biscuit", "Tin", "1 tin", "Tin", 200, 200, 4);
+        memoProductInfos.add(memoProductInfo);
+
 
         /*******
          * Hit Cream Biscuit
          * ******/
-        productInfo = new ProductInfo("Hit Cream Biscuit", "Family Pack", "1 Carton", "5 packet", "Minimum 6 months", "Carton MRP", 175, "Packet MRP", 35,
+        productInfo = new ProductInfo("Bengal Hit Cream Biscuit", "Family Pack", "1 Carton", "5 packet", "Minimum 6 months", "Carton MRP", 175, "Packet MRP", 35,
                 "banner.jpg", 5);
         product_images.add(100021);
         product_images.add(100022);
@@ -200,11 +238,13 @@ public class BiscuitInfoProvider implements ProductInfoProvider {
         productInfos.add(productInfo);
         product_images = new ArrayList<>();
 
+        memoProductInfo = new MemoProductInfo("Bengal Hit Cream Biscuit", "Family Pack", "5 pack/carton", "Carton", 175, 35, 5);
+        memoProductInfos.add(memoProductInfo);
 
         /*******
          * B-vita Biscuit
          * ******/
-        productInfo = new ProductInfo("B-vita Biscuit", "Family Pack", "1 Carton", "5 packet", "Minimum 6 months", "Carton MRP", 150, "Packet MRP", 30,
+        productInfo = new ProductInfo("Bengal B-vita Biscuit", "Family Pack", "1 Carton", "5 packet", "Minimum 6 months", "Carton MRP", 150, "Packet MRP", 30,
                 "banner.jpg", 6);
         product_images.add(100021);
         product_images.add(100022);
@@ -213,11 +253,13 @@ public class BiscuitInfoProvider implements ProductInfoProvider {
         productInfos.add(productInfo);
         product_images = new ArrayList<>();
 
+        memoProductInfo = new MemoProductInfo("Bengal B-vita Biscuit", "Family Pack", "5 pack/carton", "Carton", 150, 30, 6);
+        memoProductInfos.add(memoProductInfo);
 
         /*******
          * Lemon Biscuit
          * *******/
-        productInfo = new ProductInfo("Lemon Biscuit", "Family Pack", "1 Carton", "8 Packet", "Minimum 6 months", "Carton MRP", 176, "Packet MRP", 22,
+        productInfo = new ProductInfo("Bengal Lemon Biscuit", "Family Pack", "1 Carton", "8 Packet", "Minimum 6 months", "Carton MRP", 176, "Packet MRP", 22,
                 "banner.jpg", 7);
         product_images.add(100021);
         product_images.add(100022);
@@ -225,6 +267,9 @@ public class BiscuitInfoProvider implements ProductInfoProvider {
         productInfo.setProduct_images(product_images);
         productInfos.add(productInfo);
         product_images = new ArrayList<>();
+
+        memoProductInfo = new MemoProductInfo("Bengal Lemon Biscuit", "Family Pack", "8 pack/carton", "Carton", 176, 22, 7);
+        memoProductInfos.add(memoProductInfo);
 
 
         /******
@@ -239,6 +284,8 @@ public class BiscuitInfoProvider implements ProductInfoProvider {
         productInfos.add(productInfo);
         product_images = new ArrayList<>();
 
+        memoProductInfo = new MemoProductInfo("Bingo Toast Biscuit", "Family Pack", "6 pack/carton", "Carton", 300, 50, 8);
+        memoProductInfos.add(memoProductInfo);
 
         /*******
          * Kingdom Kheer Cookies
@@ -251,6 +298,9 @@ public class BiscuitInfoProvider implements ProductInfoProvider {
         productInfo.setProduct_images(product_images);
         productInfos.add(productInfo);
         product_images = new ArrayList<>();
+
+        memoProductInfo = new MemoProductInfo("Kingdom Kheer Cookies", "Family Pack", "5 pack/carton", "Carton", 250, 50, 9);
+        memoProductInfos.add(memoProductInfo);
 
 
         /*******
@@ -327,6 +377,14 @@ public class BiscuitInfoProvider implements ProductInfoProvider {
         product_images = new ArrayList<>();
 
 
+    }
+
+    public ArrayList<MemoProductInfo> getProductMemoInfo() {
+        return memoProductInfos;
+    }
+
+    public void setProductMemoInfo(ArrayList<MemoProductInfo> memoProductInfos) {
+        this.memoProductInfos = memoProductInfos;
     }
 
     public ArrayList<String> getHeader() {

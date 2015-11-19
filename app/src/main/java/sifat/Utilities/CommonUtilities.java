@@ -17,6 +17,7 @@ public class CommonUtilities {
     public static final String COL_AREA_NAME = "areaName";
     public static final String COL_AREA_CODE = "areaCode";
     public static final String COL_DISTRIBUTOR_NAME = "distributorName";
+    public static final String CONFIRM_FRAG_TAG = "confirm_frag_tag";
 
     public static void showToast(Context context,String message)
     {

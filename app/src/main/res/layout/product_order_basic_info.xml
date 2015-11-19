@@ -51,7 +51,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="5dp"
-        android:background="@color/app_theme_color_minor" />
+        android:background="@color/app_theme_color_minor"
+        android:padding="5dp" />
 
     <Spinner
         android:id="@+id/spAreaCode"
@@ -59,7 +60,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="5dp"
-        android:background="@color/app_theme_color_minor" />
+        android:background="@color/app_theme_color_minor"
+        android:padding="5dp" />
 
     <Spinner
         android:id="@+id/spAreaName"
@@ -67,7 +69,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="5dp"
-        android:background="@color/app_theme_color_minor" />
+        android:background="@color/app_theme_color_minor"
+        android:padding="5dp" />
 
     <com.devspark.robototextview.widget.RobotoTextView
         android:id="@+id/tvSupplyDateSelector"

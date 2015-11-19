@@ -1,20 +1,15 @@
 package sifat.catagal;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.GridView;
 
-import sifat.Adapter.NavAdapter;
-
-import static sifat.Utilities.CommonUtilities.*;
+import static sifat.Utilities.CommonUtilities.showToast;
 
 public class MenuActivity extends ActionBarActivity implements AdapterView.OnItemClickListener{
 
@@ -24,19 +19,6 @@ public class MenuActivity extends ActionBarActivity implements AdapterView.OnIte
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        // Calling the RecyclerView
-        mRecyclerView = (RecyclerView)findViewById(R.id.recycler_view);
-        mRecyclerView.setHasFixedSize(true);
-
-        // The number of Columns
-        mLayoutManager = new GridLayoutManager(this, 2);
-
-        mRecyclerView.setLayoutManager(mLayoutManager);
-
-        mAdapter = new NavAdapter();
-        mRecyclerView.setAdapter(mAdapter);
 
     }
 
