@@ -59,6 +59,8 @@ public class MemoGenActivity extends ActionBarActivity implements View.OnClickLi
         fabSendMemo = (FloatingActionButton) findViewById(R.id.fab);
         fabSendMemo.setOnClickListener(this);
 
+        supplyDate = "";
+
         tvItemAdded = (TextView) findViewById(R.id.tvTotalItemOrder);
         tvTotalCost = (TextView) findViewById(R.id.tvTotalCost);
 
@@ -119,14 +121,17 @@ public class MemoGenActivity extends ActionBarActivity implements View.OnClickLi
             datePickerDialog.setCloseOnSingleTapDay(false);
             datePickerDialog.show(getSupportFragmentManager(), DATEPICKER_TAG);
         } else if (v.getId() == R.id.fab) {
-            showConfirmationDialog();
+            String areaName, areaCode, distributorName;
+            areaName = spAreaName.getSelectedItem().toString();
+            areaCode = spAreaCode.getSelectedItem().toString();
+            distributorName = spDistributor.getSelectedItem().toString();
+            showConfirmationDialog(areaName, areaCode, distributorName);
         }
     }
 
-    private void showConfirmationDialog() {
+    private void showConfirmationDialog(String areaName, String areaCode, String distributorName) {
         FragmentManager fragmentManager = getFragmentManager();
-        ConfirmationMemoFragment memoFragment = new ConfirmationMemoFragment();
-
+        ConfirmationMemoFragment memoFragment = ConfirmationMemoFragment.newInstance(supplyDate, areaName, areaCode, distributorName);
         memoFragment.show(fragmentManager, CONFIRM_FRAG_TAG);
     }
 
@@ -173,5 +178,4 @@ public class MemoGenActivity extends ActionBarActivity implements View.OnClickLi
         orderDate = year + "-" + monthInt + "-" + day;
         return orderDate;
     }
-
 }

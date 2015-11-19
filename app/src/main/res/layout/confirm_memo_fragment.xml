@@ -1,31 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fbutton="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/app_theme_color_minor"
+    android:orientation="vertical">
 
     <TextView
+        android:id="@+id/tvDialogHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/app_theme_color"
         android:padding="8dp"
-        android:text="Product List"
+        android:text="Product List\noshan\nsifat\nhaque"
         android:textAlignment="center"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/white" />
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvSelectedProductList"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="2dp"
+        android:layout_weight="6"
+        android:background="@color/app_theme_color_minor"
+        android:clipToPadding="false" />
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:orientation="horizontal">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/app_theme_color"
+        android:orientation="horizontal"
+        android:padding="5dp">
 
         <info.hoang8f.widget.FButton
             android:id="@+id/btEdit"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="65dp"
             android:layout_gravity="center"
             android:layout_marginTop="4dp"
             android:layout_weight="1"
@@ -38,7 +50,7 @@
         <info.hoang8f.widget.FButton
             android:id="@+id/btConfirm"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="65dp"
             android:layout_gravity="center"
             android:layout_marginTop="4dp"
             android:layout_weight="1"
@@ -47,8 +59,5 @@
             android:textColor="@android:color/white"
             fbutton:buttonColor="@color/cyan_700"
             fbutton:shadowEnabled="true" />
-
     </LinearLayout>
-
-
-</RelativeLayout>
+</LinearLayout>

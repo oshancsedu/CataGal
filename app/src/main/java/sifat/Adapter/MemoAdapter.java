@@ -27,9 +27,9 @@ import static sifat.Utilities.CommonUtilities.showToast;
 public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> implements
         StickyHeaderAdapter<MemoAdapter.HeaderHolder> {
 
+    public static ArrayList<MemoProductInfo> addedProduct = new ArrayList<>();
     static Context context;
     private static ArrayList<MemoProductInfo> memoProductInfos = new ArrayList<>();
-    private static ArrayList<MemoProductInfo> addedProduct = new ArrayList<>();
     private static ArrayList<String> headers = new ArrayList<>();
     private static TextView tvTotalCost, tvItemAdded;
     private static int totalItemAdded, totalCost;

@@ -18,6 +18,10 @@ public class CommonUtilities {
     public static final String COL_AREA_CODE = "areaCode";
     public static final String COL_DISTRIBUTOR_NAME = "distributorName";
     public static final String CONFIRM_FRAG_TAG = "confirm_frag_tag";
+    public static final String DIALOG_HEADER_SUPPLY_DATE = "dialog_header_supply_date";
+    public static final String DIALOG_HEADER_AREA_NAME = "dialog_header_area_name";
+    public static final String DIALOG_HEADER_AREA_CODE = "dialog_header_area_code";
+    public static final String DIALOG_HEADER_DISTRIBUTOR_NAME = "dialog_header_distributor_name";
 
     public static void showToast(Context context,String message)
     {
