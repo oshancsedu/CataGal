@@ -7,6 +7,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -22,6 +24,7 @@ import de.greenrobot.event.EventBus;
 import github.chenupt.dragtoplayout.AttachUtil;
 import github.chenupt.dragtoplayout.DragTopLayout;
 import sifat.Adapter.MemoAdapter;
+import sifat.Controller.ServerCommunicator;
 import sifat.Fragments.ConfirmationMemoFragment;
 import sifat.Provider.MemoBasicInfoProvider;
 
@@ -177,5 +180,24 @@ public class MemoGenActivity extends ActionBarActivity implements View.OnClickLi
         int day = c.get(Calendar.DAY_OF_MONTH);
         orderDate = year + "-" + monthInt + "-" + day;
         return orderDate;
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_memo, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.update) {
+            ServerCommunicator serverCommunicator = new ServerCommunicator(this);
+            serverCommunicator.getMemoBasicInfo();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

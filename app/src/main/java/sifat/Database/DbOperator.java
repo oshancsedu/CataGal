@@ -15,6 +15,7 @@ import static sifat.Utilities.CommonUtilities.COL_DISTRIBUTOR_NAME;
 import static sifat.Utilities.CommonUtilities.DATABASE_NAME;
 import static sifat.Utilities.CommonUtilities.DATABASE_VERSION;
 import static sifat.Utilities.CommonUtilities.TABLE_MEMO_BASIC_INFO;
+import static sifat.Utilities.CommonUtilities.showToast;
 
 /**
  * Created by sifat on 11/17/2015.
@@ -63,6 +64,7 @@ public class DbOperator {
         contentValues.put(COL_AREA_NAME, areaName);
         contentValues.put(COL_DISTRIBUTOR_NAME, distributorName);
         sqlDatabase.insert(TABLE_MEMO_BASIC_INFO, null, contentValues);
+        showToast(context, "Updated!");
     }
 
 
@@ -106,5 +108,4 @@ public class DbOperator {
             onCreate(db);
         }
     }
-
 }

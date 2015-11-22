@@ -12,6 +12,9 @@ import sifat.Database.DbOperator;
 import static sifat.Utilities.CommonUtilities.COL_AREA_CODE;
 import static sifat.Utilities.CommonUtilities.COL_AREA_NAME;
 import static sifat.Utilities.CommonUtilities.COL_DISTRIBUTOR_NAME;
+import static sifat.Utilities.CommonUtilities.DEFULT_AREA_CODE;
+import static sifat.Utilities.CommonUtilities.DEFULT_AREA_NAME;
+import static sifat.Utilities.CommonUtilities.DEFULT_DISTRIBUTOR_NAME;
 import static sifat.Utilities.CommonUtilities.TABLE_MEMO_BASIC_INFO;
 
 /**
@@ -58,14 +61,20 @@ public class MemoBasicInfoProvider {
         Cursor c;
         String query = "Select * from " + TABLE_MEMO_BASIC_INFO;
         c = sqlDatabase.rawQuery(query, null);
-        c.moveToFirst();
 
-        String areaname = c.getString(c.getColumnIndex(COL_AREA_NAME));
-        setAreaName(areaname);
-        String areacode = c.getString(c.getColumnIndex(COL_AREA_CODE));
-        setAreaCode(areacode);
-        String distributorname = c.getString(c.getColumnIndex(COL_DISTRIBUTOR_NAME));
-        setDistributorName(distributorname);
+        if (c.getCount() > 0) {
+            c.moveToFirst();
+            String areaname = c.getString(c.getColumnIndex(COL_AREA_NAME));
+            setAreaName(areaname);
+            String areacode = c.getString(c.getColumnIndex(COL_AREA_CODE));
+            setAreaCode(areacode);
+            String distributorname = c.getString(c.getColumnIndex(COL_DISTRIBUTOR_NAME));
+            setDistributorName(distributorname);
+        } else {
+            setAreaName(DEFULT_AREA_NAME);
+            setAreaCode(DEFULT_AREA_CODE);
+            setDistributorName(DEFULT_DISTRIBUTOR_NAME);
+        }
     }
 
     public void setDistributorName(String distributorName) {
@@ -102,5 +111,3 @@ public class MemoBasicInfoProvider {
         return distributorNames;
     }
 }
-
-

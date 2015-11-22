@@ -61,7 +61,7 @@ public class BiscuitInfoProvider implements ProductInfoProvider {
         /*productInfo.setUnit("Carton");
         productInfo.setPacking("6 pack/carton");
         productInfo.setPricePerUnit("210 tk");*/
-        product_images.add(100012);
+        product_images.add(10231);
         product_images.add(100012);
         product_images.add(100012);
         productInfo.setProduct_images(product_images);
@@ -77,7 +77,7 @@ public class BiscuitInfoProvider implements ProductInfoProvider {
         /*productInfo.setUnit("Carton");
         productInfo.setPacking("24 pack/carton");
         productInfo.setPricePerUnit("240 tk");*/
-        product_images.add(100022);
+        product_images.add(10221);
         product_images.add(100022);
         product_images.add(100022);
         productInfo.setProduct_images(product_images);
@@ -93,7 +93,7 @@ public class BiscuitInfoProvider implements ProductInfoProvider {
         /*productInfo.setUnit("Carton");
         productInfo.setPacking("40 pack/carton");
         productInfo.setPricePerUnit("200 tk");*/
-        product_images.add(100032);
+        product_images.add(10231);
         product_images.add(100032);
         product_images.add(100032);
         productInfo.setProduct_images(product_images);
@@ -113,7 +113,7 @@ public class BiscuitInfoProvider implements ProductInfoProvider {
         /*productInfo.setUnit("Carton");
         productInfo.setPacking("8 pack/carton");
         productInfo.setPricePerUnit("200 tk");*/
-        product_images.add(100041);
+        product_images.add(10131);
         product_images.add(100042);
         product_images.add(100043);
         productInfo.setProduct_images(product_images);
@@ -129,7 +129,7 @@ public class BiscuitInfoProvider implements ProductInfoProvider {
         productInfo.setUnit("Carton");
         productInfo.setPacking("6 pack/carton");
         productInfo.setPricePerUnit("210 tk");
-        product_images.add(100041);
+        product_images.add(10121);
         product_images.add(100052);
         product_images.add(100043);
         productInfo.setProduct_images(product_images);
@@ -145,7 +145,7 @@ public class BiscuitInfoProvider implements ProductInfoProvider {
         productInfo.setUnit("Carton");
         productInfo.setPacking("6 pack/carton");
         productInfo.setPricePerUnit("210 tk");
-        product_images.add(100041);
+        product_images.add(10131);
         product_images.add(100062);
         product_images.add(100043);
         productInfo.setProduct_images(product_images);
@@ -231,9 +231,9 @@ public class BiscuitInfoProvider implements ProductInfoProvider {
          * ******/
         productInfo = new ProductInfo("Bengal Hit Cream Biscuit", "Family Pack", "1 Carton", "5 packet", "Minimum 6 months", "Carton MRP", 175, "Packet MRP", 35,
                 "banner.jpg", 5);
-        product_images.add(100021);
-        product_images.add(100022);
-        product_images.add(100023);
+        product_images.add(1081);
+        product_images.add(10812);
+        product_images.add(10812);
         productInfo.setProduct_images(product_images);
         productInfos.add(productInfo);
         product_images = new ArrayList<>();
@@ -246,9 +246,9 @@ public class BiscuitInfoProvider implements ProductInfoProvider {
          * ******/
         productInfo = new ProductInfo("Bengal B-vita Biscuit", "Family Pack", "1 Carton", "5 packet", "Minimum 6 months", "Carton MRP", 150, "Packet MRP", 30,
                 "banner.jpg", 6);
-        product_images.add(100021);
-        product_images.add(100022);
-        product_images.add(100023);
+        product_images.add(1091);
+        product_images.add(10912);
+        product_images.add(10912);
         productInfo.setProduct_images(product_images);
         productInfos.add(productInfo);
         product_images = new ArrayList<>();
@@ -261,9 +261,9 @@ public class BiscuitInfoProvider implements ProductInfoProvider {
          * *******/
         productInfo = new ProductInfo("Bengal Lemon Biscuit", "Family Pack", "1 Carton", "8 Packet", "Minimum 6 months", "Carton MRP", 176, "Packet MRP", 22,
                 "banner.jpg", 7);
-        product_images.add(100162);
-        product_images.add(100162);
-        product_images.add(100162);
+        product_images.add(11211);
+        product_images.add(11212);
+        product_images.add(11212);
         productInfo.setProduct_images(product_images);
         productInfos.add(productInfo);
         product_images = new ArrayList<>();
@@ -310,7 +310,7 @@ public class BiscuitInfoProvider implements ProductInfoProvider {
 
         productInfo = new ProductInfo("Choco Twin", "Regular Pack", "1 Carton", "12 packet", "Minimum 6 months", "Carton MRP", 480, "Packet MRP", 40,
                 "choco_twin_banner.jpg", 10);
-        product_images.add(100102);
+        product_images.add(10731);
         product_images.add(100102);
         product_images.add(100103);
         productInfo.setProduct_images(product_images);
@@ -320,7 +320,7 @@ public class BiscuitInfoProvider implements ProductInfoProvider {
 
         productInfo = new ProductInfo("Choco Twin", "Mini Pack", "1 Carton", "40 packet", "Minimum 6 months", "Carton MRP", 400, "Packet MRP", 10,
                 "choco_twin_banner.jpg", 10);
-        product_images.add(100112);
+        product_images.add(10731);
         product_images.add(100112);
         product_images.add(100103);
         productInfo.setProduct_images(product_images);
@@ -332,9 +332,9 @@ public class BiscuitInfoProvider implements ProductInfoProvider {
          * *******/
         productInfo = new ProductInfo("Protein Plus Biscuit", "Regular Pack", "1 Carton", "24 packet", "Minimum 6 months", "Carton MRP", 312, "Packet MRP", 13,
                 "banner.jpg", 11);
-        product_images.add(100041);
-        product_images.add(100042);
-        product_images.add(100043);
+        product_images.add(11021);
+        product_images.add(11022);
+        product_images.add(11022);
         productInfo.setProduct_images(product_images);
         productInfos.add(productInfo);
         product_images = new ArrayList<>();
@@ -342,11 +342,11 @@ public class BiscuitInfoProvider implements ProductInfoProvider {
         /*********
          * Glucose Biscuit
          * ********/
-        productInfo = new ProductInfo("Glucose Biscuit", "Regular Pack", "1 Carton", "24 packet", "Minimum 6 months", "Carton MRP", 120, "Packet MRP", 5,
+        productInfo = new ProductInfo("Bengal Glucose Biscuit", "Regular Pack", "1 Carton", "24 packet", "Minimum 6 months", "Carton MRP", 120, "Packet MRP", 5,
                 "banner.jpg", 12);
-        product_images.add(100041);
-        product_images.add(100042);
-        product_images.add(100043);
+        product_images.add(11121);
+        product_images.add(11122);
+        product_images.add(11122);
         productInfo.setProduct_images(product_images);
         productInfos.add(productInfo);
         product_images = new ArrayList<>();
@@ -357,9 +357,9 @@ public class BiscuitInfoProvider implements ProductInfoProvider {
 
         productInfo = new ProductInfo("All Time (Orange) Biscuit", "Mini Pack", "1 Carton", "100 packet", "Minimum 6 months", "Carton MRP", 200, "Packet MRP", 2,
                 "alltime_orange_banner.jpg", 13);
-        product_images.add(100061);
-        product_images.add(100062);
-        product_images.add(100063);
+        product_images.add(1041);
+        product_images.add(10432);
+        product_images.add(10432);
         productInfo.setProduct_images(product_images);
         productInfos.add(productInfo);
         product_images = new ArrayList<>();
@@ -370,13 +370,12 @@ public class BiscuitInfoProvider implements ProductInfoProvider {
          * *******/
         productInfo = new ProductInfo("All Time (Milk+Coconut)", "Mini Pack", "1 Carton", "100 packet", "Minimum 6 months", "Carton MRP", 200, "Packet MRP", 2,
                 "banner.jpg", 14);
-        product_images.add(100061);
-        product_images.add(100062);
-        product_images.add(100063);
+        product_images.add(10532);
+        product_images.add(10532);
+        product_images.add(10532);
         productInfo.setProduct_images(product_images);
         productInfos.add(productInfo);
         product_images = new ArrayList<>();
-
 
     }
 
