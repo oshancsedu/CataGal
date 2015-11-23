@@ -2,6 +2,7 @@ package sifat.catagal;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.lukedeighton.wheelview.WheelView;
@@ -13,6 +14,9 @@ import java.util.Map;
 import sifat.Adapter.MaterialColorAdapter;
 import sifat.Utilities.MaterialColor;
 
+import static sifat.Utilities.CommonUtilities.SHAREDPREF_TAG_SELECTED_ITEM;
+import static sifat.Utilities.CommonUtilities.getPref;
+import static sifat.Utilities.CommonUtilities.showToast;
 /**
  * Created by sifat on 11/13/2015.
  */
@@ -22,6 +26,8 @@ public class NavigationActivity extends Activity {
 
     private static final int ITEM_COUNT = 4;
     static ArrayList<Integer> navItems = new ArrayList<>();
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +66,11 @@ public class NavigationActivity extends Activity {
             public void onWheelItemClick(WheelView parent, int position, boolean isSelected) {
                 String msg = String.valueOf(position) + " " + isSelected;
                 //Toast.makeText(NavigationActivity.this, msg, Toast.LENGTH_SHORT).show();
+                sharedPreferences = getPref(NavigationActivity.this);
+                editor = sharedPreferences.edit();
+                showToast(NavigationActivity.this, "Position: " + position);
+                editor.putString(SHAREDPREF_TAG_SELECTED_ITEM, "" + position);
+                editor.commit();
                 Intent intent = new Intent(NavigationActivity.this, ProductList.class);
                 startActivity(intent);
             }

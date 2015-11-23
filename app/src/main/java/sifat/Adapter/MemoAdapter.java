@@ -16,9 +16,10 @@ import java.util.ArrayList;
 
 import ca.barrenechea.widget.recyclerview.decoration.StickyHeaderAdapter;
 import sifat.Domain.MemoProductInfo;
-import sifat.Provider.BiscuitInfoProvider;
+import sifat.Provider.ProductInfoProvider;
 import sifat.catagal.R;
 
+import static sifat.Provider.ProviderSelector.getMyProvider;
 import static sifat.Utilities.CommonUtilities.showToast;
 
 /**
@@ -34,10 +35,10 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
     private static TextView tvTotalCost, tvItemAdded;
     private static int totalItemAdded, totalCost;
     private LayoutInflater mInflater;
-    private BiscuitInfoProvider provider;
+    private ProductInfoProvider provider;
 
     public MemoAdapter(Context context, TextView tvTotalCost, TextView tvItemAdded) {
-        provider = BiscuitInfoProvider.getProvider();
+        provider = getMyProvider(context);
         memoProductInfos = provider.getProductMemoInfo();
         headers = provider.getHeader();
         this.context = context;

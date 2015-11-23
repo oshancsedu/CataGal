@@ -1,15 +1,25 @@
 package sifat.Provider;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
+import static sifat.Utilities.CommonUtilities.SHAREDPREF_TAG_SELECTED_ITEM;
+import static sifat.Utilities.CommonUtilities.getPref;
+
 /**
  * Created by sifat on 11/14/2015.
  */
 public class ProviderSelector {
 
-    public static ProductInfoProvider getMyProvider(String productName) {
+    private static SharedPreferences sharedPreferences;
+
+    public static ProductInfoProvider getMyProvider(Context context) {
         ProductInfoProvider productInfoProvider = null;
-        if (productName.equalsIgnoreCase("Biscuit"))
+        sharedPreferences = getPref(context);
+        String productName = sharedPreferences.getString(SHAREDPREF_TAG_SELECTED_ITEM, "0");
+        if (productName.equalsIgnoreCase("0"))
             productInfoProvider = BiscuitInfoProvider.getProvider();
-        else if (productName.equalsIgnoreCase("Candey"))
+        else if (productName.equalsIgnoreCase("1"))
             productInfoProvider = CandyInfoProvider.getProvider();
         else if (productName.equalsIgnoreCase("Snacks"))
             productInfoProvider = SnacksInfoProvider.getProvider();

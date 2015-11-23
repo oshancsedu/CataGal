@@ -2,6 +2,7 @@ package sifat.Provider;
 
 import java.util.ArrayList;
 
+import sifat.Domain.MemoProductInfo;
 import sifat.Domain.ProductInfo;
 
 /**
@@ -12,4 +13,6 @@ public interface ProductInfoProvider {
     public ArrayList<ProductInfo> getProductInfos();
 
     public ArrayList<String> getHeader();
+
+    public ArrayList<MemoProductInfo> getProductMemoInfo();
 }

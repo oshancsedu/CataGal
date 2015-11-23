@@ -72,7 +72,7 @@ public class BiscuitInfoProvider implements ProductInfoProvider {
         memoProductInfos.add(memoProductInfo);
 
 
-        productInfo = new ProductInfo("Bengal Master Slices ", "Regular Pack", "1 Carton", "24 packet", "Minimum 6 months", "Carton MRP", 240, "Packet MRP", 10,
+        productInfo = new ProductInfo("Bengal Master Slices ", "Regular Pack", "1 Carton", "24 Packet", "Minimum 6 months", "Carton MRP", 240, "Packet MRP", 10,
                 "master_slice_banner.jpg", 1);
         /*productInfo.setUnit("Carton");
         productInfo.setPacking("24 pack/carton");
@@ -379,6 +379,7 @@ public class BiscuitInfoProvider implements ProductInfoProvider {
 
     }
 
+    @Override
     public ArrayList<MemoProductInfo> getProductMemoInfo() {
         return memoProductInfos;
     }

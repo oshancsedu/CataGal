@@ -46,7 +46,6 @@ public class ProductList extends ActionBarActivity {
         list.addItemDecoration(decor, 0);
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);

@@ -81,7 +81,5 @@ public class ServerCommunicator {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
     }
-
 }

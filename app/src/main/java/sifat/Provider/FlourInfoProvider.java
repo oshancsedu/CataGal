@@ -2,6 +2,7 @@ package sifat.Provider;
 
 import java.util.ArrayList;
 
+import sifat.Domain.MemoProductInfo;
 import sifat.Domain.ProductInfo;
 
 /**
@@ -35,5 +36,9 @@ public class FlourInfoProvider implements ProductInfoProvider {
         return null;
     }
 
+    @Override
+    public ArrayList<MemoProductInfo> getProductMemoInfo() {
+        return null;
+    }
 
 }

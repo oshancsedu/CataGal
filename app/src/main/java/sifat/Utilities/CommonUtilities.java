@@ -1,6 +1,7 @@
 package sifat.Utilities;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.widget.Toast;
 
 /**
@@ -34,8 +35,16 @@ public class CommonUtilities {
     public static final String JSON_TAG_AREA_CODE = "area_code";
     public static final String JSON_TAG_DISTRIBUTOR_NAME = "distributor_name";
 
+    public static final String SHAREPREF_TAG = "sifat.mySharedPref";
+    public static final String SHAREDPREF_TAG_SELECTED_ITEM = "selectedItem";
+
     public static void showToast(Context context,String message)
     {
         Toast.makeText(context,message,Toast.LENGTH_SHORT).show();
+    }
+
+    public static SharedPreferences getPref(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(SHAREPREF_TAG, Context.MODE_PRIVATE);
+        return sharedPreferences;
     }
 }

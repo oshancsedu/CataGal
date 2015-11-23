@@ -20,10 +20,11 @@ import java.util.ArrayList;
 
 import ca.barrenechea.widget.recyclerview.decoration.StickyHeaderAdapter;
 import sifat.Domain.ProductInfo;
-import sifat.Provider.BiscuitInfoProvider;
+import sifat.Provider.ProductInfoProvider;
 import sifat.catagal.ProductViewActivity;
 import sifat.catagal.R;
 
+import static sifat.Provider.ProviderSelector.getMyProvider;
 import static sifat.Utilities.CommonUtilities.SINGLE_PRODUCT_DETAIL;
 
 /**
@@ -36,10 +37,10 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
     private static ArrayList<ProductInfo> productInfos = new ArrayList<>();
     private static ArrayList<String> headers = new ArrayList<>();
     private LayoutInflater mInflater;
-    private BiscuitInfoProvider provider;
+    private ProductInfoProvider provider;
 
     public ProductListAdapter(Context context) {
-        provider = BiscuitInfoProvider.getProvider();
+        provider = getMyProvider(context);
         productInfos = provider.getProductInfos();
         headers = provider.getHeader();
         this.context=context;
@@ -66,8 +67,6 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
 
     @Override
