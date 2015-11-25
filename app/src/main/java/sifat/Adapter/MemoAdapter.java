@@ -150,8 +150,12 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
 
         public void calculatePrice() {
             String temp_quantity = etAmount.getEditText().getText().toString();
-            //showToast(context,"q :"+temp_quantity );
             int i = getPosition();
+            boolean flag = memoProductInfos.get(i).isAdded();
+
+            if (flag)
+                totalCost = totalCost - memoProductInfos.get(i).getCost();
+
             if (temp_quantity == null || temp_quantity.equalsIgnoreCase("")) {
                 if (memoProductInfos.get(i).getQuantity() == 0)
                 showToast(context, "Enter Amount");
@@ -162,6 +166,10 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
                 memoProductInfos.get(i).setQuantity(quantity);
                 memoProductInfos.get(i).setCost(memoProductInfos.get(i).getCostPerUnit() * quantity);
             }
+            if (flag) {
+                totalCost = totalCost + memoProductInfos.get(i).getCost();
+                setTotalCost();
+            }
             MemoAdapter.setCosttv(tvPrice, i);
         }
 
@@ -169,6 +177,8 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
             int i = getPosition();
             showToast(context, "" + addedProduct.indexOf(memoProductInfos.get(i)));
             if (addedProduct.indexOf(memoProductInfos.get(i)) == -1) {
+                totalCost = totalCost + memoProductInfos.get(i).getCost();
+                setTotalCost();
                 memoProductInfos.get(i).setIsAdded(true);
                 addedProduct.add(memoProductInfos.get(i));
                 tvItemAdded.setText("Total Item Ordered " + addedProduct.size());
@@ -180,11 +190,17 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
             int i = getPosition();
             showToast(context, "" + addedProduct.indexOf(memoProductInfos.get(i)));
             if (addedProduct.indexOf(memoProductInfos.get(i)) != -1) {
+                totalCost = totalCost - memoProductInfos.get(i).getCost();
+                setTotalCost();
                 memoProductInfos.get(i).setIsAdded(false);
                 addedProduct.remove(memoProductInfos.get(i));
                 tvItemAdded.setText("Total Item Ordered " + addedProduct.size());
                 btnToggle(!memoProductInfos.get(i).isAdded(), btAddItem, btRemoveItem);
             }
+        }
+
+        private void setTotalCost() {
+            tvTotalCost.setText("Total Order: " + totalCost + " tk");
         }
     }
 
