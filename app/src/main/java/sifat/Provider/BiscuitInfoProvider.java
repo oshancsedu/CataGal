@@ -63,7 +63,7 @@ public class BiscuitInfoProvider implements ProductInfoProvider {
         productInfo.setPricePerUnit("210 tk");*/
         product_images.add(10231);
         product_images.add(100012);
-        product_images.add(100012);
+        product_images.add(10213);
         productInfo.setProduct_images(product_images);
         productInfos.add(productInfo);
         product_images = new ArrayList<>();
@@ -79,7 +79,7 @@ public class BiscuitInfoProvider implements ProductInfoProvider {
         productInfo.setPricePerUnit("240 tk");*/
         product_images.add(10221);
         product_images.add(100022);
-        product_images.add(100022);
+        product_images.add(10213);
         productInfo.setProduct_images(product_images);
         productInfos.add(productInfo);
         product_images = new ArrayList<>();
@@ -95,7 +95,7 @@ public class BiscuitInfoProvider implements ProductInfoProvider {
         productInfo.setPricePerUnit("200 tk");*/
         product_images.add(10231);
         product_images.add(100032);
-        product_images.add(100032);
+        product_images.add(10213);
         productInfo.setProduct_images(product_images);
         productInfos.add(productInfo);
         product_images = new ArrayList<>();
@@ -308,7 +308,6 @@ public class BiscuitInfoProvider implements ProductInfoProvider {
         /*******
          * Choco Twin
          * ******/
-
         productInfo = new ProductInfo("Choco Twin", "Regular Pack", "1 Carton", "12 packet", "Minimum 6 months", "Carton MRP", 480, "Packet MRP", 40,
                 "choco_twin_banner.jpg", 10);
         product_images.add(10731);
@@ -360,7 +359,7 @@ public class BiscuitInfoProvider implements ProductInfoProvider {
                 "alltime_orange_banner.jpg", 13);
         product_images.add(1041);
         product_images.add(10432);
-        product_images.add(10432);
+        product_images.add(10433);
         productInfo.setProduct_images(product_images);
         productInfos.add(productInfo);
         product_images = new ArrayList<>();
@@ -373,7 +372,7 @@ public class BiscuitInfoProvider implements ProductInfoProvider {
                 "banner.jpg", 14);
         product_images.add(10532);
         product_images.add(10532);
-        product_images.add(10532);
+        product_images.add(10433);
         productInfo.setProduct_images(product_images);
         productInfos.add(productInfo);
         product_images = new ArrayList<>();
