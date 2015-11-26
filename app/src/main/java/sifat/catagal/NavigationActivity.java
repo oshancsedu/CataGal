@@ -43,7 +43,7 @@ public class NavigationActivity extends Activity {
         //create data for the adapter
         List<Map.Entry<String, Integer>> entries = new ArrayList<Map.Entry<String, Integer>>(ITEM_COUNT);
         for (int i = 0; i < ITEM_COUNT; i++) {
-            Map.Entry<String, Integer> entry = MaterialColor.random(this, "\\D*_500$");
+            Map.Entry<String, Integer> entry = MaterialColor.random(this, "\\D*_100$");
             //Log.i("Wheel",entry.toString());
             entries.add(entry);
         }
@@ -68,7 +68,10 @@ public class NavigationActivity extends Activity {
                 //Toast.makeText(NavigationActivity.this, msg, Toast.LENGTH_SHORT).show();
                 sharedPreferences = getPref(NavigationActivity.this);
                 editor = sharedPreferences.edit();
-                showToast(NavigationActivity.this, "Position: " + position);
+                if (position > 1) {
+                    showToast(NavigationActivity.this, "Development going on!");
+                    return;
+                }
                 editor.putString(SHAREDPREF_TAG_SELECTED_ITEM, "" + position);
                 editor.commit();
                 Intent intent = new Intent(NavigationActivity.this, ProductList.class);

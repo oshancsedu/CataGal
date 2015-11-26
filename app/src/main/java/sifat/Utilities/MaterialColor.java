@@ -24,13 +24,15 @@ public class MaterialColor {
         for (Field field : fields) {
             String fieldName = field.getName(); //prone to errors but okay for a sample!
             if (fieldName.startsWith("abc") || fieldName.startsWith("material")) continue;
-
-            try {
-                int resId = field.getInt(null);
-                //Log.i("Wheel","get Color "+fieldName+"-"+context.getResources().getColor(resId));
-                materialHashMap.put(fieldName, context.getResources().getColor(resId));
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
+            if (fieldName.endsWith("_100")) {
+                try {
+                    int resId = field.getInt(null);
+                    Log.i("Wheel", "get Color " + fieldName + "-" + context.getResources().getColor(resId));
+                    materialHashMap.put(fieldName, context.getResources().getColor(resId));
+                    break;
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
             }
         }
 
@@ -69,17 +71,4 @@ public class MaterialColor {
 
         return materialColors.get(0);
     }
-
-    /*public static int getContrastColor(String colourName) {
-        return sMaterialHashMap.get(colourName + "_200");
-    }*/
-
-    /*public static String getColorName(Map.Entry<String, Integer> entry) {
-        String color = entry.getKey();
-        Matcher matcher = sColorPattern.matcher(color);
-        if (matcher.find()) {
-            return color.substring(0, matcher.start());
-        }
-        return null;
-    }*/
 }

@@ -50,9 +50,9 @@ public class CandyInfoProvider implements ProductInfoProvider {
          * **/
         productInfo = new ProductInfo("Bingo Milk Candy", "Boyam(250)", "1 Boyam", "250 Piece", "Minimum 6 months", "Boyam MRP MRP", 250, "Per Piece MRP", 1,
                 "master_slice_banner.jpg", 1);
-        product_images.add(10231);
-        product_images.add(100012);
-        product_images.add(100012);
+        product_images.add(11811);
+        product_images.add(11812);
+        product_images.add(11813);
         productInfo.setProduct_images(product_images);
         productInfos.add(productInfo);
         product_images = new ArrayList<>();
@@ -62,9 +62,9 @@ public class CandyInfoProvider implements ProductInfoProvider {
 
         productInfo = new ProductInfo("Bingo Milk Candy", "Boyam(200)", "1 Boyam", "200 Piece", "Minimum 6 months", "Boyam MRP MRP", 200, "Per Piece MRP", 1,
                 "master_slice_banner.jpg", 1);
-        product_images.add(10231);
-        product_images.add(100012);
-        product_images.add(100012);
+        product_images.add(11811);
+        product_images.add(11812);
+        product_images.add(11813);
         productInfo.setProduct_images(product_images);
         productInfos.add(productInfo);
         product_images = new ArrayList<>();
@@ -74,9 +74,9 @@ public class CandyInfoProvider implements ProductInfoProvider {
 
         productInfo = new ProductInfo("Bingo Milk Candy", "Consumer Pack", "1 Pack", "50 Piece", "Minimum 6 months", "Packet MRP MRP", 40, "Per Piece MRP", 1,
                 "master_slice_banner.jpg", 1);
-        product_images.add(10231);
-        product_images.add(100012);
-        product_images.add(100012);
+        product_images.add(11831);
+        product_images.add(11812);
+        product_images.add(11813);
         productInfo.setProduct_images(product_images);
         productInfos.add(productInfo);
         product_images = new ArrayList<>();
@@ -89,9 +89,9 @@ public class CandyInfoProvider implements ProductInfoProvider {
          * **/
         productInfo = new ProductInfo("Bingo Tamarind Candy", "Boyam(250)", "1 Boyam", "250 Piece", "Minimum 6 months", "Boyam MRP MRP", 250, "Per Piece MRP", 1,
                 "master_slice_banner.jpg", 2);
-        product_images.add(10231);
-        product_images.add(100012);
-        product_images.add(100012);
+        product_images.add(11711);
+        product_images.add(11712);
+        product_images.add(11713);
         productInfo.setProduct_images(product_images);
         productInfos.add(productInfo);
         product_images = new ArrayList<>();
@@ -101,9 +101,9 @@ public class CandyInfoProvider implements ProductInfoProvider {
 
         productInfo = new ProductInfo("Bingo Tamarind Candy", "Boyam(200)", "1 Boyam", "200 Piece", "Minimum 6 months", "Boyam MRP MRP", 200, "Per Piece MRP", 1,
                 "master_slice_banner.jpg", 2);
-        product_images.add(10231);
-        product_images.add(100012);
-        product_images.add(100012);
+        product_images.add(11711);
+        product_images.add(11712);
+        product_images.add(11713);
         productInfo.setProduct_images(product_images);
         productInfos.add(productInfo);
         product_images = new ArrayList<>();
@@ -113,9 +113,9 @@ public class CandyInfoProvider implements ProductInfoProvider {
 
         productInfo = new ProductInfo("Bingo Tamarind Candy", "Consumer Pack", "1 Pack", "50 Piece", "Minimum 6 months", "Packet MRP MRP", 40, "Per Piece MRP", 1,
                 "master_slice_banner.jpg", 2);
-        product_images.add(10231);
-        product_images.add(100012);
-        product_images.add(100012);
+        product_images.add(11731);
+        product_images.add(11712);
+        product_images.add(11713);
         productInfo.setProduct_images(product_images);
         productInfos.add(productInfo);
         product_images = new ArrayList<>();
@@ -128,9 +128,9 @@ public class CandyInfoProvider implements ProductInfoProvider {
          * ***/
         productInfo = new ProductInfo("Winnie Mango Candy", "Boyam(250)", "1 Boyam", "250 Piece", "Minimum 6 months", "Boyam MRP MRP", 250, "Per Piece MRP", 1,
                 "master_slice_banner.jpg", 3);
-        product_images.add(10231);
-        product_images.add(100012);
-        product_images.add(100012);
+        product_images.add(11511);
+        product_images.add(11512);
+        product_images.add(11513);
         productInfo.setProduct_images(product_images);
         productInfos.add(productInfo);
         product_images = new ArrayList<>();
@@ -140,9 +140,9 @@ public class CandyInfoProvider implements ProductInfoProvider {
 
         productInfo = new ProductInfo("Winnie Mango Candy", "Boyam(200)", "1 Boyam", "200 Piece", "Minimum 6 months", "Boyam MRP MRP", 200, "Per Piece MRP", 1,
                 "master_slice_banner.jpg", 3);
-        product_images.add(10231);
-        product_images.add(100012);
-        product_images.add(100012);
+        product_images.add(11511);
+        product_images.add(11512);
+        product_images.add(11513);
         productInfo.setProduct_images(product_images);
         productInfos.add(productInfo);
         product_images = new ArrayList<>();
@@ -152,9 +152,9 @@ public class CandyInfoProvider implements ProductInfoProvider {
 
         productInfo = new ProductInfo("Winnie Mango Candy", "Consumer Pack", "1 Pack", "50 Piece", "Minimum 6 months", "Packet MRP MRP", 40, "Per Piece MRP", 1,
                 "master_slice_banner.jpg", 3);
-        product_images.add(10231);
-        product_images.add(100012);
-        product_images.add(100012);
+        product_images.add(11531);
+        product_images.add(11512);
+        product_images.add(11513);
         productInfo.setProduct_images(product_images);
         productInfos.add(productInfo);
         product_images = new ArrayList<>();
@@ -166,40 +166,40 @@ public class CandyInfoProvider implements ProductInfoProvider {
         /****
          *Winnie Lychee Candy
          * ***/
-        productInfo = new ProductInfo("Winnie Mango Candy", "Boyam(250)", "1 Boyam", "250 Piece", "Minimum 6 months", "Boyam MRP MRP", 250, "Per Piece MRP", 1,
+        productInfo = new ProductInfo("Winnie Lychee Candy", "Boyam(250)", "1 Boyam", "250 Piece", "Minimum 6 months", "Boyam MRP MRP", 250, "Per Piece MRP", 1,
                 "master_slice_banner.jpg", 4);
-        product_images.add(10231);
-        product_images.add(100012);
-        product_images.add(100012);
+        product_images.add(11611);
+        product_images.add(11612);
+        product_images.add(11613);
         productInfo.setProduct_images(product_images);
         productInfos.add(productInfo);
         product_images = new ArrayList<>();
 
-        memoProductInfo = new MemoProductInfo("Winnie Mango Candy", "Boyam(250)", "1 Boyam", "Boyam", 250, 1, 4);
+        memoProductInfo = new MemoProductInfo("Winnie Lychee Candy", "Boyam(250)", "1 Boyam", "Boyam", 250, 1, 4);
         memoProductInfos.add(memoProductInfo);
 
-        productInfo = new ProductInfo("Winnie Mango Candy", "Boyam(200)", "1 Boyam", "200 Piece", "Minimum 6 months", "Boyam MRP MRP", 200, "Per Piece MRP", 1,
+        productInfo = new ProductInfo("Winnie Lychee Candy", "Boyam(200)", "1 Boyam", "200 Piece", "Minimum 6 months", "Boyam MRP MRP", 200, "Per Piece MRP", 1,
                 "master_slice_banner.jpg", 4);
-        product_images.add(10231);
-        product_images.add(100012);
-        product_images.add(100012);
+        product_images.add(11611);
+        product_images.add(11612);
+        product_images.add(11613);
         productInfo.setProduct_images(product_images);
         productInfos.add(productInfo);
         product_images = new ArrayList<>();
 
-        memoProductInfo = new MemoProductInfo("Winnie Mango Candy", "Boyam(200)", "1 Boyam", "Boyam", 200, 1, 4);
+        memoProductInfo = new MemoProductInfo("Winnie Lychee Candy", "Boyam(200)", "1 Boyam", "Boyam", 200, 1, 4);
         memoProductInfos.add(memoProductInfo);
 
-        productInfo = new ProductInfo("Winnie Mango Candy", "Consumer Pack", "1 Pack", "50 Piece", "Minimum 6 months", "Packet MRP MRP", 40, "Per Piece MRP", 1,
+        productInfo = new ProductInfo("Winnie Lychee Candy", "Consumer Pack", "1 Pack", "50 Piece", "Minimum 6 months", "Packet MRP MRP", 40, "Per Piece MRP", 1,
                 "master_slice_banner.jpg", 4);
-        product_images.add(10231);
-        product_images.add(100012);
-        product_images.add(100012);
+        product_images.add(11631);
+        product_images.add(11612);
+        product_images.add(11613);
         productInfo.setProduct_images(product_images);
         productInfos.add(productInfo);
         product_images = new ArrayList<>();
 
-        memoProductInfo = new MemoProductInfo("Winnie Mango Candy", "Consumer Pack", "12 Pack/Carton", "Carton", 480, 1, 4);
+        memoProductInfo = new MemoProductInfo("Winnie Lychee Candy", "Consumer Pack", "12 Pack/Carton", "Carton", 480, 1, 4);
         memoProductInfos.add(memoProductInfo);
 
     }
