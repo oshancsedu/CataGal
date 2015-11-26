@@ -45,12 +45,11 @@
 
             <!--top view-->
 
-            <include layout="@layout/product_info_detail" />
-
             <LinearLayout
                 android:id="@+id/top_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="50dp"
                 android:animateLayoutChanges="true"
                 android:gravity="center"
                 android:orientation="vertical">
@@ -79,11 +78,9 @@
                         app:siTextSize="15sp" />
                 </FrameLayout>
 
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Button" />
             </LinearLayout>
+
+            <include layout="@layout/product_info_detail" />
 
 
         </github.chenupt.dragtoplayout.DragTopLayout>

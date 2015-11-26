@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
+import github.chenupt.dragtoplayout.DragTopLayout;
 import github.chenupt.multiplemodel.viewpager.ModelPagerAdapter;
 import github.chenupt.multiplemodel.viewpager.PagerModelManager;
 import github.chenupt.springindicator.SpringIndicator;
@@ -34,6 +35,7 @@ public class ProductViewActivity extends ActionBarActivity {
     private ImageView ivBanner;
     private ProductInfo productInfo;
     private TextView tvProductName,tvSize,tvUnit,tvValidity,tvMrp1,tvMrp2,tvUnitTitle,tvMrp1Title,tvMrp2Title;
+    private DragTopLayout dragTopLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +67,10 @@ public class ProductViewActivity extends ActionBarActivity {
         Intent intent = this.getIntent();
         Bundle product=intent.getExtras();
         productInfo = (ProductInfo) product.getSerializable(SINGLE_PRODUCT_DETAIL);
+
+        dragTopLayout = (DragTopLayout) findViewById(R.id.drag_layout);
+        dragTopLayout.setCollapseOffset(90);
+        dragTopLayout.closeTopView(true);
 
         tvSize=(TextView)findViewById(R.id.tvSize);
         tvSize.setText(productInfo.getSize());
