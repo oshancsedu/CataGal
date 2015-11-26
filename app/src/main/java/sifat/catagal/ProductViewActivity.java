@@ -69,8 +69,8 @@ public class ProductViewActivity extends ActionBarActivity {
         productInfo = (ProductInfo) product.getSerializable(SINGLE_PRODUCT_DETAIL);
 
         dragTopLayout = (DragTopLayout) findViewById(R.id.drag_layout);
-        dragTopLayout.setCollapseOffset(90);
-        dragTopLayout.closeTopView(true);
+        dragTopLayout.setCollapseOffset(60);
+        //dragTopLayout.closeTopView(true);
 
         tvSize=(TextView)findViewById(R.id.tvSize);
         tvSize.setText(productInfo.getSize());

@@ -160,7 +160,7 @@ public class BiscuitInfoProvider implements ProductInfoProvider {
          * ******/
 
         productInfo = new ProductInfo("Nutribake Digestives Biscuit", "Family Pack", "1 Carton", "8 Box", "Minimum 6 months", "Carton MRP", 480, "Packet MRP", 60,
-                "banner.jpg", 3);
+                "digestives_banner.jpg", 3);
         product_images.add(100132);
         product_images.add(100132);
         product_images.add(100133);
@@ -173,7 +173,7 @@ public class BiscuitInfoProvider implements ProductInfoProvider {
 
 
         productInfo = new ProductInfo("Digestives Biscuit", "Mini Pack", "1 Carton", "40 packet", "Minimum 6 months", "Carton MRP", 192, "Packet MRP", 8,
-                "banner.jpg", 3);
+                "digestives_banner.jpg", 3);
         product_images.add(100142);
         product_images.add(100142);
         product_images.add(100133);
@@ -230,7 +230,7 @@ public class BiscuitInfoProvider implements ProductInfoProvider {
          * Hit Cream Biscuit
          * ******/
         productInfo = new ProductInfo("Bengal Hit Cream Biscuit", "Family Pack", "1 Carton", "5 packet", "Minimum 6 months", "Carton MRP", 175, "Packet MRP", 35,
-                "banner.jpg", 5);
+                "hit_cream_banner.jpg", 5);
         product_images.add(1081);
         product_images.add(10812);
         product_images.add(10812);
@@ -240,6 +240,7 @@ public class BiscuitInfoProvider implements ProductInfoProvider {
 
         memoProductInfo = new MemoProductInfo("Bengal Hit Cream Biscuit", "Family Pack", "5 pack/carton", "Carton", 175, 35, 5);
         memoProductInfos.add(memoProductInfo);
+
 
         /*******
          * B-vita Biscuit
