@@ -60,7 +60,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
 
         InputStream ims = null;
         try {
-            ims = context.getAssets().open(productInfos.get(i).getProduct_images().get(1) + ".jpg");//"100011.jpg"
+            ims = context.getAssets().open(productInfos.get(i).getProduct_images().get(1) + ".jpg");
             // load image as Drawable
             Drawable d = Drawable.createFromStream(ims, null);
             viewHolder.circularImageView.setImageDrawable(d);
