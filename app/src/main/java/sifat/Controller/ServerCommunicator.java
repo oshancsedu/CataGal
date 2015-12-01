@@ -10,7 +10,11 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
+import sifat.Adapter.MemoAdapter;
 import sifat.Database.DbOperator;
+import sifat.Domain.MemoProductInfo;
 import sifat.Utilities.LoopjHttpClient;
 
 import static sifat.Utilities.CommonUtilities.JSON_TAG_AREA_CODE;
@@ -25,6 +29,7 @@ import static sifat.Utilities.CommonUtilities.showToast;
  */
 public class ServerCommunicator {
 
+    public ArrayList<MemoProductInfo> addedProduct = new ArrayList<>();
     Context context;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
@@ -55,6 +60,12 @@ public class ServerCommunicator {
             }
         });
     }
+
+    public void sendMemoInfo(String name) {
+        addedProduct = MemoAdapter.addedProduct;
+        showToast(context, "Size: " + addedProduct.size() + "\n" + addedProduct.get(0).getProductName());
+    }
+
 
     private void setMemoBasicInfo(String info) {
 

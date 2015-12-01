@@ -29,6 +29,8 @@ import sifat.Fragments.ConfirmationMemoFragment;
 import sifat.Provider.MemoBasicInfoProvider;
 
 import static sifat.Utilities.CommonUtilities.CONFIRM_FRAG_TAG;
+import static sifat.Utilities.CommonUtilities.showToast;
+
 /**
  * Created by sifat on 11/16/2015.
  */
@@ -128,7 +130,22 @@ public class MemoGenActivity extends ActionBarActivity implements View.OnClickLi
             areaName = spAreaName.getSelectedItem().toString();
             areaCode = spAreaCode.getSelectedItem().toString();
             distributorName = spDistributor.getSelectedItem().toString();
-            showConfirmationDialog(areaName, areaCode, distributorName);
+
+            if (areaName.equalsIgnoreCase("-Area Name-"))
+                showToast(this, "Enter Area Name");
+            else if (areaCode.equalsIgnoreCase("-Area Code-"))
+                showToast(this, "Enter Area Code");
+            else if (distributorName.equalsIgnoreCase("-Distributor Name-"))
+                showToast(this, "Enter Distributor Name");
+            else if (supplyDate.equalsIgnoreCase(""))
+                showToast(this, "Enter Supply date");
+            else if (MemoAdapter.totalItemAdded == 0)
+                showToast(this, "No Item Was Added");
+            else if (MemoAdapter.totalCost == 0)
+                showToast(this, "No Quantity Was Selected");
+            else
+                showConfirmationDialog(areaName, areaCode, distributorName);
+
         }
     }
 

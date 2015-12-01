@@ -2,11 +2,14 @@ package sifat.Adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.iangclifton.android.floatlabel.FloatLabel;
@@ -29,11 +32,11 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
         StickyHeaderAdapter<MemoAdapter.HeaderHolder> {
 
     public static ArrayList<MemoProductInfo> addedProduct = new ArrayList<>();
+    public static int totalItemAdded, totalCost;
     static Context context;
     private static ArrayList<MemoProductInfo> memoProductInfos = new ArrayList<>();
     private static ArrayList<String> headers = new ArrayList<>();
     private static TextView tvTotalCost, tvItemAdded;
-    private static int totalItemAdded, totalCost;
     private LayoutInflater mInflater;
     private ProductInfoProvider provider;
 
@@ -80,10 +83,14 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
         viewHolder.tvContainer.setText("Unit: " + memoProductInfos.get(i).getSellingUnit());
         viewHolder.tvQuantity.setText("Packing: " + memoProductInfos.get(i).getPacking());
         setCosttv(viewHolder.tvPrice, i);
+
+        viewHolder.etComment.setText(memoProductInfos.get(i).getComment());
         if (memoProductInfos.get(i).getQuantity() == 0)
-        viewHolder.etAmount.setText("");
+            viewHolder.etAmount.setText("");
         else
             viewHolder.etAmount.setText("" + memoProductInfos.get(i).getQuantity());
+
+
     }
 
     @Override
@@ -115,12 +122,13 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
         return headers.get((int) headerId - 1);
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, TextWatcher {
 
         public TextView tvPackSize, tvContainer, tvQuantity, tvPrice;
         public CircularImageView circularImageView;
-        public FloatLabel etAmount;
+        public FloatLabel etAmount, etComment;
         public Button btCalculate, btAddItem, btRemoveItem;
+        public EditText et;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -129,6 +137,8 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
             tvQuantity = (TextView) itemView.findViewById(R.id.tvQuantity);
             tvPrice = (TextView) itemView.findViewById(R.id.tvPrice);
             etAmount = (FloatLabel) itemView.findViewById(R.id.etAmount);
+            etComment = (FloatLabel) itemView.findViewById(R.id.etComment);
+            etComment.getEditText().addTextChangedListener(this);
             btCalculate = (Button) itemView.findViewById(R.id.btCalculate);
             btCalculate.setOnClickListener(this);
             btAddItem = (Button) itemView.findViewById(R.id.btAddItem);
@@ -153,6 +163,7 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
             int i = getPosition();
             boolean flag = memoProductInfos.get(i).isAdded();
 
+            //IF The product has already been added.Subtract it's price from the total price
             if (flag)
                 totalCost = totalCost - memoProductInfos.get(i).getCost();
 
@@ -166,6 +177,8 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
                 memoProductInfos.get(i).setQuantity(quantity);
                 memoProductInfos.get(i).setCost(memoProductInfos.get(i).getCostPerUnit() * quantity);
             }
+
+            //IF The product has already been added.Add it's price with the total price
             if (flag) {
                 totalCost = totalCost + memoProductInfos.get(i).getCost();
                 setTotalCost();
@@ -175,32 +188,50 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
 
         public void addToBucket() {
             int i = getPosition();
-            showToast(context, "" + addedProduct.indexOf(memoProductInfos.get(i)));
+            //showToast(context, "" + addedProduct.indexOf(memoProductInfos.get(i)));
             if (addedProduct.indexOf(memoProductInfos.get(i)) == -1) {
                 totalCost = totalCost + memoProductInfos.get(i).getCost();
                 setTotalCost();
                 memoProductInfos.get(i).setIsAdded(true);
                 addedProduct.add(memoProductInfos.get(i));
-                tvItemAdded.setText("Total Item Ordered " + addedProduct.size());
+                totalItemAdded++;
+                tvItemAdded.setText("Total Item Ordered " + totalItemAdded);
                 btnToggle(!memoProductInfos.get(i).isAdded(), btAddItem, btRemoveItem);
             }
         }
 
         public void removeFromBucket() {
             int i = getPosition();
-            showToast(context, "" + addedProduct.indexOf(memoProductInfos.get(i)));
+            //showToast(context, "" + addedProduct.indexOf(memoProductInfos.get(i)));
             if (addedProduct.indexOf(memoProductInfos.get(i)) != -1) {
                 totalCost = totalCost - memoProductInfos.get(i).getCost();
                 setTotalCost();
                 memoProductInfos.get(i).setIsAdded(false);
                 addedProduct.remove(memoProductInfos.get(i));
-                tvItemAdded.setText("Total Item Ordered " + addedProduct.size());
+                totalItemAdded--;
+                tvItemAdded.setText("Total Item Ordered " + totalItemAdded);
                 btnToggle(!memoProductInfos.get(i).isAdded(), btAddItem, btRemoveItem);
             }
         }
 
         private void setTotalCost() {
             tvTotalCost.setText("Total Order: " + totalCost + " tk");
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            int i = getPosition();
+            memoProductInfos.get(i).setComment(s.toString());
         }
     }
 

@@ -36,11 +36,11 @@ public class MemoConfirmAdapter extends RecyclerView.Adapter<MemoConfirmAdapter.
 
     @Override
     public void onBindViewHolder(MemoDialogHolder holder, int position) {
-
         holder.tvProductName.setText(addedProduct.get(position).getProductName());
         holder.tvSize.setText(addedProduct.get(position).getProductSize());
         holder.tvCost.setText("Cost: " + addedProduct.get(position).getCost());
         holder.tvQuantity.setText("Quantity: " + addedProduct.get(position).getQuantity());
+        holder.tvComment.setText("Comment: " + addedProduct.get(position).getComment());
     }
 
     @Override
@@ -49,7 +49,7 @@ public class MemoConfirmAdapter extends RecyclerView.Adapter<MemoConfirmAdapter.
     }
 
     class MemoDialogHolder extends RecyclerView.ViewHolder {
-        TextView tvProductName, tvSize, tvQuantity, tvCost;
+        TextView tvProductName, tvSize, tvQuantity, tvCost, tvComment;
 
         public MemoDialogHolder(View itemView) {
             super(itemView);
@@ -57,6 +57,7 @@ public class MemoConfirmAdapter extends RecyclerView.Adapter<MemoConfirmAdapter.
             tvSize = (TextView) itemView.findViewById(R.id.tvSize);
             tvQuantity = (TextView) itemView.findViewById(R.id.tvProductQuantity);
             tvCost = (TextView) itemView.findViewById(R.id.tvCost);
+            tvComment = (TextView) itemView.findViewById(R.id.tvComment);
         }
     }
 }
