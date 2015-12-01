@@ -1,5 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fbutton="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/app_theme_color">
@@ -16,8 +17,8 @@
         app:selectionColor="@color/app_theme_color"
         app:selectionPadding="4dp"
         app:wheelColor="@color/app_theme_color"
-        app:wheelItemCount="4"
-        app:wheelItemRadius="50dp"
+        app:wheelItemCount="3"
+        app:wheelItemRadius="60dp"
         app:wheelRadius="150dp" />
 
     <ImageView
@@ -28,4 +29,19 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:src="@drawable/company_name" />
+
+    <info.hoang8f.widget.FButton
+        android:id="@+id/btLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:text="DAILY REPORT"
+        android:textColor="@android:color/white"
+        fbutton:buttonColor="@color/cyan_900"
+        fbutton:shadowEnabled="true" />
+
 </RelativeLayout>

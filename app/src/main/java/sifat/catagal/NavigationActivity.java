@@ -24,7 +24,7 @@ import static sifat.Utilities.CommonUtilities.showToast;
 
 public class NavigationActivity extends Activity {
 
-    private static final int ITEM_COUNT = 4;
+    private static final int ITEM_COUNT = 3;
     static ArrayList<Integer> navItems = new ArrayList<>();
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
@@ -37,7 +37,7 @@ public class NavigationActivity extends Activity {
         final WheelView wheelView = (WheelView) findViewById(R.id.wheelview);
         navItems.add(R.drawable.biscuit);
         navItems.add(R.drawable.candy);
-        navItems.add(R.drawable.snack);
+        //navItems.add(R.drawable.snack);
         navItems.add(R.drawable.flour);
 
         //create data for the adapter

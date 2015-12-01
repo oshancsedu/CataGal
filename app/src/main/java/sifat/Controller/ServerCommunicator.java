@@ -1,6 +1,7 @@
 package sifat.Controller;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
 import android.widget.Toast;
@@ -16,6 +17,7 @@ import sifat.Adapter.MemoAdapter;
 import sifat.Database.DbOperator;
 import sifat.Domain.MemoProductInfo;
 import sifat.Utilities.LoopjHttpClient;
+import sifat.catagal.MemoGenActivity;
 
 import static sifat.Utilities.CommonUtilities.JSON_TAG_AREA_CODE;
 import static sifat.Utilities.CommonUtilities.JSON_TAG_AREA_NAME;
@@ -66,6 +68,11 @@ public class ServerCommunicator {
         showToast(context, "Size: " + addedProduct.size() + "\n" + addedProduct.get(0).getProductName());
     }
 
+    public void login(String userId, String password) {
+        showToast(context, "User: " + userId + "\nPass:" + password);
+        changeActivity(context, MemoGenActivity.class);
+    }
+
 
     private void setMemoBasicInfo(String info) {
 
@@ -92,5 +99,10 @@ public class ServerCommunicator {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    private void changeActivity(Context context, Class toClass) {
+        Intent intent = new Intent(context, toClass);
+        context.startActivity(intent);
     }
 }

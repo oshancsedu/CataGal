@@ -57,7 +57,7 @@ public class ProductList extends ActionBarActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_about) {
-            Intent intent = new Intent(this, MemoGenActivity.class);
+            Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
             return true;
         }
