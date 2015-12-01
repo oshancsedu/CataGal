@@ -45,6 +45,7 @@
             android:textColor="@android:color/white"
             fbutton:buttonColor="@color/app_theme_color"
             fbutton:shadowEnabled="true" />
+
     </LinearLayout>
 
 </LinearLayout>

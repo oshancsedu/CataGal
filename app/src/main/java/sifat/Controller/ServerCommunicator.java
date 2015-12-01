@@ -70,6 +70,8 @@ public class ServerCommunicator {
 
     public void login(String userId, String password) {
         showToast(context, "User: " + userId + "\nPass:" + password);
+
+
         changeActivity(context, MemoGenActivity.class);
     }
 

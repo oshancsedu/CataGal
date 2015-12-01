@@ -5,43 +5,47 @@
     android:layout_height="match_parent"
     android:background="@color/app_theme_color">
 
-
-    <com.lukedeighton.wheelview.WheelView
-        android:id="@+id/wheelview"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:emptyItemColor="@color/white"
-        app:repeatItems="true"
-        app:rotatableWheelDrawable="false"
-        app:selectionAngle="90.0"
-        app:selectionColor="@color/app_theme_color"
-        app:selectionPadding="4dp"
-        app:wheelColor="@color/app_theme_color"
-        app:wheelItemCount="3"
-        app:wheelItemRadius="60dp"
-        app:wheelRadius="150dp" />
+        android:background="@drawable/overlay">
 
-    <ImageView
-        android:id="@+id/ivCompanyName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:src="@drawable/company_name" />
+        <com.lukedeighton.wheelview.WheelView
+            android:id="@+id/wheelview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:emptyItemColor="@color/white"
+            app:repeatItems="true"
+            app:rotatableWheelDrawable="false"
+            app:selectionAngle="90.0"
+            app:selectionColor="@color/app_theme_color"
+            app:selectionPadding="4dp"
+            app:wheelColor="@color/app_theme_color"
+            app:wheelItemCount="3"
+            app:wheelItemRadius="60dp"
+            app:wheelRadius="160dp" />
 
-    <info.hoang8f.widget.FButton
-        android:id="@+id/btLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10dp"
-        android:paddingLeft="30dp"
-        android:paddingRight="30dp"
-        android:text="DAILY REPORT"
-        android:textColor="@android:color/white"
-        fbutton:buttonColor="@color/cyan_900"
-        fbutton:shadowEnabled="true" />
+        <ImageView
+            android:id="@+id/ivCompanyName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/company_name" />
 
+        <info.hoang8f.widget.FButton
+            android:id="@+id/btLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:text="DAILY REPORT"
+            android:textColor="@android:color/white"
+            fbutton:buttonColor="@color/cyan_900"
+            fbutton:shadowEnabled="true" />
+    </RelativeLayout>
 </RelativeLayout>
