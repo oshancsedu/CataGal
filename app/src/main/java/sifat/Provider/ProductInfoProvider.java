@@ -15,4 +15,18 @@ public interface ProductInfoProvider {
     public ArrayList<String> getHeader();
 
     public ArrayList<MemoProductInfo> getProductMemoInfo();
+
+    public void setProductMemoInfo(ArrayList<MemoProductInfo> memoProductInfos);
+
+    public int getTotalCost();
+
+    public void setTotalCost(int totalCost);
+
+    public int getTotalItemAdded();
+
+    public void setTotalItemAdded(int totalItemAdded);
+
+    public ArrayList<MemoProductInfo> getAddedProduct();
+
+    public void setAddedProduct(ArrayList<MemoProductInfo> addedProduct);
 }

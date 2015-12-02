@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -33,8 +34,8 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
 
     public static ArrayList<MemoProductInfo> addedProduct = new ArrayList<>();
     public static int totalItemAdded, totalCost;
+    public static ArrayList<MemoProductInfo> memoProductInfos = new ArrayList<>();
     static Context context;
-    private static ArrayList<MemoProductInfo> memoProductInfos = new ArrayList<>();
     private static ArrayList<String> headers = new ArrayList<>();
     private static TextView tvTotalCost, tvItemAdded;
     private LayoutInflater mInflater;
@@ -44,12 +45,15 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
         provider = getMyProvider(context);
         memoProductInfos = provider.getProductMemoInfo();
         headers = provider.getHeader();
+        addedProduct = provider.getAddedProduct();
+        totalCost = provider.getTotalCost();
+        totalItemAdded = provider.getTotalItemAdded();
         this.context = context;
         mInflater = LayoutInflater.from(context);
         this.tvItemAdded = tvItemAdded;
         this.tvTotalCost = tvTotalCost;
-        totalCost = 0;
-        totalItemAdded = 0;
+        updateItemOrdered();
+        updateTotalCost();
     }
 
     public static void setCosttv(TextView tvPrice, int i) {
@@ -67,6 +71,14 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
             btRemoveItem.setVisibility(View.VISIBLE);
             btAddItem.setVisibility(View.GONE);
         }
+    }
+
+    private static void updateTotalCost() {
+        tvTotalCost.setText("Total Order: " + totalCost + " tk");
+    }
+
+    private static void updateItemOrdered() {
+        tvItemAdded.setText("Total Item Ordered " + totalItemAdded);
     }
 
     @Override
@@ -159,6 +171,14 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
 
 
         public void calculatePrice() {
+
+            try {
+                InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(etAmount.getEditText().getWindowToken(), 0);
+            } catch (Exception e) {
+                // TODO: handle exception
+            }
+
             String temp_quantity = etAmount.getEditText().getText().toString();
             int i = getPosition();
             boolean flag = memoProductInfos.get(i).isAdded();
@@ -181,7 +201,7 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
             //IF The product has already been added.Add it's price with the total price
             if (flag) {
                 totalCost = totalCost + memoProductInfos.get(i).getCost();
-                setTotalCost();
+                updateTotalCost();
             }
             MemoAdapter.setCosttv(tvPrice, i);
         }
@@ -191,11 +211,11 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
             //showToast(context, "" + addedProduct.indexOf(memoProductInfos.get(i)));
             if (addedProduct.indexOf(memoProductInfos.get(i)) == -1) {
                 totalCost = totalCost + memoProductInfos.get(i).getCost();
-                setTotalCost();
+                updateTotalCost();
                 memoProductInfos.get(i).setIsAdded(true);
                 addedProduct.add(memoProductInfos.get(i));
                 totalItemAdded++;
-                tvItemAdded.setText("Total Item Ordered " + totalItemAdded);
+                updateItemOrdered();
                 btnToggle(!memoProductInfos.get(i).isAdded(), btAddItem, btRemoveItem);
             }
         }
@@ -205,18 +225,15 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
             //showToast(context, "" + addedProduct.indexOf(memoProductInfos.get(i)));
             if (addedProduct.indexOf(memoProductInfos.get(i)) != -1) {
                 totalCost = totalCost - memoProductInfos.get(i).getCost();
-                setTotalCost();
+                updateTotalCost();
                 memoProductInfos.get(i).setIsAdded(false);
                 addedProduct.remove(memoProductInfos.get(i));
                 totalItemAdded--;
-                tvItemAdded.setText("Total Item Ordered " + totalItemAdded);
+                updateItemOrdered();
                 btnToggle(!memoProductInfos.get(i).isAdded(), btAddItem, btRemoveItem);
             }
         }
 
-        private void setTotalCost() {
-            tvTotalCost.setText("Total Order: " + totalCost + " tk");
-        }
 
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {

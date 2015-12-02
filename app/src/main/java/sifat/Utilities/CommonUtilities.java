@@ -17,6 +17,7 @@ public class CommonUtilities {
     public static final String COL_AREA_NAME = "areaName";
     public static final String COL_AREA_CODE = "areaCode";
     public static final String COL_DISTRIBUTOR_NAME = "distributorName";
+
     public static final String CONFIRM_FRAG_TAG = "confirm_frag_tag";
     public static final String DIALOG_HEADER_SUPPLY_DATE = "dialog_header_supply_date";
     public static final String DIALOG_HEADER_AREA_NAME = "dialog_header_area_name";
@@ -27,6 +28,7 @@ public class CommonUtilities {
     public static final String DEFULT_DISTRIBUTOR_NAME = "-Distributor Name-";
 
     public static final String MEMO_BASIC_INFO_URL = "http://inspireitl.com/bengal/memoinfo.php";
+    public static final String LOGIN_URL = "http://inspireitl.com/bengal/login.php";
 
     public static final String LOG_TAG_WEB = "webLogTag";
     public static final String LOG_TAG_MEMO = "memoLogTag";
@@ -37,6 +39,10 @@ public class CommonUtilities {
 
     public static final String SHAREPREF_TAG = "sifat.mySharedPref";
     public static final String SHAREDPREF_TAG_SELECTED_ITEM = "selectedItem";
+    public static final String SHAREDPREF_TAG_USERID = "userId";
+
+    public static final String SERVER_REQUEST_USERID = "userRequestParams";
+    public static final String SERVER_REQUEST_PASSWORD = "passwordRequestParams";
 
     public static void showToast(Context context,String message)
     {

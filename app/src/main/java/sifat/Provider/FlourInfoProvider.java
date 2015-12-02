@@ -10,6 +10,10 @@ import sifat.Domain.ProductInfo;
  */
 public class FlourInfoProvider implements ProductInfoProvider {
 
+    private static ArrayList<MemoProductInfo> memoProductInfos = new ArrayList<>();
+    private static ArrayList<MemoProductInfo> addedProduct = new ArrayList<>();
+    private static int totalItemAdded, totalCost;
+
     private volatile static FlourInfoProvider flourInfoProvider;
 
     private FlourInfoProvider() {
@@ -41,4 +45,34 @@ public class FlourInfoProvider implements ProductInfoProvider {
         return null;
     }
 
+    public void setProductMemoInfo(ArrayList<MemoProductInfo> memoProductInfos) {
+        this.memoProductInfos = memoProductInfos;
+    }
+
+    @Override
+    public int getTotalItemAdded() {
+        return totalItemAdded;
+    }
+
+    public void setTotalItemAdded(int totalItemAdded) {
+        this.totalItemAdded = totalItemAdded;
+    }
+
+    @Override
+    public int getTotalCost() {
+        return totalCost;
+    }
+
+    public void setTotalCost(int totalCost) {
+        this.totalCost = totalCost;
+    }
+
+    @Override
+    public ArrayList<MemoProductInfo> getAddedProduct() {
+        return addedProduct;
+    }
+
+    public void setAddedProduct(ArrayList<MemoProductInfo> addedProduct) {
+        this.addedProduct = addedProduct;
+    }
 }

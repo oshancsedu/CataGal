@@ -27,7 +27,9 @@ import sifat.Adapter.MemoAdapter;
 import sifat.Controller.ServerCommunicator;
 import sifat.Fragments.ConfirmationMemoFragment;
 import sifat.Provider.MemoBasicInfoProvider;
+import sifat.Provider.ProductInfoProvider;
 
+import static sifat.Provider.ProviderSelector.getMyProvider;
 import static sifat.Utilities.CommonUtilities.CONFIRM_FRAG_TAG;
 import static sifat.Utilities.CommonUtilities.showToast;
 
@@ -48,6 +50,7 @@ public class MemoGenActivity extends ActionBarActivity implements View.OnClickLi
     private RobotoTextView tvOrderDate;
     private String orderDate, supplyDate;
     private FloatingActionButton fabSendMemo;
+    private ProductInfoProvider provider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +66,8 @@ public class MemoGenActivity extends ActionBarActivity implements View.OnClickLi
 
         fabSendMemo = (FloatingActionButton) findViewById(R.id.fab);
         fabSendMemo.setOnClickListener(this);
+
+        provider = getMyProvider(this);
 
         supplyDate = "";
 
@@ -179,6 +184,10 @@ public class MemoGenActivity extends ActionBarActivity implements View.OnClickLi
     protected void onPause() {
         super.onPause();
         EventBus.getDefault().unregister(this);
+        provider.setAddedProduct(MemoAdapter.addedProduct);
+        provider.setTotalCost(MemoAdapter.totalCost);
+        provider.setTotalItemAdded(MemoAdapter.totalItemAdded);
+        provider.setProductMemoInfo(MemoAdapter.memoProductInfos);
     }
 
     @Override

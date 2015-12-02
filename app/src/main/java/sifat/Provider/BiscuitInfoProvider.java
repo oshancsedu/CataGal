@@ -16,6 +16,8 @@ public class BiscuitInfoProvider implements ProductInfoProvider {
     private static List<Integer> product_images =  new ArrayList<>();
     private static ArrayList<String> headers = new ArrayList<>();
     private static ArrayList<MemoProductInfo> memoProductInfos = new ArrayList<>();
+    private static ArrayList<MemoProductInfo> addedProduct = new ArrayList<>();
+    private static int totalItemAdded, totalCost;
 
     private BiscuitInfoProvider() {
     }
@@ -386,6 +388,30 @@ public class BiscuitInfoProvider implements ProductInfoProvider {
 
     public void setProductMemoInfo(ArrayList<MemoProductInfo> memoProductInfos) {
         this.memoProductInfos = memoProductInfos;
+    }
+
+    public int getTotalItemAdded() {
+        return totalItemAdded;
+    }
+
+    public void setTotalItemAdded(int totalItemAdded) {
+        this.totalItemAdded = totalItemAdded;
+    }
+
+    public int getTotalCost() {
+        return totalCost;
+    }
+
+    public void setTotalCost(int totalCost) {
+        this.totalCost = totalCost;
+    }
+
+    public ArrayList<MemoProductInfo> getAddedProduct() {
+        return addedProduct;
+    }
+
+    public void setAddedProduct(ArrayList<MemoProductInfo> addedProduct) {
+        this.addedProduct = addedProduct;
     }
 
     public ArrayList<String> getHeader() {
