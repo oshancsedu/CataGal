@@ -16,13 +16,13 @@
         android:padding="5dp">
 
         <com.devspark.robototextview.widget.RobotoTextView
-            android:id="@+id/reporterID"
+            android:id="@+id/tvUserID"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
             android:layout_weight="1"
-            android:text="Reporter ID:\n100228"
+            android:text="User ID:\n100228"
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/app_theme_color_minor"

@@ -1,6 +1,7 @@
 package sifat.Utilities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.widget.Toast;
 
@@ -52,5 +53,11 @@ public class CommonUtilities {
     public static SharedPreferences getPref(Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(SHAREPREF_TAG, Context.MODE_PRIVATE);
         return sharedPreferences;
+    }
+
+
+    public static void changeActivity(Context context, Class toClass) {
+        Intent intent = new Intent(context, toClass);
+        context.startActivity(intent);
     }
 }

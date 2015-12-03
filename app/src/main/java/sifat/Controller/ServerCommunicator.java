@@ -1,10 +1,8 @@
 package sifat.Controller;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -30,6 +28,7 @@ import static sifat.Utilities.CommonUtilities.MEMO_BASIC_INFO_URL;
 import static sifat.Utilities.CommonUtilities.SERVER_REQUEST_PASSWORD;
 import static sifat.Utilities.CommonUtilities.SERVER_REQUEST_USERID;
 import static sifat.Utilities.CommonUtilities.SHAREDPREF_TAG_USERID;
+import static sifat.Utilities.CommonUtilities.changeActivity;
 import static sifat.Utilities.CommonUtilities.getPref;
 import static sifat.Utilities.CommonUtilities.showToast;
 
@@ -51,8 +50,6 @@ public class ServerCommunicator {
 
     public void getMemoBasicInfo() {
         final String updateMemoInfo = MEMO_BASIC_INFO_URL;
-        Toast.makeText(context, updateMemoInfo, Toast.LENGTH_SHORT).show();
-
         LoopjHttpClient.get(updateMemoInfo, null, new AsyncHttpResponseHandler() {
 
             @Override
@@ -92,6 +89,7 @@ public class ServerCommunicator {
                     sharedPreferences = getPref(context);
                     editor = sharedPreferences.edit();
                     editor.putString(SHAREDPREF_TAG_USERID, userId);
+                    editor.commit();
                     changeActivity(context, MemoGenActivity.class);
                 } else
                     showToast(context, "Login Failed!");
@@ -128,10 +126,5 @@ public class ServerCommunicator {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-    }
-
-    private void changeActivity(Context context, Class toClass) {
-        Intent intent = new Intent(context, toClass);
-        context.startActivity(intent);
     }
 }

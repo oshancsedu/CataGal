@@ -1,6 +1,7 @@
 package sifat.catagal;
 
 import android.app.FragmentManager;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBarActivity;
@@ -31,6 +32,9 @@ import sifat.Provider.ProductInfoProvider;
 
 import static sifat.Provider.ProviderSelector.getMyProvider;
 import static sifat.Utilities.CommonUtilities.CONFIRM_FRAG_TAG;
+import static sifat.Utilities.CommonUtilities.SHAREDPREF_TAG_USERID;
+import static sifat.Utilities.CommonUtilities.changeActivity;
+import static sifat.Utilities.CommonUtilities.getPref;
 import static sifat.Utilities.CommonUtilities.showToast;
 
 /**
@@ -47,10 +51,13 @@ public class MemoGenActivity extends ActionBarActivity implements View.OnClickLi
     private DatePickerDialog datePickerDialog;
     private Spinner spDistributor, spAreaCode, spAreaName;
     private MemoBasicInfoProvider memoBasicInfoProvider;
-    private RobotoTextView tvOrderDate;
+    private RobotoTextView tvOrderDate, tvUserID;
     private String orderDate, supplyDate;
     private FloatingActionButton fabSendMemo;
     private ProductInfoProvider provider;
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +67,8 @@ public class MemoGenActivity extends ActionBarActivity implements View.OnClickLi
     }
 
     private void init() {
+
+        sharedPreferences = getPref(this);
 
         toolbar = (Toolbar) findViewById(R.id.appbar);
         setSupportActionBar(toolbar);
@@ -73,6 +82,15 @@ public class MemoGenActivity extends ActionBarActivity implements View.OnClickLi
 
         tvItemAdded = (TextView) findViewById(R.id.tvTotalItemOrder);
         tvTotalCost = (TextView) findViewById(R.id.tvTotalCost);
+        tvSelectDate = (TextView) findViewById(R.id.tvSupplyDateSelector);
+        tvSelectDate.setOnClickListener(this);
+
+        tvOrderDate = (RobotoTextView) findViewById(R.id.tvOrderDate);
+        tvOrderDate.setText("Order Date:\n" + getOrderingDate());
+
+        tvUserID = (RobotoTextView) findViewById(R.id.tvUserID);
+        tvUserID.setText("User ID:\n" + getUserID());
+
 
         final Calendar calendar = Calendar.getInstance();
 
@@ -97,11 +115,6 @@ public class MemoGenActivity extends ActionBarActivity implements View.OnClickLi
         spAreaName.setAdapter(spinnerArrayAdapter);
 
         dragTopLayout = (DragTopLayout) findViewById(R.id.drag_layout);
-        tvSelectDate = (TextView) findViewById(R.id.tvSupplyDateSelector);
-        tvSelectDate.setOnClickListener(this);
-
-        tvOrderDate = (RobotoTextView) findViewById(R.id.tvOrderDate);
-        tvOrderDate.setText("Order Date:\n" + getOrderingDate());
 
         recyclerView = (RecyclerView) findViewById(R.id.rvMemoList);
         recyclerView.setHasFixedSize(true);
@@ -208,6 +221,10 @@ public class MemoGenActivity extends ActionBarActivity implements View.OnClickLi
         return orderDate;
     }
 
+    private String getUserID() {
+        return sharedPreferences.getString(SHAREDPREF_TAG_USERID, "");
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -222,6 +239,14 @@ public class MemoGenActivity extends ActionBarActivity implements View.OnClickLi
         if (id == R.id.update) {
             ServerCommunicator serverCommunicator = new ServerCommunicator(this);
             serverCommunicator.getMemoBasicInfo();
+        }
+
+        if (id == R.id.logout) {
+            editor = sharedPreferences.edit();
+            editor.remove(SHAREDPREF_TAG_USERID);
+            editor.commit();
+            changeActivity(this, LoginActivity.class);
+            finish();
         }
 
         return super.onOptionsItemSelected(item);
