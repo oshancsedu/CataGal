@@ -49,33 +49,33 @@ public class BiscuitInfoProvider implements ProductInfoProvider {
 
     private static void setCommonInfo() {
 
-        ProductCommonInfo productCommonInfo = new ProductCommonInfo("Master Slices", "master_slice_banner.jpg", "ingredients");
+        ProductCommonInfo productCommonInfo = new ProductCommonInfo(101, "Master Slices", "master_slice_banner.jpg", "ingredients");
         commonInfos.add(productCommonInfo);
-        productCommonInfo = new ProductCommonInfo("Master Slices", "master_slice_banner.jpg", "ingredients");
+        productCommonInfo = new ProductCommonInfo(102, "Master Slices", "master_slice_banner.jpg", "ingredients");
         commonInfos.add(productCommonInfo);
-        productCommonInfo = new ProductCommonInfo("Master Slices", "master_slice_banner.jpg", "ingredients");
+        productCommonInfo = new ProductCommonInfo(103, "Master Slices", "master_slice_banner.jpg", "ingredients");
         commonInfos.add(productCommonInfo);
-        productCommonInfo = new ProductCommonInfo("Master Slices", "master_slice_banner.jpg", "ingredients");
+        productCommonInfo = new ProductCommonInfo(104, "Master Slices", "master_slice_banner.jpg", "ingredients");
         commonInfos.add(productCommonInfo);
-        productCommonInfo = new ProductCommonInfo("Master Slices", "master_slice_banner.jpg", "ingredients");
+        productCommonInfo = new ProductCommonInfo(105, "Master Slices", "master_slice_banner.jpg", "ingredients");
         commonInfos.add(productCommonInfo);
-        productCommonInfo = new ProductCommonInfo("Master Slices", "master_slice_banner.jpg", "ingredients");
+        productCommonInfo = new ProductCommonInfo(106, "Master Slices", "master_slice_banner.jpg", "ingredients");
         commonInfos.add(productCommonInfo);
-        productCommonInfo = new ProductCommonInfo("Master Slices", "master_slice_banner.jpg", "ingredients");
+        productCommonInfo = new ProductCommonInfo(101, "Master Slices", "master_slice_banner.jpg", "ingredients");
         commonInfos.add(productCommonInfo);
-        productCommonInfo = new ProductCommonInfo("Master Slices", "master_slice_banner.jpg", "ingredients");
+        productCommonInfo = new ProductCommonInfo(101, "Master Slices", "master_slice_banner.jpg", "ingredients");
         commonInfos.add(productCommonInfo);
-        productCommonInfo = new ProductCommonInfo("Master Slices", "master_slice_banner.jpg", "ingredients");
+        productCommonInfo = new ProductCommonInfo(101, "Master Slices", "master_slice_banner.jpg", "ingredients");
         commonInfos.add(productCommonInfo);
-        productCommonInfo = new ProductCommonInfo("Master Slices", "master_slice_banner.jpg", "ingredients");
+        productCommonInfo = new ProductCommonInfo(101, "Master Slices", "master_slice_banner.jpg", "ingredients");
         commonInfos.add(productCommonInfo);
-        productCommonInfo = new ProductCommonInfo("Master Slices", "master_slice_banner.jpg", "ingredients");
+        productCommonInfo = new ProductCommonInfo(101, "Master Slices", "master_slice_banner.jpg", "ingredients");
         commonInfos.add(productCommonInfo);
-        productCommonInfo = new ProductCommonInfo("Master Slices", "master_slice_banner.jpg", "ingredients");
+        productCommonInfo = new ProductCommonInfo(101, "Master Slices", "master_slice_banner.jpg", "ingredients");
         commonInfos.add(productCommonInfo);
-        productCommonInfo = new ProductCommonInfo("Master Slices", "master_slice_banner.jpg", "ingredients");
+        productCommonInfo = new ProductCommonInfo(101, "Master Slices", "master_slice_banner.jpg", "ingredients");
         commonInfos.add(productCommonInfo);
-        productCommonInfo = new ProductCommonInfo("Master Slices", "master_slice_banner.jpg", "ingredients");
+        productCommonInfo = new ProductCommonInfo(101, "Master Slices", "master_slice_banner.jpg", "ingredients");
         commonInfos.add(productCommonInfo);
 
         /*headers.add("Master Slices");
@@ -171,9 +171,7 @@ public class BiscuitInfoProvider implements ProductInfoProvider {
 
         productInfo = new ProductInfo("Bengal Pine-Apple Cream", "Regular Pack", "1 Carton", "20 packet", "Minimum 6 months", "Carton MRP", 200, "Packet MRP", 10,
                 "pine_apple_cream_banner.jpg", 2);
-        productInfo.setUnit("Carton");
-        productInfo.setPacking("6 pack/carton");
-        productInfo.setPricePerUnit("210 tk");
+
         product_images.add(10121);
         product_images.add(100052);
         product_images.add(100043);
@@ -187,9 +185,6 @@ public class BiscuitInfoProvider implements ProductInfoProvider {
 
         productInfo = new ProductInfo("Pine-Apple Cream ", "Mini Pack", "1 Carton", "40 packet", "Minimum 6 months", "Carton MRP", 200, "Packet MRP", 5,
                 "pine_apple_cream_banner.jpg", 2);
-        productInfo.setUnit("Carton");
-        productInfo.setPacking("6 pack/carton");
-        productInfo.setPricePerUnit("210 tk");
         product_images.add(10131);
         product_images.add(100062);
         product_images.add(100043);

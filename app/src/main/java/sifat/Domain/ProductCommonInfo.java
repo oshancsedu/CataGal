@@ -10,12 +10,6 @@ public class ProductCommonInfo implements Serializable {
     String header, ingredient, banner;
     int productID;
 
-    public ProductCommonInfo(String header, String headerImage, String ingredient) {
-        this.header = header;
-        this.ingredient = ingredient;
-        this.banner = headerImage;
-    }
-
     public ProductCommonInfo(int productID, String header, String headerImage, String ingredient) {
         this.productID = productID;
         this.header = header;
