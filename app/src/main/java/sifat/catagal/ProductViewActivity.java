@@ -21,9 +21,12 @@ import github.chenupt.multiplemodel.viewpager.ModelPagerAdapter;
 import github.chenupt.multiplemodel.viewpager.PagerModelManager;
 import github.chenupt.springindicator.SpringIndicator;
 import github.chenupt.springindicator.viewpager.ScrollerViewPager;
+import sifat.Controller.ServerCommunicator;
+import sifat.Domain.ProductCommonInfo;
 import sifat.Domain.ProductInfo;
 import sifat.Fragments.ProductViewFragment;
 
+import static sifat.Utilities.CommonUtilities.SINGLE_PRODUCT_COMMON_INFO;
 import static sifat.Utilities.CommonUtilities.SINGLE_PRODUCT_DETAIL;
 
 /**
@@ -34,7 +37,8 @@ public class ProductViewActivity extends ActionBarActivity {
     ScrollerViewPager viewPager;
     private ImageView ivBanner;
     private ProductInfo productInfo;
-    private TextView tvProductName,tvSize,tvUnit,tvValidity,tvMrp1,tvMrp2,tvUnitTitle,tvMrp1Title,tvMrp2Title;
+    private ProductCommonInfo productCommonInfo;
+    private TextView tvProductName, tvSize, tvUnit, tvValidity, tvMrp1, tvMrp2, tvUnitTitle, tvMrp1Title, tvMrp2Title, tvIngredient;
     private DragTopLayout dragTopLayout;
 
     @Override
@@ -67,7 +71,7 @@ public class ProductViewActivity extends ActionBarActivity {
         Intent intent = this.getIntent();
         Bundle product=intent.getExtras();
         productInfo = (ProductInfo) product.getSerializable(SINGLE_PRODUCT_DETAIL);
-
+        productCommonInfo = (ProductCommonInfo) product.getSerializable(SINGLE_PRODUCT_COMMON_INFO);
         dragTopLayout = (DragTopLayout) findViewById(R.id.drag_layout);
         dragTopLayout.setCollapseOffset(60);
         //dragTopLayout.closeTopView(true);
@@ -93,11 +97,12 @@ public class ProductViewActivity extends ActionBarActivity {
         tvMrp1Title.setText(productInfo.getMrp1Title());
         tvMrp2Title=(TextView)findViewById(R.id.tvMRP2Title);
         tvMrp2Title.setText(productInfo.getMrp2Title());
-
+        tvIngredient = (TextView) findViewById(R.id.tvIngredient);
+        tvIngredient.setText(productCommonInfo.getIngredient());
 
         InputStream ims = null;
         try {
-            ims = getAssets().open(productInfo.getBanner());
+            ims = getAssets().open(productCommonInfo.getBanner());
             // load image as Drawable
             Drawable d = Drawable.createFromStream(ims, null);
             ivBanner.setImageDrawable(d);
@@ -125,10 +130,12 @@ public class ProductViewActivity extends ActionBarActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_about) {
+        if (id == R.id.action_memo) {
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
-            return true;
+        } else if (id == R.id.action_update) {
+            ServerCommunicator serverCommunicator = new ServerCommunicator(this);
+            serverCommunicator.getProductInfo();
         }
 
         return super.onOptionsItemSelected(item);

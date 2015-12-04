@@ -1,10 +1,25 @@
 package sifat.Provider;
 
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import sifat.Database.DbOperator;
 import sifat.Domain.MemoProductInfo;
+import sifat.Domain.ProductCommonInfo;
 import sifat.Domain.ProductInfo;
+
+import static sifat.Utilities.CommonUtilities.COL_PRODUCT_BANNER;
+import static sifat.Utilities.CommonUtilities.COL_PRODUCT_HEADER;
+import static sifat.Utilities.CommonUtilities.COL_PRODUCT_ID;
+import static sifat.Utilities.CommonUtilities.COL_PRODUCT_INGREDIENT;
+import static sifat.Utilities.CommonUtilities.LOG_TAG_DATABASE;
+import static sifat.Utilities.CommonUtilities.TABLE_PRODUCT_COMMON_INFO;
+import static sifat.Utilities.CommonUtilities.showToast;
 
 /**
  * Created by sifat on 11/14/2015.
@@ -14,31 +29,74 @@ public class CandyInfoProvider implements ProductInfoProvider {
     private volatile static CandyInfoProvider candyInfoProvider;
     private static ArrayList<ProductInfo> productInfos = new ArrayList<>();
     private static List<Integer> product_images = new ArrayList<>();
-    private static ArrayList<String> headers = new ArrayList<>();
+    private static ArrayList<ProductCommonInfo> commonInfos = new ArrayList<>();
     private static ArrayList<MemoProductInfo> memoProductInfos = new ArrayList<>();
     private static ArrayList<MemoProductInfo> addedProduct = new ArrayList<>();
     private static int totalItemAdded, totalCost;
+    private static DbOperator dbOperator;
+    private static SQLiteDatabase sqlDatabase;
+    private static Context context;
 
-    private CandyInfoProvider() {
+    private CandyInfoProvider(Context context) {
+        this.context = context;
+        dbOperator = DbOperator.getDbOperator(this.context);
+        dbOperator.open();
+        sqlDatabase = dbOperator.getDatabase();
+        setProductInfos();
+        fetchCommonInfo();
+        dbOperator.close();
+
     }
 
-    public static CandyInfoProvider getProvider() {
+    public static CandyInfoProvider getProvider(Context context) {
         if (candyInfoProvider == null) {
             synchronized (CandyInfoProvider.class) {
                 if (candyInfoProvider == null)
-                    setProductInfos();
-                setHeaders();
-                    candyInfoProvider = new CandyInfoProvider();
+                    candyInfoProvider = new CandyInfoProvider(context);
             }
         }
         return candyInfoProvider;
     }
 
-    private static void setHeaders() {
-        headers.add("Bingo Milk Candy");
+    private static void fetchCommonInfo() {
+
+        Cursor c;
+        String query = "Select * from " + TABLE_PRODUCT_COMMON_INFO + " where " + COL_PRODUCT_ID + " > 200";
+        c = sqlDatabase.rawQuery(query, null);
+        if (c.getCount() > 0) {
+            showToast(context, "" + c.getCount());
+            Log.i(LOG_TAG_DATABASE, "count not 0");
+            setCommonInfo(c);
+        } else {
+            Log.i(LOG_TAG_DATABASE, "count 0");
+            ArrayList<ProductCommonInfo> productCommonInfos = new ArrayList<>();
+            ProductCommonInfo productCommonInfo = new ProductCommonInfo(201, "Bingo Milk Candy", "milk_candy_banner.jpg", "ingredients");
+            productCommonInfos.add(productCommonInfo);
+            productCommonInfo = new ProductCommonInfo(202, "Bingo Tamarind Candy", "tamarind_banner.jpg", "ingredients");
+            productCommonInfos.add(productCommonInfo);
+            productCommonInfo = new ProductCommonInfo(203, "Winnie Green Mango Candy", "tamarind_banner.jpg", "ingredients");
+            productCommonInfos.add(productCommonInfo);
+            productCommonInfo = new ProductCommonInfo(204, "Winnie Lychee Candy", "tamarind_banner.jpg", "ingredients");
+            productCommonInfos.add(productCommonInfo);
+            dbOperator.updateProductCommonInfo(productCommonInfos);
+            query = "Select * from " + TABLE_PRODUCT_COMMON_INFO + " where " + COL_PRODUCT_ID + " > 200";
+            c = sqlDatabase.rawQuery(query, null);
+            setCommonInfo(c);
+        }
+
+        /*ProductCommonInfo productCommonInfo = new ProductCommonInfo("Bingo Milk Candy","milk_candy_banner.jpg","ingredients");
+        commonInfos.add(productCommonInfo);
+        productCommonInfo = new ProductCommonInfo("Bingo Tamarind Candy","tamarind_banner.jpg","ingredients");
+        commonInfos.add(productCommonInfo);
+        productCommonInfo = new ProductCommonInfo("Winnie Green Mango Candy","tamarind_banner.jpg","ingredients");
+        commonInfos.add(productCommonInfo);
+        productCommonInfo = new ProductCommonInfo("Winnie Lychee Candy","tamarind_banner.jpg","ingredients");
+        commonInfos.add(productCommonInfo);*/
+
+        /*headers.add("Bingo Milk Candy");
         headers.add("Bingo Tamarind Candy");
         headers.add("Winnie Green Mango Candy");
-        headers.add("Winnie Lychee Candy");
+        headers.add("Winnie Lychee Candy");*/
     }
 
     private static void setProductInfos() {
@@ -212,8 +270,26 @@ public class CandyInfoProvider implements ProductInfoProvider {
     }
 
     @Override
-    public ArrayList<String> getHeader() {
-        return headers;
+    public ArrayList<ProductCommonInfo> getCommonInfo() {
+        return commonInfos;
+    }
+
+    private static void setCommonInfo(Cursor c) {
+
+        Log.i(LOG_TAG_DATABASE, "setting data");
+        int count = 0;
+        String header, banner, ingredient;
+        ProductCommonInfo productCommonInfo;
+        c.moveToFirst();
+        while (!c.isAfterLast()) {
+            showToast(context, "" + count++);
+            header = c.getString(c.getColumnIndex(COL_PRODUCT_HEADER));
+            banner = c.getString(c.getColumnIndex(COL_PRODUCT_BANNER));
+            ingredient = c.getString(c.getColumnIndex(COL_PRODUCT_INGREDIENT));
+            productCommonInfo = new ProductCommonInfo(header, banner, ingredient);
+            commonInfos.add(productCommonInfo);
+            c.moveToNext();
+        }
     }
 
     @Override

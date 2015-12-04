@@ -1,9 +1,14 @@
 package sifat.Provider;
 
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import sifat.Database.DbOperator;
 import sifat.Domain.MemoProductInfo;
+import sifat.Domain.ProductCommonInfo;
 import sifat.Domain.ProductInfo;
 
 /**
@@ -14,28 +19,66 @@ public class BiscuitInfoProvider implements ProductInfoProvider {
     private volatile static BiscuitInfoProvider biscuitInfoProvider;
     private static ArrayList<ProductInfo> productInfos = new ArrayList<>();
     private static List<Integer> product_images =  new ArrayList<>();
-    private static ArrayList<String> headers = new ArrayList<>();
+    private static ArrayList<ProductCommonInfo> commonInfos = new ArrayList<>();
     private static ArrayList<MemoProductInfo> memoProductInfos = new ArrayList<>();
     private static ArrayList<MemoProductInfo> addedProduct = new ArrayList<>();
     private static int totalItemAdded, totalCost;
+    private DbOperator dbOperator;
+    private SQLiteDatabase sqlDatabase;
+    private Context context;
 
-    private BiscuitInfoProvider() {
+    private BiscuitInfoProvider(Context context) {
+        this.context = context;
+        dbOperator = DbOperator.getDbOperator(this.context);
+        dbOperator.open();
+        sqlDatabase = dbOperator.getDatabase();
+        setProductInfos();
+        setCommonInfo();
+        dbOperator.close();
     }
 
-    public static BiscuitInfoProvider getProvider() {
+    public static BiscuitInfoProvider getProvider(Context context) {
         if (biscuitInfoProvider == null) {
             synchronized (BiscuitInfoProvider.class) {
                 if (biscuitInfoProvider == null)
-                    setProductInfos();
-                setHeaders();
-                biscuitInfoProvider = new BiscuitInfoProvider();
+                    biscuitInfoProvider = new BiscuitInfoProvider(context);
             }
         }
         return biscuitInfoProvider;
     }
 
-    private static void setHeaders() {
-        headers.add("Master Slices");
+    private static void setCommonInfo() {
+
+        ProductCommonInfo productCommonInfo = new ProductCommonInfo("Master Slices", "master_slice_banner.jpg", "ingredients");
+        commonInfos.add(productCommonInfo);
+        productCommonInfo = new ProductCommonInfo("Master Slices", "master_slice_banner.jpg", "ingredients");
+        commonInfos.add(productCommonInfo);
+        productCommonInfo = new ProductCommonInfo("Master Slices", "master_slice_banner.jpg", "ingredients");
+        commonInfos.add(productCommonInfo);
+        productCommonInfo = new ProductCommonInfo("Master Slices", "master_slice_banner.jpg", "ingredients");
+        commonInfos.add(productCommonInfo);
+        productCommonInfo = new ProductCommonInfo("Master Slices", "master_slice_banner.jpg", "ingredients");
+        commonInfos.add(productCommonInfo);
+        productCommonInfo = new ProductCommonInfo("Master Slices", "master_slice_banner.jpg", "ingredients");
+        commonInfos.add(productCommonInfo);
+        productCommonInfo = new ProductCommonInfo("Master Slices", "master_slice_banner.jpg", "ingredients");
+        commonInfos.add(productCommonInfo);
+        productCommonInfo = new ProductCommonInfo("Master Slices", "master_slice_banner.jpg", "ingredients");
+        commonInfos.add(productCommonInfo);
+        productCommonInfo = new ProductCommonInfo("Master Slices", "master_slice_banner.jpg", "ingredients");
+        commonInfos.add(productCommonInfo);
+        productCommonInfo = new ProductCommonInfo("Master Slices", "master_slice_banner.jpg", "ingredients");
+        commonInfos.add(productCommonInfo);
+        productCommonInfo = new ProductCommonInfo("Master Slices", "master_slice_banner.jpg", "ingredients");
+        commonInfos.add(productCommonInfo);
+        productCommonInfo = new ProductCommonInfo("Master Slices", "master_slice_banner.jpg", "ingredients");
+        commonInfos.add(productCommonInfo);
+        productCommonInfo = new ProductCommonInfo("Master Slices", "master_slice_banner.jpg", "ingredients");
+        commonInfos.add(productCommonInfo);
+        productCommonInfo = new ProductCommonInfo("Master Slices", "master_slice_banner.jpg", "ingredients");
+        commonInfos.add(productCommonInfo);
+
+        /*headers.add("Master Slices");
         headers.add("Pine-Apple Cream");
         headers.add("Digestives Biscuit");
         headers.add("Orange Cake Biscuit");
@@ -48,7 +91,7 @@ public class BiscuitInfoProvider implements ProductInfoProvider {
         headers.add("Protein Plus Biscuit");
         headers.add("Glucose Biscuit");
         headers.add("All Time (Orange) Biscuit");
-        headers.add("All Time (Milk+Coconut)");
+        headers.add("All Time (Milk+Coconut)");*/
     }
 
     public static void setProductInfos() {
@@ -414,8 +457,8 @@ public class BiscuitInfoProvider implements ProductInfoProvider {
         this.addedProduct = addedProduct;
     }
 
-    public ArrayList<String> getHeader() {
-        return headers;
+    public ArrayList<ProductCommonInfo> getCommonInfo() {
+        return commonInfos;
     }
 
     @Override

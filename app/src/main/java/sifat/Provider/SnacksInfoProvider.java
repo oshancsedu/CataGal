@@ -3,12 +3,11 @@ package sifat.Provider;
 import java.util.ArrayList;
 
 import sifat.Domain.MemoProductInfo;
-import sifat.Domain.ProductInfo;
 
 /**
  * Created by sifat on 11/14/2015.
  */
-public class SnacksInfoProvider implements ProductInfoProvider {
+public class SnacksInfoProvider {
 
     private static ArrayList<MemoProductInfo> memoProductInfos = new ArrayList<>();
     private static ArrayList<MemoProductInfo> addedProduct = new ArrayList<>();
@@ -29,7 +28,7 @@ public class SnacksInfoProvider implements ProductInfoProvider {
         return snacksInfoProvider;
     }
 
-    @Override
+    /*@Override
     public ArrayList<ProductInfo> getProductInfos() {
         return null;
     }
@@ -73,5 +72,5 @@ public class SnacksInfoProvider implements ProductInfoProvider {
 
     public void setAddedProduct(ArrayList<MemoProductInfo> addedProduct) {
         this.addedProduct = addedProduct;
-    }
+    }*/
 }

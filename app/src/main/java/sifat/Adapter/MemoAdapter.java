@@ -20,6 +20,7 @@ import java.util.ArrayList;
 
 import ca.barrenechea.widget.recyclerview.decoration.StickyHeaderAdapter;
 import sifat.Domain.MemoProductInfo;
+import sifat.Domain.ProductCommonInfo;
 import sifat.Provider.ProductInfoProvider;
 import sifat.catagal.R;
 
@@ -36,7 +37,7 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
     public static int totalItemAdded, totalCost;
     public static ArrayList<MemoProductInfo> memoProductInfos = new ArrayList<>();
     static Context context;
-    private static ArrayList<String> headers = new ArrayList<>();
+    private static ArrayList<ProductCommonInfo> commonInfos = new ArrayList<>();
     private static TextView tvTotalCost, tvItemAdded;
     private LayoutInflater mInflater;
     private ProductInfoProvider provider;
@@ -44,7 +45,7 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
     public MemoAdapter(Context context, TextView tvTotalCost, TextView tvItemAdded) {
         provider = getMyProvider(context);
         memoProductInfos = provider.getProductMemoInfo();
-        headers = provider.getHeader();
+        commonInfos = provider.getCommonInfo();
         addedProduct = provider.getAddedProduct();
         totalCost = provider.getTotalCost();
         totalItemAdded = provider.getTotalItemAdded();
@@ -131,7 +132,7 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
     }
 
     private String getHeaderName(long headerId) {
-        return headers.get((int) headerId - 1);
+        return commonInfos.get((int) headerId - 1).getHeader();
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, TextWatcher {

@@ -19,12 +19,14 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 import ca.barrenechea.widget.recyclerview.decoration.StickyHeaderAdapter;
+import sifat.Domain.ProductCommonInfo;
 import sifat.Domain.ProductInfo;
 import sifat.Provider.ProductInfoProvider;
 import sifat.catagal.ProductViewActivity;
 import sifat.catagal.R;
 
 import static sifat.Provider.ProviderSelector.getMyProvider;
+import static sifat.Utilities.CommonUtilities.SINGLE_PRODUCT_COMMON_INFO;
 import static sifat.Utilities.CommonUtilities.SINGLE_PRODUCT_DETAIL;
 
 /**
@@ -35,14 +37,14 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
 
     static Context context;
     private static ArrayList<ProductInfo> productInfos = new ArrayList<>();
-    private static ArrayList<String> headers = new ArrayList<>();
+    private static ArrayList<ProductCommonInfo> commonInfos = new ArrayList<>();
     private LayoutInflater mInflater;
     private ProductInfoProvider provider;
 
     public ProductListAdapter(Context context) {
         provider = getMyProvider(context);
         productInfos = provider.getProductInfos();
-        headers = provider.getHeader();
+        commonInfos = provider.getCommonInfo();
         this.context=context;
         mInflater = LayoutInflater.from(context);
     }
@@ -95,7 +97,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
     }
 
     private String getHeaderName(long headerId) {
-        return headers.get((int) headerId - 1);
+        return commonInfos.get((int) headerId - 1).getHeader();
     }
 
 
@@ -128,6 +130,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
             Intent intent = new Intent(context, ProductViewActivity.class);
             Bundle product = new Bundle();
             product.putSerializable(SINGLE_PRODUCT_DETAIL, productInfos.get(getPosition()));
+            product.putSerializable(SINGLE_PRODUCT_COMMON_INFO, commonInfos.get(productInfos.get(getPosition()).getHeader() - 1));
             intent.putExtras(product);
             context.startActivity(intent);
         }

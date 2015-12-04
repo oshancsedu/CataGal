@@ -11,6 +11,7 @@ import android.view.MenuItem;
 
 import ca.barrenechea.widget.recyclerview.decoration.StickyHeaderDecoration;
 import sifat.Adapter.ProductListAdapter;
+import sifat.Controller.ServerCommunicator;
 
 /**
  * Created by sifat on 11/12/2015.
@@ -56,10 +57,12 @@ public class ProductList extends ActionBarActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_about) {
+        if (id == R.id.action_memo) {
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
-            return true;
+        } else if (id == R.id.action_update) {
+            ServerCommunicator serverCommunicator = new ServerCommunicator(this);
+            serverCommunicator.getProductInfo();
         }
 
         return super.onOptionsItemSelected(item);

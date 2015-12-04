@@ -32,6 +32,9 @@ import sifat.Provider.ProductInfoProvider;
 
 import static sifat.Provider.ProviderSelector.getMyProvider;
 import static sifat.Utilities.CommonUtilities.CONFIRM_FRAG_TAG;
+import static sifat.Utilities.CommonUtilities.DEFULT_AREA_CODE;
+import static sifat.Utilities.CommonUtilities.DEFULT_AREA_NAME;
+import static sifat.Utilities.CommonUtilities.DEFULT_DISTRIBUTOR_NAME;
 import static sifat.Utilities.CommonUtilities.SHAREDPREF_TAG_USERID;
 import static sifat.Utilities.CommonUtilities.changeActivity;
 import static sifat.Utilities.CommonUtilities.getPref;
@@ -149,11 +152,11 @@ public class MemoGenActivity extends ActionBarActivity implements View.OnClickLi
             areaCode = spAreaCode.getSelectedItem().toString();
             distributorName = spDistributor.getSelectedItem().toString();
 
-            if (areaName.equalsIgnoreCase("-Area Name-"))
+            if (areaName.equalsIgnoreCase(DEFULT_AREA_NAME))
                 showToast(this, "Enter Area Name");
-            else if (areaCode.equalsIgnoreCase("-Area Code-"))
+            else if (areaCode.equalsIgnoreCase(DEFULT_AREA_CODE))
                 showToast(this, "Enter Area Code");
-            else if (distributorName.equalsIgnoreCase("-Distributor Name-"))
+            else if (distributorName.equalsIgnoreCase(DEFULT_DISTRIBUTOR_NAME))
                 showToast(this, "Enter Distributor Name");
             else if (supplyDate.equalsIgnoreCase(""))
                 showToast(this, "Enter Supply date");

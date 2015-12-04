@@ -3,6 +3,7 @@ package sifat.Provider;
 import java.util.ArrayList;
 
 import sifat.Domain.MemoProductInfo;
+import sifat.Domain.ProductCommonInfo;
 import sifat.Domain.ProductInfo;
 
 /**
@@ -12,7 +13,7 @@ public interface ProductInfoProvider {
 
     public ArrayList<ProductInfo> getProductInfos();
 
-    public ArrayList<String> getHeader();
+    public ArrayList<ProductCommonInfo> getCommonInfo();
 
     public ArrayList<MemoProductInfo> getProductMemoInfo();
 

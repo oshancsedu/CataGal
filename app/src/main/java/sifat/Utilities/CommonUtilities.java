@@ -11,13 +11,21 @@ import android.widget.Toast;
 public class CommonUtilities {
 
     public static final String SINGLE_PRODUCT_DETAIL="singleProductDetail";
+    public static final String SINGLE_PRODUCT_COMMON_INFO = "singleProductCommonInfo";
+
 
     public static final String DATABASE_NAME = "Bengal";
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
     public static final String TABLE_MEMO_BASIC_INFO = "basic_memo_info";
     public static final String COL_AREA_NAME = "areaName";
     public static final String COL_AREA_CODE = "areaCode";
     public static final String COL_DISTRIBUTOR_NAME = "distributorName";
+    public static final String TABLE_PRODUCT_COMMON_INFO = "product_common_info";
+    public static final String COL_PRODUCT_ID = "product_id";
+    public static final String COL_PRODUCT_BANNER = "product_banner";
+    public static final String COL_PRODUCT_INGREDIENT = "product_ingredient";
+    public static final String COL_PRODUCT_HEADER = "product_header";
+
 
     public static final String CONFIRM_FRAG_TAG = "confirm_frag_tag";
     public static final String DIALOG_HEADER_SUPPLY_DATE = "dialog_header_supply_date";
@@ -30,20 +38,38 @@ public class CommonUtilities {
 
     public static final String MEMO_BASIC_INFO_URL = "http://inspireitl.com/bengal/memoinfo.php";
     public static final String LOGIN_URL = "http://inspireitl.com/bengal/login.php";
+    public static final String MEMO_RECEIVE_URL = "http://inspireitl.com/bengal/memoreceive.php";
+    public static final String PRODUCT_INFO_RECEIVE_URL = "http://inspireitl.com/bengal/product.php";
 
     public static final String LOG_TAG_WEB = "webLogTag";
     public static final String LOG_TAG_MEMO = "memoLogTag";
+    public static final String LOG_TAG_DATABASE = "databaseLogTag";
 
     public static final String JSON_TAG_AREA_NAME = "area_name";
     public static final String JSON_TAG_AREA_CODE = "area_code";
     public static final String JSON_TAG_DISTRIBUTOR_NAME = "distributor_name";
+    public static final String JSON_TAG_PRODUCT_COMMON_INFO_ARRAY = "product";
+    public static final String JSON_TAG_PRODUCT_ID = "product_id";
+    public static final String JSON_TAG_HEADER = "header";
+    public static final String JSON_TAG_BANNER = "banner";
+    public static final String JSON_TAG_INGREDIENT = "ingredient";
 
     public static final String SHAREPREF_TAG = "sifat.mySharedPref";
     public static final String SHAREDPREF_TAG_SELECTED_ITEM = "selectedItem";
     public static final String SHAREDPREF_TAG_USERID = "userId";
 
-    public static final String SERVER_REQUEST_USERID = "userRequestParams";
+    public static final String SERVER_REQUEST_USERID = "userIDRequestParams";
     public static final String SERVER_REQUEST_PASSWORD = "passwordRequestParams";
+    public static final String SERVER_REQUEST_AREA_NAME = "areaName";
+    public static final String SERVER_REQUEST_AREA_CODE = "areaCode";
+    public static final String SERVER_REQUEST_DISTRIBUTOR_NAME = "distributorName";
+    public static final String SERVER_REQUEST_SUPPLY_DATE = "supplyDate";
+    public static final String SERVER_REQUEST_PRODUCT_NAME = "productName";
+    public static final String SERVER_REQUEST_PRODUCT_SIZE = "productSize";
+    public static final String SERVER_REQUEST_COMMENT = "commentOnProduct";
+    public static final String SERVER_REQUEST_PRODUCT_COST = "productCost";
+    public static final String SERVER_REQUEST_PRODUCT_QUANTITY = "productQuantity";
+    public static final String SERVER_REQUEST_PRODUCT_UNIT = "productUnit";
 
     public static void showToast(Context context,String message)
     {

@@ -18,13 +18,13 @@ public class ProviderSelector {
         sharedPreferences = getPref(context);
         String productName = sharedPreferences.getString(SHAREDPREF_TAG_SELECTED_ITEM, "0");
         if (productName.equalsIgnoreCase("0"))
-            productInfoProvider = BiscuitInfoProvider.getProvider();
+            productInfoProvider = BiscuitInfoProvider.getProvider(context);
         else if (productName.equalsIgnoreCase("1"))
-            productInfoProvider = CandyInfoProvider.getProvider();
-        else if (productName.equalsIgnoreCase("Snacks"))
+            productInfoProvider = CandyInfoProvider.getProvider(context);
+        /*else if (productName.equalsIgnoreCase("Snacks"))
             productInfoProvider = SnacksInfoProvider.getProvider();
         else if (productName.equalsIgnoreCase("Flour"))
-            productInfoProvider = FlourInfoProvider.getProvider();
+            productInfoProvider = FlourInfoProvider.getProvider();*/
         return productInfoProvider;
     }
 }
