@@ -14,7 +14,7 @@ public class CommonUtilities {
     public static final String SINGLE_PRODUCT_COMMON_INFO = "singleProductCommonInfo";
 
     public static final String DATABASE_NAME = "Bengal";
-    public static final int DATABASE_VERSION = 3;
+    public static final int DATABASE_VERSION = 4;
 
     public static final String TABLE_MEMO_BASIC_INFO = "basic_memo_info";
     public static final String COL_AREA_NAME = "areaName";

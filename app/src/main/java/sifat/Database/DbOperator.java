@@ -120,11 +120,13 @@ public class DbOperator {
             contentValues.put(COL_MRP1, detailInfo.get(i).getMrp1());
             contentValues.put(COL_MRP2TITLE, detailInfo.get(i).getMrp2Title());
             contentValues.put(COL_MRP2, detailInfo.get(i).getMrp2());
+            contentValues.put(COL_IMAGES, detailInfo.get(i).getProduct_image());
             contentValues.put(COL_PRODUCT_HEADER, detailInfo.get(i).getHeader());
             contentValues.put(COL_PACKING, detailInfo.get(i).getPacking());
             contentValues.put(COL_SELLINGUNIT, detailInfo.get(i).getSellingUnit());
             contentValues.put(COL_COST_PER_UNIT, detailInfo.get(i).getCostPerUnit());
-            sqlDatabase.insert(TABLE_PRODUCT_COMMON_INFO, null, contentValues);
+
+            sqlDatabase.insert(TABLE_PRODUCT_DETAIL_INFO, null, contentValues);
         }
         showToast(context, "Updated!");
     }

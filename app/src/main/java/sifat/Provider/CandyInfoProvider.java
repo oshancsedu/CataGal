@@ -35,7 +35,6 @@ import static sifat.Utilities.CommonUtilities.COL_VALIDITY;
 import static sifat.Utilities.CommonUtilities.LOG_TAG_DATABASE;
 import static sifat.Utilities.CommonUtilities.TABLE_PRODUCT_COMMON_INFO;
 import static sifat.Utilities.CommonUtilities.TABLE_PRODUCT_DETAIL_INFO;
-import static sifat.Utilities.CommonUtilities.showToast;
 
 /**
  * Created by sifat on 11/14/2015.
@@ -81,12 +80,10 @@ public class CandyInfoProvider implements ProductInfoProvider {
         String query = "Select * from " + TABLE_PRODUCT_COMMON_INFO + " where " + COL_PRODUCT_ID + " > 200";
         c = sqlDatabase.rawQuery(query, null);
         if (c.getCount() > 0) {
-            showToast(context, "" + c.getCount());
             Log.i(LOG_TAG_DATABASE, "count not 0");
             setCommonInfo(c);
         } else {
             Log.i(LOG_TAG_DATABASE, "count 0");
-            //ArrayList<ProductCommonInfo> productCommonInfos=new ArrayList<>();
             ProductCommonInfo productCommonInfo = new ProductCommonInfo(201, "Bingo Milk Candy", "milk_candy_banner.jpg", "ingredients");
             commonInfos.add(productCommonInfo);
             productCommonInfo = new ProductCommonInfo(202, "Bingo Tamarind Candy", "tamarind_banner.jpg", "ingredients");
@@ -96,9 +93,6 @@ public class CandyInfoProvider implements ProductInfoProvider {
             productCommonInfo = new ProductCommonInfo(204, "Winnie Lychee Candy", "tamarind_banner.jpg", "ingredients");
             commonInfos.add(productCommonInfo);
             dbOperator.updateProductCommonInfo(commonInfos);
-            /*query = "Select * from " + TABLE_PRODUCT_COMMON_INFO+" where "+COL_PRODUCT_ID+" > 200";
-            c = sqlDatabase.rawQuery(query, null);
-            setCommonInfo(c);*/
         }
     }
 
@@ -112,7 +106,6 @@ public class CandyInfoProvider implements ProductInfoProvider {
         String query = "Select * from " + TABLE_PRODUCT_DETAIL_INFO + " where " + COL_PRODUCT_ID + " > 2000";
         c = sqlDatabase.rawQuery(query, null);
         if (c.getCount() > 0) {
-            showToast(context, "" + c.getCount());
             Log.i(LOG_TAG_DATABASE, "count not 0");
             setDetailInfo(c);
         } else {
@@ -168,7 +161,9 @@ public class CandyInfoProvider implements ProductInfoProvider {
             integratedProductInfo = new IntegratedProductInfo(2043, "Winnie Lychee Candy", "Consumer Pack", "1 Pack", "50 Piece", "Minimum 6 months", "Boyam MRP", 40,
                     "Per Piece MRP", 1, 4, "12 Pack/Carton", "Carton", 480, "11631,11612,11613");
             integratedProductInfos.add(integratedProductInfo);
+
             dbOperator.updateProductDetailInfo(integratedProductInfos);
+            integratedProductInfos = new ArrayList<>();
         }
 
         int size = integratedProductInfos.size();
@@ -217,6 +212,7 @@ public class CandyInfoProvider implements ProductInfoProvider {
 
             integratedProductInfo = new IntegratedProductInfo(product_id, name, size, container, quantity, validity, mrp1Title, mrp1, mrp2Title, mrp2, header, packing, sellingUnit, costPerUnit, images);
             integratedProductInfos.add(integratedProductInfo);
+            c.moveToNext();
         }
 
     }
