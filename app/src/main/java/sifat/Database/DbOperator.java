@@ -190,7 +190,6 @@ public class DbOperator {
                     COL_COST_PER_UNIT + " int(6) NOT NULL" +
                     ");";
             db.execSQL(query);
-            showToast(context, query);
         }
 
         @Override

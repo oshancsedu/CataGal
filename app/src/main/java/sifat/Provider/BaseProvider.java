@@ -28,7 +28,7 @@ import static sifat.Utilities.CommonUtilities.COL_VALIDITY;
 /**
  * Created by sifat on 12/6/2015.
  */
-public abstract class BasicProvider implements ProductInfoProvider {
+public abstract class BaseProvider implements ProductInfoProvider {
 
     public static ArrayList<ProductCommonInfo> setCommonInfo(Cursor c) {
 

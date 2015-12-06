@@ -23,7 +23,7 @@ import static sifat.Utilities.CommonUtilities.TABLE_PRODUCT_DETAIL_INFO;
 /**
  * Created by sifat on 11/14/2015.
  */
-public class CandyInfoProvider extends BasicProvider {
+public class CandyInfoProvider extends BaseProvider {
 
     private volatile static CandyInfoProvider candyInfoProvider;
     private static ArrayList<ProductInfo> productInfos = new ArrayList<>();
@@ -61,7 +61,7 @@ public class CandyInfoProvider extends BasicProvider {
     private static void fetchCommonInfo() {
 
         Cursor c;
-        String query = "Select * from " + TABLE_PRODUCT_COMMON_INFO + " where " + COL_PRODUCT_ID + " > 200";
+        String query = "Select * from " + TABLE_PRODUCT_COMMON_INFO + " where " + COL_PRODUCT_ID + " > 200 and " + COL_PRODUCT_ID + " < 300";
         c = sqlDatabase.rawQuery(query, null);
         if (c.getCount() > 0) {
             Log.i(LOG_TAG_DATABASE, "count not 0");
@@ -72,9 +72,9 @@ public class CandyInfoProvider extends BasicProvider {
             commonInfos.add(productCommonInfo);
             productCommonInfo = new ProductCommonInfo(202, "Bingo Tamarind Candy", "tamarind_banner.jpg", "ingredients");
             commonInfos.add(productCommonInfo);
-            productCommonInfo = new ProductCommonInfo(203, "Winnie Green Mango Candy", "tamarind_banner.jpg", "ingredients");
+            productCommonInfo = new ProductCommonInfo(203, "Winnie Green Mango Candy", "green_mango_banner.jpg", "ingredients");
             commonInfos.add(productCommonInfo);
-            productCommonInfo = new ProductCommonInfo(204, "Winnie Lychee Candy", "tamarind_banner.jpg", "ingredients");
+            productCommonInfo = new ProductCommonInfo(204, "Winnie Lychee Candy", "lychee_banner.jpg", "ingredients");
             commonInfos.add(productCommonInfo);
             dbOperator.updateProductCommonInfo(commonInfos);
         }
@@ -87,10 +87,9 @@ public class CandyInfoProvider extends BasicProvider {
         IntegratedProductInfo integratedProductInfo;
 
         Cursor c;
-        String query = "Select * from " + TABLE_PRODUCT_DETAIL_INFO + " where " + COL_PRODUCT_ID + " > 2000";
+        String query = "Select * from " + TABLE_PRODUCT_DETAIL_INFO + " where " + COL_PRODUCT_ID + " > 2000 and " + COL_PRODUCT_ID + " < 3000";
         c = sqlDatabase.rawQuery(query, null);
         if (c.getCount() > 0) {
-            //Log.i(LOG_TAG_DATABASE, "count not 0");
             integratedProductInfos = setDetailInfo(c);
         } else {
 
@@ -170,37 +169,6 @@ public class CandyInfoProvider extends BasicProvider {
             memoProductInfos.add(memoProductInfo);
         }
     }
-
-
-    /*private static void setDetailInfo(Cursor c) {
-        int product_id, mrp1, mrp2, costPerUnit, header;
-        String name, size, container, quantity, validity, mrp1Title, mrp2Title, packing, sellingUnit, images;
-        IntegratedProductInfo integratedProductInfo;
-        c.moveToFirst();
-        while (!c.isAfterLast())
-        {
-            product_id = c.getInt(c.getColumnIndex(COL_PRODUCT_ID));
-            mrp1 = c.getInt(c.getColumnIndex(COL_MRP1));
-            mrp2 = c.getInt(c.getColumnIndex(COL_MRP2));
-            costPerUnit = c.getInt(c.getColumnIndex(COL_COST_PER_UNIT));
-            header = c.getInt(c.getColumnIndex(COL_PRODUCT_HEADER));
-            name = c.getString(c.getColumnIndex(COL_PRODUCT_NAME));
-            size = c.getString(c.getColumnIndex(COL_PRODUCT_SIZE));
-            container = c.getString(c.getColumnIndex(COL_CONTAINER));
-            quantity = c.getString(c.getColumnIndex(COL_QUANTITY));
-            validity = c.getString(c.getColumnIndex(COL_VALIDITY));
-            mrp1Title = c.getString(c.getColumnIndex(COL_MRP1TITLE));
-            mrp2Title = c.getString(c.getColumnIndex(COL_MRP2TITLE));
-            packing = c.getString(c.getColumnIndex(COL_PACKING));
-            sellingUnit = c.getString(c.getColumnIndex(COL_SELLINGUNIT));
-            images = c.getString(c.getColumnIndex(COL_IMAGES));
-
-            integratedProductInfo = new IntegratedProductInfo(product_id, name, size, container, quantity, validity, mrp1Title, mrp1, mrp2Title, mrp2, header, packing, sellingUnit, costPerUnit, images);
-            integratedProductInfos.add(integratedProductInfo);
-            c.moveToNext();
-        }
-    }*/
-
 
     @Override
     public ArrayList<ProductInfo> getProductInfos() {
