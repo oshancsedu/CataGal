@@ -12,7 +12,7 @@ public class MemoProductInfo {
     public MemoProductInfo() {
     }
 
-    public MemoProductInfo(String productName, String productSize, String packing, String sellingUnit, int costPerUnit, int costPerPack, int header) {
+    public MemoProductInfo(String productName, String productSize, String packing, String sellingUnit, int costPerUnit, int header) {
         this.productName = productName;
         this.productSize = productSize;
         this.packing = packing;

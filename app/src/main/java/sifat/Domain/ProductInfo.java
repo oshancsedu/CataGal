@@ -12,7 +12,7 @@ public class ProductInfo implements Serializable{
     String name, quantity, validity, banner, conatiner, mrp1Title, mrp2Title, size, unit, packing, pricePerUnit;
     List<Integer> product_images =  new ArrayList<>();
 
-    public ProductInfo(String name, String size, String container, String quantity, String validity, String mrp1Title, int mrp1, String mrp2Title, int mrp2, String banner, int header)
+    public ProductInfo(String name, String size, String container, String quantity, String validity, String mrp1Title, int mrp1, String mrp2Title, int mrp2, int header)
     {
         this.size=size;
         this.name=name;

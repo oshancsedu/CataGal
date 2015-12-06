@@ -102,4 +102,6 @@ public class CommonUtilities {
         Intent intent = new Intent(context, toClass);
         context.startActivity(intent);
     }
+
+
 }

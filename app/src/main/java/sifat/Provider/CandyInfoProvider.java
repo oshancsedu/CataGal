@@ -15,23 +15,7 @@ import sifat.Domain.MemoProductInfo;
 import sifat.Domain.ProductCommonInfo;
 import sifat.Domain.ProductInfo;
 
-import static sifat.Utilities.CommonUtilities.COL_CONTAINER;
-import static sifat.Utilities.CommonUtilities.COL_COST_PER_UNIT;
-import static sifat.Utilities.CommonUtilities.COL_IMAGES;
-import static sifat.Utilities.CommonUtilities.COL_MRP1;
-import static sifat.Utilities.CommonUtilities.COL_MRP1TITLE;
-import static sifat.Utilities.CommonUtilities.COL_MRP2;
-import static sifat.Utilities.CommonUtilities.COL_MRP2TITLE;
-import static sifat.Utilities.CommonUtilities.COL_PACKING;
-import static sifat.Utilities.CommonUtilities.COL_PRODUCT_BANNER;
-import static sifat.Utilities.CommonUtilities.COL_PRODUCT_HEADER;
 import static sifat.Utilities.CommonUtilities.COL_PRODUCT_ID;
-import static sifat.Utilities.CommonUtilities.COL_PRODUCT_INGREDIENT;
-import static sifat.Utilities.CommonUtilities.COL_PRODUCT_NAME;
-import static sifat.Utilities.CommonUtilities.COL_PRODUCT_SIZE;
-import static sifat.Utilities.CommonUtilities.COL_QUANTITY;
-import static sifat.Utilities.CommonUtilities.COL_SELLINGUNIT;
-import static sifat.Utilities.CommonUtilities.COL_VALIDITY;
 import static sifat.Utilities.CommonUtilities.LOG_TAG_DATABASE;
 import static sifat.Utilities.CommonUtilities.TABLE_PRODUCT_COMMON_INFO;
 import static sifat.Utilities.CommonUtilities.TABLE_PRODUCT_DETAIL_INFO;
@@ -39,7 +23,7 @@ import static sifat.Utilities.CommonUtilities.TABLE_PRODUCT_DETAIL_INFO;
 /**
  * Created by sifat on 11/14/2015.
  */
-public class CandyInfoProvider implements ProductInfoProvider {
+public class CandyInfoProvider extends BasicProvider {
 
     private volatile static CandyInfoProvider candyInfoProvider;
     private static ArrayList<ProductInfo> productInfos = new ArrayList<>();
@@ -81,7 +65,7 @@ public class CandyInfoProvider implements ProductInfoProvider {
         c = sqlDatabase.rawQuery(query, null);
         if (c.getCount() > 0) {
             Log.i(LOG_TAG_DATABASE, "count not 0");
-            setCommonInfo(c);
+            commonInfos = setCommonInfo(c);
         } else {
             Log.i(LOG_TAG_DATABASE, "count 0");
             ProductCommonInfo productCommonInfo = new ProductCommonInfo(201, "Bingo Milk Candy", "milk_candy_banner.jpg", "ingredients");
@@ -106,8 +90,8 @@ public class CandyInfoProvider implements ProductInfoProvider {
         String query = "Select * from " + TABLE_PRODUCT_DETAIL_INFO + " where " + COL_PRODUCT_ID + " > 2000";
         c = sqlDatabase.rawQuery(query, null);
         if (c.getCount() > 0) {
-            Log.i(LOG_TAG_DATABASE, "count not 0");
-            setDetailInfo(c);
+            //Log.i(LOG_TAG_DATABASE, "count not 0");
+            integratedProductInfos = setDetailInfo(c);
         } else {
 
             /***
@@ -163,7 +147,6 @@ public class CandyInfoProvider implements ProductInfoProvider {
             integratedProductInfos.add(integratedProductInfo);
 
             dbOperator.updateProductDetailInfo(integratedProductInfos);
-            integratedProductInfos = new ArrayList<>();
         }
 
         int size = integratedProductInfos.size();
@@ -172,7 +155,7 @@ public class CandyInfoProvider implements ProductInfoProvider {
             integratedProductInfo = integratedProductInfos.get(i);
             productInfo = new ProductInfo(integratedProductInfo.getName(), integratedProductInfo.getSize(), integratedProductInfo.getConatiner(), integratedProductInfo.getQuantity(),
                     integratedProductInfo.getValidity(), integratedProductInfo.getMrp1Title(), integratedProductInfo.getMrp1(), integratedProductInfo.getMrp2Title(),
-                    integratedProductInfo.getMrp2(), "", integratedProductInfo.getHeader());
+                    integratedProductInfo.getMrp2(), integratedProductInfo.getHeader());
             StringTokenizer tokenizer = new StringTokenizer(integratedProductInfo.getProduct_image(), ",");
             while (tokenizer.hasMoreTokens()) {
                 product_images.add(Integer.parseInt(tokenizer.nextToken()));
@@ -183,17 +166,19 @@ public class CandyInfoProvider implements ProductInfoProvider {
 
             memoProductInfo = new MemoProductInfo(integratedProductInfo.getName(), integratedProductInfo.getSize(),
                     integratedProductInfo.getPacking(), integratedProductInfo.getSellingUnit(),
-                    integratedProductInfo.getCostPerUnit(), 1, integratedProductInfo.getHeader());
+                    integratedProductInfo.getCostPerUnit(), integratedProductInfo.getHeader());
             memoProductInfos.add(memoProductInfo);
         }
     }
 
-    private static void setDetailInfo(Cursor c) {
-        int count = 0, product_id, mrp1, mrp2, costPerUnit, header;
+
+    /*private static void setDetailInfo(Cursor c) {
+        int product_id, mrp1, mrp2, costPerUnit, header;
         String name, size, container, quantity, validity, mrp1Title, mrp2Title, packing, sellingUnit, images;
         IntegratedProductInfo integratedProductInfo;
         c.moveToFirst();
-        while (!c.isAfterLast()) {
+        while (!c.isAfterLast())
+        {
             product_id = c.getInt(c.getColumnIndex(COL_PRODUCT_ID));
             mrp1 = c.getInt(c.getColumnIndex(COL_MRP1));
             mrp2 = c.getInt(c.getColumnIndex(COL_MRP2));
@@ -214,8 +199,8 @@ public class CandyInfoProvider implements ProductInfoProvider {
             integratedProductInfos.add(integratedProductInfo);
             c.moveToNext();
         }
+    }*/
 
-    }
 
     @Override
     public ArrayList<ProductInfo> getProductInfos() {
@@ -227,23 +212,7 @@ public class CandyInfoProvider implements ProductInfoProvider {
         return commonInfos;
     }
 
-    private static void setCommonInfo(Cursor c) {
 
-        Log.i(LOG_TAG_DATABASE, "setting data");
-        int count = 0, productId;
-        String header, banner, ingredient;
-        ProductCommonInfo productCommonInfo;
-        c.moveToFirst();
-        while (!c.isAfterLast()) {
-            productId = c.getInt(c.getColumnIndex(COL_PRODUCT_ID));
-            header = c.getString(c.getColumnIndex(COL_PRODUCT_HEADER));
-            banner = c.getString(c.getColumnIndex(COL_PRODUCT_BANNER));
-            ingredient = c.getString(c.getColumnIndex(COL_PRODUCT_INGREDIENT));
-            productCommonInfo = new ProductCommonInfo(productId, header, banner, ingredient);
-            commonInfos.add(productCommonInfo);
-            c.moveToNext();
-        }
-    }
 
     @Override
     public ArrayList<MemoProductInfo> getProductMemoInfo() {
