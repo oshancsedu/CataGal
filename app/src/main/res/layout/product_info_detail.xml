@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Product Information"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/white" />
     </LinearLayout>
 
@@ -50,6 +50,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="Size"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@color/app_theme_color" />
 
                 <TextView
@@ -59,6 +60,7 @@
                     android:layout_weight="1"
                     android:gravity="left"
                     android:text="Family"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@color/app_theme_color" />
             </LinearLayout>
 
@@ -78,6 +80,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="1 CARTON "
+                    android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@color/app_theme_color" />
 
                 <TextView
@@ -87,6 +90,7 @@
                     android:layout_weight="1"
                     android:gravity="left"
                     android:text=" 4 TIN"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@color/app_theme_color" />
             </LinearLayout>
 
@@ -106,6 +110,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="Validity"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@color/app_theme_color" />
 
                 <TextView
@@ -115,6 +120,7 @@
                     android:layout_weight="1"
                     android:gravity="left"
                     android:text=" MINIMUM 6 MONTHS"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@color/app_theme_color" />
             </LinearLayout>
 
@@ -134,6 +140,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="CARTON MRP"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@color/app_theme_color" />
 
                 <TextView
@@ -143,6 +150,7 @@
                     android:layout_weight="1"
                     android:gravity="left"
                     android:text="800 TK"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@color/app_theme_color" />
             </LinearLayout>
 
@@ -162,6 +170,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="TIN MRP"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@color/app_theme_color" />
 
                 <TextView
@@ -171,6 +180,7 @@
                     android:layout_weight="1"
                     android:gravity="left"
                     android:text="200 TK"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@color/app_theme_color" />
             </LinearLayout>
             <LinearLayout
@@ -189,6 +199,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="Ingredient"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@color/app_theme_color" />
 
                 <TextView
@@ -198,6 +209,7 @@
                     android:layout_weight="1"
                     android:gravity="left"
                     android:text="Ingridient"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@color/app_theme_color" />
             </LinearLayout>
         </LinearLayout>

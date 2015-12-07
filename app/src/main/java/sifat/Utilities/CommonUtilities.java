@@ -70,6 +70,23 @@ public class CommonUtilities {
     public static final String JSON_TAG_BANNER = "banner";
     public static final String JSON_TAG_INGREDIENT = "ingredient";
 
+    public static final String JSON_TAG_PRODUCT_DETAIL_INFO_ARRAY = "product_detail_info";
+    public static final String JSON_TAG_PRODUCT_SIZE = "product_size";
+    public static final String JSON_TAG_PRODUCT_CONTAINER = "container";
+    public static final String JSON_TAG_PRODUCT_QUANTITY = "quantity";
+    public static final String JSON_TAG_VALIDITY = "validity";
+    public static final String JSON_TAG_MRP1_TITLE = "mrp1Title";
+    public static final String JSON_TAG_MRP1 = "mrp1";
+    public static final String JSON_TAG_MRP2_TITLE = "mrp2Title";
+    public static final String JSON_TAG_MRP2 = "mrp2";
+    public static final String JSON_TAG_IMAGES = "images";
+    public static final String JSON_TAG_PACKING = "packing";
+    public static final String JSON_TAG_SELLING_UNIT = "sellingUnit";
+    public static final String JSON_TAG_COST_PER_UNIT = "costPerUnit";
+    public static final String JSON_TAG_PRODUCT_NAME = "product_name";
+
+
+
     public static final String SHAREPREF_TAG = "sifat.mySharedPref";
     public static final String SHAREDPREF_TAG_SELECTED_ITEM = "selectedItem";
     public static final String SHAREDPREF_TAG_USERID = "userId";

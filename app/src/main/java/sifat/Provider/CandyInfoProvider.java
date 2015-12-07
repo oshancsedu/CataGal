@@ -3,7 +3,6 @@ package sifat.Provider;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +15,6 @@ import sifat.Domain.ProductCommonInfo;
 import sifat.Domain.ProductInfo;
 
 import static sifat.Utilities.CommonUtilities.COL_PRODUCT_ID;
-import static sifat.Utilities.CommonUtilities.LOG_TAG_DATABASE;
 import static sifat.Utilities.CommonUtilities.TABLE_PRODUCT_COMMON_INFO;
 import static sifat.Utilities.CommonUtilities.TABLE_PRODUCT_DETAIL_INFO;
 
@@ -64,17 +62,16 @@ public class CandyInfoProvider extends BaseProvider {
         String query = "Select * from " + TABLE_PRODUCT_COMMON_INFO + " where " + COL_PRODUCT_ID + " > 200 and " + COL_PRODUCT_ID + " < 300";
         c = sqlDatabase.rawQuery(query, null);
         if (c.getCount() > 0) {
-            Log.i(LOG_TAG_DATABASE, "count not 0");
             commonInfos = setCommonInfo(c);
         } else {
-            Log.i(LOG_TAG_DATABASE, "count 0");
-            ProductCommonInfo productCommonInfo = new ProductCommonInfo(201, "Bingo Milk Candy", "milk_candy_banner.jpg", "ingredients");
+            ProductCommonInfo productCommonInfo;
+            productCommonInfo = new ProductCommonInfo(204, "Bingo Milk Candy", "milk_candy_banner.jpg", "Sugar, liquid glucose, milk powder, vegetable fat, salt, water and food grade flavour.");
             commonInfos.add(productCommonInfo);
-            productCommonInfo = new ProductCommonInfo(202, "Bingo Tamarind Candy", "tamarind_banner.jpg", "ingredients");
+            productCommonInfo = new ProductCommonInfo(203, "Bingo Tamarind Candy", "tamarind_banner.jpg", "ingredients");
             commonInfos.add(productCommonInfo);
-            productCommonInfo = new ProductCommonInfo(203, "Winnie Green Mango Candy", "green_mango_banner.jpg", "ingredients");
+            productCommonInfo = new ProductCommonInfo(201, "Winnie Green Mango Candy", "green_mango_banner.jpg", "Sugar, liquid glucose,citric acid, salt, water and food grade flavour etc.");
             commonInfos.add(productCommonInfo);
-            productCommonInfo = new ProductCommonInfo(204, "Winnie Lychee Candy", "lychee_banner.jpg", "ingredients");
+            productCommonInfo = new ProductCommonInfo(202, "Winnie Lychee Candy", "lychee_banner.jpg", "ingredients");
             commonInfos.add(productCommonInfo);
             dbOperator.updateProductCommonInfo(commonInfos);
         }
@@ -96,53 +93,53 @@ public class CandyInfoProvider extends BaseProvider {
             /***
              * Bingo Milk
              * **/
-            integratedProductInfo = new IntegratedProductInfo(2011, "Bingo Milk Candy", "Boyam (250)", "1 Boyam", "250 Piece", "Minimum 6 months", "Boyam MRP", 250,
-                    "Per Piece MRP", 1, 1, "1 Boyam", "Boyam", 250, "11811,11812,11813");
+            integratedProductInfo = new IntegratedProductInfo(2041, "Bingo Milk Candy", "Boyam (250)", "1 Boyam", "250 Piece", "Minimum 6 months", "Boyam MRP", 250,
+                    "Per Piece MRP", 1, 1, "1 Boyam", "Boyam", 172, "20411,20412,20413");
             integratedProductInfos.add(integratedProductInfo);
-            integratedProductInfo = new IntegratedProductInfo(2012, "Bingo Milk Candy", "Boyam (200)", "1 Boyam", "200 Piece", "Minimum 6 months", "Boyam MRP", 200,
-                    "Per Piece MRP", 1, 1, "1 Boyam", "Boyam", 200, "11811,11812,11813");
+            integratedProductInfo = new IntegratedProductInfo(2042, "Bingo Milk Candy", "Boyam (200)", "1 Boyam", "200 Piece", "Minimum 6 months", "Boyam MRP", 200,
+                    "Per Piece MRP", 1, 1, "1 Boyam", "Boyam", 135, "20411,20412,20413");
             integratedProductInfos.add(integratedProductInfo);
-            integratedProductInfo = new IntegratedProductInfo(2013, "Bingo Milk Candy", "Consumer Pack", "1 Pack", "50 Piece", "Minimum 6 months", "Boyam MRP", 40,
-                    "Per Piece MRP", 1, 1, "12 Pack/Carton", "Carton", 480, "11831,11812,11813");
+            integratedProductInfo = new IntegratedProductInfo(2043, "Bingo Milk Candy", "Consumer Pack", "1 Pack", "50 Piece", "Minimum 6 months", "Boyam MRP", 40,
+                    "Per Piece MRP", 1, 1, "12 Pack/Carton", "Carton", 35, "20431,20412,20413");
             integratedProductInfos.add(integratedProductInfo);
 
             /***
              * Bingo Tamarind
              * **/
-            integratedProductInfo = new IntegratedProductInfo(2021, "Bingo Tamarind Candy", "Boyam (250)", "1 Boyam", "250 Piece", "Minimum 6 months", "Boyam MRP", 250,
-                    "Per Piece MRP", 1, 2, "1 Boyam", "Boyam", 250, "11711,11712,11713");
+            integratedProductInfo = new IntegratedProductInfo(2031, "Bingo Tamarind Candy", "Boyam (250)", "1 Boyam", "250 Piece", "Minimum 6 months", "Boyam MRP", 250,
+                    "Per Piece MRP", 1, 2, "1 Boyam", "Boyam", 172, "20311,20312,20313");
             integratedProductInfos.add(integratedProductInfo);
-            integratedProductInfo = new IntegratedProductInfo(2022, "Bingo Tamarind Candy", "Boyam (200)", "1 Boyam", "200 Piece", "Minimum 6 months", "Boyam MRP", 200,
-                    "Per Piece MRP", 1, 2, "1 Boyam", "Boyam", 200, "11711,11712,11713");
+            integratedProductInfo = new IntegratedProductInfo(2032, "Bingo Tamarind Candy", "Boyam (200)", "1 Boyam", "200 Piece", "Minimum 6 months", "Boyam MRP", 200,
+                    "Per Piece MRP", 1, 2, "1 Boyam", "Boyam", 135, "20311,20312,20313");
             integratedProductInfos.add(integratedProductInfo);
-            integratedProductInfo = new IntegratedProductInfo(2023, "Bingo Tamarind Candy", "Consumer Pack", "1 Pack", "50 Piece", "Minimum 6 months", "Boyam MRP", 40,
-                    "Per Piece MRP", 1, 2, "12 Pack/Carton", "Carton", 480, "11731,11712,11713");
+            integratedProductInfo = new IntegratedProductInfo(2033, "Bingo Tamarind Candy", "Consumer Pack", "1 Pack", "50 Piece", "Minimum 6 months", "Boyam MRP", 40,
+                    "Per Piece MRP", 1, 2, "12 Pack/Carton", "Carton", 35, "20331,20312,20313");
             integratedProductInfos.add(integratedProductInfo);
 
             /****
              *Winnie Mango Candy
              * ***/
-            integratedProductInfo = new IntegratedProductInfo(2031, "Winnie Mango Candy", "Boyam (250)", "1 Boyam", "250 Piece", "Minimum 6 months", "Boyam MRP", 250,
-                    "Per Piece MRP", 1, 3, "1 Boyam", "Boyam", 250, "11511,11512,11513");
+            integratedProductInfo = new IntegratedProductInfo(2011, "Winnie Mango Candy", "Boyam (250)", "1 Boyam", "250 Piece", "Minimum 6 months", "Boyam MRP", 250,
+                    "Per Piece MRP", 1, 3, "1 Boyam", "Boyam", 172, "20111,20112,20113");
             integratedProductInfos.add(integratedProductInfo);
-            integratedProductInfo = new IntegratedProductInfo(2032, "Winnie Mango Candy", "Boyam (200)", "1 Boyam", "200 Piece", "Minimum 6 months", "Boyam MRP", 200,
-                    "Per Piece MRP", 1, 3, "1 Boyam", "Boyam", 200, "11811,11812,11813");
+            integratedProductInfo = new IntegratedProductInfo(2012, "Winnie Mango Candy", "Boyam (200)", "1 Boyam", "200 Piece", "Minimum 6 months", "Boyam MRP", 200,
+                    "Per Piece MRP", 1, 3, "1 Boyam", "Boyam", 135, "20111,20112,20113");
             integratedProductInfos.add(integratedProductInfo);
-            integratedProductInfo = new IntegratedProductInfo(2033, "Winnie Mango Candy", "Consumer Pack", "1 Pack", "50 Piece", "Minimum 6 months", "Boyam MRP", 40,
-                    "Per Piece MRP", 1, 3, "12 Pack/Carton", "Carton", 480, "11531,11512,11513");
+            integratedProductInfo = new IntegratedProductInfo(2013, "Winnie Mango Candy", "Consumer Pack", "1 Pack", "50 Piece", "Minimum 6 months", "Boyam MRP", 40,
+                    "Per Piece MRP", 1, 3, "12 Pack/Carton", "Carton", 35, "20131,20112,20113");
             integratedProductInfos.add(integratedProductInfo);
 
             /****
              *Winnie Lychee Candy
              * ***/
-            integratedProductInfo = new IntegratedProductInfo(2041, "Winnie Lychee Candy", "Boyam (250)", "1 Boyam", "250 Piece", "Minimum 6 months", "Boyam MRP", 250,
-                    "Per Piece MRP", 1, 4, "1 Boyam", "Boyam", 250, "11611,11612,11613");
+            integratedProductInfo = new IntegratedProductInfo(2021, "Winnie Lychee Candy", "Boyam (250)", "1 Boyam", "250 Piece", "Minimum 6 months", "Boyam MRP", 250,
+                    "Per Piece MRP", 1, 4, "1 Boyam", "Boyam", 172, "20211,20212,20213");
             integratedProductInfos.add(integratedProductInfo);
-            integratedProductInfo = new IntegratedProductInfo(2042, "Winnie Lychee Candy", "Boyam (200)", "1 Boyam", "200 Piece", "Minimum 6 months", "Boyam MRP", 200,
-                    "Per Piece MRP", 1, 4, "1 Boyam", "Boyam", 200, "11611,11612,11613");
+            integratedProductInfo = new IntegratedProductInfo(2022, "Winnie Lychee Candy", "Boyam (200)", "1 Boyam", "200 Piece", "Minimum 6 months", "Boyam MRP", 200,
+                    "Per Piece MRP", 1, 4, "1 Boyam", "Boyam", 135, "20211,20212,20213");
             integratedProductInfos.add(integratedProductInfo);
-            integratedProductInfo = new IntegratedProductInfo(2043, "Winnie Lychee Candy", "Consumer Pack", "1 Pack", "50 Piece", "Minimum 6 months", "Boyam MRP", 40,
-                    "Per Piece MRP", 1, 4, "12 Pack/Carton", "Carton", 480, "11631,11612,11613");
+            integratedProductInfo = new IntegratedProductInfo(2023, "Winnie Lychee Candy", "Consumer Pack", "1 Pack", "50 Piece", "Minimum 6 months", "Boyam MRP", 40,
+                    "Per Piece MRP", 1, 4, "12 Pack/Carton", "Carton", 35, "20231,20212,20213");
             integratedProductInfos.add(integratedProductInfo);
 
             dbOperator.updateProductDetailInfo(integratedProductInfos);

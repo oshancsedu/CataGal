@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import cz.msebera.android.httpclient.Header;
 import sifat.Adapter.MemoAdapter;
 import sifat.Database.DbOperator;
+import sifat.Domain.IntegratedProductInfo;
 import sifat.Domain.MemoProductInfo;
 import sifat.Domain.ProductCommonInfo;
 import sifat.Utilities.LoopjHttpClient;
@@ -24,11 +25,25 @@ import sifat.catagal.MemoGenActivity;
 import static sifat.Utilities.CommonUtilities.JSON_TAG_AREA_CODE;
 import static sifat.Utilities.CommonUtilities.JSON_TAG_AREA_NAME;
 import static sifat.Utilities.CommonUtilities.JSON_TAG_BANNER;
+import static sifat.Utilities.CommonUtilities.JSON_TAG_COST_PER_UNIT;
 import static sifat.Utilities.CommonUtilities.JSON_TAG_DISTRIBUTOR_NAME;
 import static sifat.Utilities.CommonUtilities.JSON_TAG_HEADER;
+import static sifat.Utilities.CommonUtilities.JSON_TAG_IMAGES;
 import static sifat.Utilities.CommonUtilities.JSON_TAG_INGREDIENT;
+import static sifat.Utilities.CommonUtilities.JSON_TAG_MRP1;
+import static sifat.Utilities.CommonUtilities.JSON_TAG_MRP1_TITLE;
+import static sifat.Utilities.CommonUtilities.JSON_TAG_MRP2;
+import static sifat.Utilities.CommonUtilities.JSON_TAG_MRP2_TITLE;
+import static sifat.Utilities.CommonUtilities.JSON_TAG_PACKING;
 import static sifat.Utilities.CommonUtilities.JSON_TAG_PRODUCT_COMMON_INFO_ARRAY;
+import static sifat.Utilities.CommonUtilities.JSON_TAG_PRODUCT_CONTAINER;
+import static sifat.Utilities.CommonUtilities.JSON_TAG_PRODUCT_DETAIL_INFO_ARRAY;
 import static sifat.Utilities.CommonUtilities.JSON_TAG_PRODUCT_ID;
+import static sifat.Utilities.CommonUtilities.JSON_TAG_PRODUCT_NAME;
+import static sifat.Utilities.CommonUtilities.JSON_TAG_PRODUCT_QUANTITY;
+import static sifat.Utilities.CommonUtilities.JSON_TAG_PRODUCT_SIZE;
+import static sifat.Utilities.CommonUtilities.JSON_TAG_SELLING_UNIT;
+import static sifat.Utilities.CommonUtilities.JSON_TAG_VALIDITY;
 import static sifat.Utilities.CommonUtilities.LOGIN_URL;
 import static sifat.Utilities.CommonUtilities.LOG_TAG_WEB;
 import static sifat.Utilities.CommonUtilities.MEMO_BASIC_INFO_URL;
@@ -63,6 +78,7 @@ public class ServerCommunicator {
     SharedPreferences.Editor editor;
     HttpConnection http;
     DbOperator dbOperator;
+    private ArrayList<IntegratedProductInfo> ingrProInfos = new ArrayList<>();
 
     public ServerCommunicator(Context context) {
         this.context = context;
@@ -70,7 +86,7 @@ public class ServerCommunicator {
 
     public void getMemoBasicInfo() {
         final String updateMemoInfo = MEMO_BASIC_INFO_URL;
-        LoopjHttpClient.get(updateMemoInfo, null, new AsyncHttpResponseHandler() {
+        LoopjHttpClient.post(updateMemoInfo, null, new AsyncHttpResponseHandler() {
 
             @Override
             public void onSuccess(int statusCode, cz.msebera.android.httpclient.Header[] headers, byte[] responseBody) {
@@ -94,7 +110,6 @@ public class ServerCommunicator {
         LoopjHttpClient.get(productInfoURL, null, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                showToast(context, new String(responseBody));
                 setProductInfo(new String(responseBody));
             }
 
@@ -158,7 +173,7 @@ public class ServerCommunicator {
         requestParams.put(SERVER_REQUEST_PASSWORD, password);
         final String loginWebSite = LOGIN_URL;
 
-        LoopjHttpClient.get(loginWebSite, requestParams, new AsyncHttpResponseHandler() {
+        LoopjHttpClient.post(loginWebSite, requestParams, new AsyncHttpResponseHandler() {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
@@ -209,7 +224,7 @@ public class ServerCommunicator {
 
     private void setProductInfo(String info) {
         ProductCommonInfo productCommonInfo;
-
+        IntegratedProductInfo ingrProInfo;
         try {
             JSONObject jsonObject = new JSONObject(info);
             JSONArray productsCommonInfo = jsonObject.getJSONArray(JSON_TAG_PRODUCT_COMMON_INFO_ARRAY);
@@ -223,9 +238,35 @@ public class ServerCommunicator {
                 productCommonInfos.add(productCommonInfo);
 
             }
+
+            JSONArray ingrProJsonInfos = jsonObject.getJSONArray(JSON_TAG_PRODUCT_DETAIL_INFO_ARRAY);
+            size = ingrProJsonInfos.length();
+            for (int i = 0; i < size; i++) {
+                JSONObject childJson = ingrProJsonInfos.optJSONObject(i);
+                ingrProInfo = new IntegratedProductInfo(
+                        childJson.getInt(JSON_TAG_PRODUCT_ID),
+                        childJson.getString(JSON_TAG_PRODUCT_NAME),
+                        childJson.getString(JSON_TAG_PRODUCT_SIZE),
+                        childJson.getString(JSON_TAG_PRODUCT_CONTAINER),
+                        childJson.getString(JSON_TAG_PRODUCT_QUANTITY),
+                        childJson.getString(JSON_TAG_VALIDITY),
+                        childJson.getString(JSON_TAG_MRP1_TITLE),
+                        childJson.getInt(JSON_TAG_MRP1),
+                        childJson.getString(JSON_TAG_MRP2_TITLE),
+                        childJson.getInt(JSON_TAG_MRP2),
+                        childJson.getInt(JSON_TAG_HEADER),
+                        childJson.getString(JSON_TAG_PACKING),
+                        childJson.getString(JSON_TAG_SELLING_UNIT),
+                        childJson.getInt(JSON_TAG_COST_PER_UNIT),
+                        childJson.getString(JSON_TAG_IMAGES)
+                );
+                ingrProInfos.add(ingrProInfo);
+            }
+
             dbOperator = DbOperator.getDbOperator(context);
             dbOperator.open();
             dbOperator.updateProductCommonInfo(productCommonInfos);
+            dbOperator.updateProductDetailInfo(ingrProInfos);
             dbOperator.close();
 
         } catch (JSONException e) {
