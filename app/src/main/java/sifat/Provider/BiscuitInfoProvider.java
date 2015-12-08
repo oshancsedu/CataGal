@@ -61,7 +61,7 @@ public class BiscuitInfoProvider extends BaseProvider {
     private static void fetchCommonInfo() {
 
         Cursor c;
-        String query = "Select * from " + TABLE_PRODUCT_COMMON_INFO + " where " + COL_PRODUCT_ID + " > 100 and " + COL_PRODUCT_ID + " < 200";
+        String query = "Select * from " + TABLE_PRODUCT_COMMON_INFO + " where " + COL_PRODUCT_ID + " BETWEEN  100 AND 200";
         c = sqlDatabase.rawQuery(query, null);
         if (c.getCount() > 0) {
             Log.i(LOG_TAG_DATABASE, "count not 0");
@@ -98,7 +98,7 @@ public class BiscuitInfoProvider extends BaseProvider {
             commonInfos.add(productCommonInfo);
             productCommonInfo = new ProductCommonInfo(105, "Bengal All Time (Milk+Coconut)", "alltime_coco_milk_banner.jpg", "Wheat flour, sugar, vegetable fat, full cream milk powder,Glucose, salt, water, eggs, leavening agent, natural coconut, permitted flavors and preservative.");
             commonInfos.add(productCommonInfo);
-            dbOperator.updateProductCommonInfo(commonInfos);
+            dbOperator.updateProductCommonInfo(commonInfos, false);
         }
     }
 
@@ -109,7 +109,7 @@ public class BiscuitInfoProvider extends BaseProvider {
         IntegratedProductInfo integratedProductInfo;
 
         Cursor c;
-        String query = "Select * from " + TABLE_PRODUCT_DETAIL_INFO + " where " + COL_PRODUCT_ID + " > 1000 and " + COL_PRODUCT_ID + " < 2000";
+        String query = "Select * from " + TABLE_PRODUCT_DETAIL_INFO + " where " + COL_PRODUCT_ID + " BETWEEN  1000 AND 2000";
         c = sqlDatabase.rawQuery(query, null);
         if (c.getCount() > 0) {
             integratedProductInfos = setDetailInfo(c);
@@ -256,7 +256,7 @@ public class BiscuitInfoProvider extends BaseProvider {
             integratedProductInfo = new IntegratedProductInfo(1053, "All Time (Milk+Coconut)", "Mini Pack", "1 Carton", "100 packet", "Minimum 6 months", "Carton MRP", 200, "Packet MRP", 2,
                     14, "100 pack/carton", "Carton", 140, "10532,10532,10433");
             integratedProductInfos.add(integratedProductInfo);
-            dbOperator.updateProductDetailInfo(integratedProductInfos);
+            dbOperator.updateProductDetailInfo(integratedProductInfos, false);
         }
 
         int size = integratedProductInfos.size();

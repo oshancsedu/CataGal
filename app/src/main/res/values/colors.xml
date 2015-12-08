@@ -14,9 +14,13 @@
     <color name="gray_light">#9e9e9e</color>
     <color name="brown">#5d4037</color>
 
-    <color name="app_theme_color">#10856E</color>
+    <color name="app_theme_color2">#10856E</color>
     <color name="app_theme_color_minor">#ffffff</color>
-    <color name="app_theme_color2">#ED2328</color>
+    <color name="app_theme_color3">#ED2328</color>
+    <color name="app_theme_color4">#bf360c</color>
+    <color name="app_theme_color">#dd2c00</color>
+    <color name="memo_size_haeder">#e64a19</color>
+
 
     <color name="indicator_1">#55B3C2</color>
     <color name="indicator_2">#64A4A4</color>

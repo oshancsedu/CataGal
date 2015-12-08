@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="3dp"
-        android:background="@color/light_green_800"
+        android:background="@color/memo_size_haeder"
         android:padding="7dp"
         android:text="Family Pack"
         android:textAlignment="center"

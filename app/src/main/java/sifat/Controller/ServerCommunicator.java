@@ -265,8 +265,8 @@ public class ServerCommunicator {
 
             dbOperator = DbOperator.getDbOperator(context);
             dbOperator.open();
-            dbOperator.updateProductCommonInfo(productCommonInfos);
-            dbOperator.updateProductDetailInfo(ingrProInfos);
+            dbOperator.updateProductCommonInfo(productCommonInfos, true);
+            dbOperator.updateProductDetailInfo(ingrProInfos, true);
             dbOperator.close();
 
         } catch (JSONException e) {

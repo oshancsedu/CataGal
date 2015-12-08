@@ -89,9 +89,11 @@ public class DbOperator {
         showToast(context, "Updated!");
     }
 
-    public void updateProductCommonInfo(ArrayList<ProductCommonInfo> commonInfos) {
-        String query = "delete from " + TABLE_PRODUCT_COMMON_INFO;
-        sqlDatabase.execSQL(query);
+    public void updateProductCommonInfo(ArrayList<ProductCommonInfo> commonInfos, boolean deletePrev) {
+        if (deletePrev) {
+            String query = "delete from " + TABLE_PRODUCT_COMMON_INFO;
+            sqlDatabase.execSQL(query);
+        }
         int size = commonInfos.size();
         for (int i = 0; i < size; i++) {
             ContentValues contentValues = new ContentValues();
@@ -101,12 +103,17 @@ public class DbOperator {
             contentValues.put(COL_PRODUCT_INGREDIENT, commonInfos.get(i).getIngredient());
             sqlDatabase.insert(TABLE_PRODUCT_COMMON_INFO, null, contentValues);
         }
-        showToast(context, "Updated!");
+        if (deletePrev)
+            showToast(context, "Updated");
+        else
+            showToast(context, "Initial Information saved.Please update for recent information");
     }
 
-    public void updateProductDetailInfo(ArrayList<IntegratedProductInfo> detailInfo) {
-        String query = "delete from " + TABLE_PRODUCT_DETAIL_INFO;
-        sqlDatabase.execSQL(query);
+    public void updateProductDetailInfo(ArrayList<IntegratedProductInfo> detailInfo, boolean deletePrev) {
+        if (deletePrev) {
+            String query = "delete from " + TABLE_PRODUCT_DETAIL_INFO;
+            sqlDatabase.execSQL(query);
+        }
         int size = detailInfo.size();
         for (int i = 0; i < size; i++) {
             ContentValues contentValues = new ContentValues();
@@ -128,7 +135,10 @@ public class DbOperator {
 
             sqlDatabase.insert(TABLE_PRODUCT_DETAIL_INFO, null, contentValues);
         }
-        showToast(context, "Updated!");
+        if (deletePrev)
+            showToast(context, "Updated");
+        else
+            showToast(context, "Initial Information saved.Please update for recent information");
     }
 
     public void setMemoBasicInfo() {
