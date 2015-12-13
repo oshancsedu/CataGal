@@ -270,6 +270,7 @@ public class ServerCommunicator {
             dbOperator.close();
 
         } catch (JSONException e) {
+
             showToast(context, "Unable to update!");
         }
     }

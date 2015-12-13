@@ -64,13 +64,13 @@ public class CandyInfoProvider extends BaseProvider {
             commonInfos = setCommonInfo(c);
         } else {
             ProductCommonInfo productCommonInfo;
-            productCommonInfo = new ProductCommonInfo(204, "Bingo Milk Candy", "milk_candy_banner.jpg", "Sugar, liquid glucose, milk powder, vegetable fat, salt, water and food grade flavour.");
+            productCommonInfo = new ProductCommonInfo(204, "Bingo Milk Candy", "milk_candy_banner", "Sugar, liquid glucose, milk powder, vegetable fat, salt, water and food grade flavour.");
             commonInfos.add(productCommonInfo);
-            productCommonInfo = new ProductCommonInfo(203, "Bingo Tamarind Candy", "tamarind_banner.jpg", "ingredients");
+            productCommonInfo = new ProductCommonInfo(203, "Bingo Tamarind Candy", "tamarind_banner", "ingredients");
             commonInfos.add(productCommonInfo);
-            productCommonInfo = new ProductCommonInfo(201, "Winnie Green Mango Candy", "green_mango_banner.jpg", "Sugar, liquid glucose,citric acid, salt, water and food grade flavour etc.");
+            productCommonInfo = new ProductCommonInfo(201, "Winnie Green Mango Candy", "green_mango_banner", "Sugar, liquid glucose,citric acid, salt, water and food grade flavour etc.");
             commonInfos.add(productCommonInfo);
-            productCommonInfo = new ProductCommonInfo(202, "Winnie Lychee Candy", "lychee_banner.jpg", "ingredients");
+            productCommonInfo = new ProductCommonInfo(202, "Winnie Lychee Candy", "lychee_banner", "ingredients");
             commonInfos.add(productCommonInfo);
             dbOperator.updateProductCommonInfo(commonInfos, false);
         }

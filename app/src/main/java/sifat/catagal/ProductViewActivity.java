@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
@@ -12,8 +13,6 @@ import android.widget.TextView;
 
 import com.google.common.collect.Lists;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 
 import github.chenupt.dragtoplayout.DragTopLayout;
@@ -100,15 +99,17 @@ public class ProductViewActivity extends ActionBarActivity {
         tvIngredient = (TextView) findViewById(R.id.tvIngredient);
         tvIngredient.setText(productCommonInfo.getIngredient());
 
-        InputStream ims = null;
+        /*InputStream ims = null;
         try {
-            ims = getAssets().open(productCommonInfo.getBanner());
+            ims = getAssets().open(productCommonInfo.getBanner()+".jpg");
             // load image as Drawable
             Drawable d = Drawable.createFromStream(ims, null);
             ivBanner.setImageDrawable(d);
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
+
+        ivBanner.setImageDrawable(getDrawable(productCommonInfo.getBanner()));
     }
 
     private List<String> getTitles(){
@@ -117,6 +118,12 @@ public class ProductViewActivity extends ActionBarActivity {
 
     private List<Integer> getBgRes(){
         return productInfo.getProduct_images();
+    }
+
+    public Drawable getDrawable(String name) {
+        Log.i("RES", name);
+        int resourceId = this.getResources().getIdentifier(name, "drawable", this.getPackageName());
+        return this.getResources().getDrawable(resourceId);
     }
 
 

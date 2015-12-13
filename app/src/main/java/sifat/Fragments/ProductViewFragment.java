@@ -4,13 +4,11 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-
-import java.io.IOException;
-import java.io.InputStream;
 
 import sifat.catagal.R;
 
@@ -35,7 +33,7 @@ public class ProductViewFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         imageView = (ImageView) getView().findViewById(R.id.image);
-        InputStream ims = null;
+        /*InputStream ims = null;
         try {
             ims = getActivity().getAssets().open(bgRes+".jpg");
             // load image as Drawable
@@ -43,6 +41,14 @@ public class ProductViewFragment extends Fragment {
             imageView.setImageDrawable(d);
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
+
+        imageView.setImageDrawable(getDrawable("p" + bgRes));
+    }
+
+    public Drawable getDrawable(String name) {
+        Log.e("Tag", name);
+        int resourceId = getActivity().getResources().getIdentifier(name, "drawable", getActivity().getPackageName());
+        return this.getResources().getDrawable(resourceId);
     }
 }

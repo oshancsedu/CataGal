@@ -14,8 +14,6 @@ import android.widget.TextView;
 import com.andexert.library.RippleView;
 import com.mikhaellopez.circularimageview.CircularImageView;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 
 import ca.barrenechea.widget.recyclerview.decoration.StickyHeaderAdapter;
@@ -60,7 +58,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         Log.i("recycler", "onBindViewHolder");
         viewHolder.item.setText(productInfos.get(i).getSize());
 
-        InputStream ims = null;
+        /*InputStream ims = null;
         try {
             ims = context.getAssets().open(productInfos.get(i).getProduct_images().get(1) + ".jpg");
             // load image as Drawable
@@ -68,7 +66,14 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
             viewHolder.circularImageView.setImageDrawable(d);
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
+        viewHolder.circularImageView.setImageDrawable(getDrawable("p" + productInfos.get(i).getProduct_images().get(1)));
+    }
+
+    public Drawable getDrawable(String name) {
+        Log.e("Tag", name);
+        int resourceId = context.getResources().getIdentifier(name, "drawable", context.getPackageName());
+        return context.getResources().getDrawable(resourceId);
     }
 
     @Override
