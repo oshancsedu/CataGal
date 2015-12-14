@@ -19,9 +19,9 @@ public interface ProductInfoProvider {
 
     public void setProductMemoInfo(ArrayList<MemoProductInfo> memoProductInfos);
 
-    public int getTotalCost();
+    public double getTotalCost();
 
-    public void setTotalCost(int totalCost);
+    public void setTotalCost(double totalCost);
 
     public int getTotalItemAdded();
 

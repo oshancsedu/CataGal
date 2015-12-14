@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.iangclifton.android.floatlabel.FloatLabel;
@@ -25,7 +24,7 @@ import sifat.Provider.ProductInfoProvider;
 import sifat.catagal.R;
 
 import static sifat.Provider.ProviderSelector.getMyProvider;
-import static sifat.Utilities.CommonUtilities.showToast;
+import static sifat.Utilities.CommonUtilities.getTwoDecimal;
 
 /**
  * Created by sifat on 11/17/2015.
@@ -34,7 +33,8 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
         StickyHeaderAdapter<MemoAdapter.HeaderHolder> {
 
     public static ArrayList<MemoProductInfo> addedProduct = new ArrayList<>();
-    public static int totalItemAdded, totalCost;
+    public static int totalItemAdded;
+    public static double totalCost;
     public static ArrayList<MemoProductInfo> memoProductInfos = new ArrayList<>();
     static Context context;
     private static ArrayList<ProductCommonInfo> commonInfos = new ArrayList<>();
@@ -75,6 +75,7 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
     }
 
     private static void updateTotalCost() {
+        totalCost = getTwoDecimal(totalCost);
         tvTotalCost.setText("Total Order: " + totalCost + " tk");
     }
 
@@ -96,12 +97,24 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
         viewHolder.tvContainer.setText("Unit: " + memoProductInfos.get(i).getSellingUnit());
         viewHolder.tvQuantity.setText("Packing: " + memoProductInfos.get(i).getPacking());
         setCosttv(viewHolder.tvPrice, i);
+        viewHolder.etCarton.setLabel(memoProductInfos.get(i).getSellingUnit());
+        viewHolder.etCarton.getEditText().setHint(memoProductInfos.get(i).getSellingUnit());
+        if (memoProductInfos.get(i).getCostPerPack() == memoProductInfos.get(i).getCostPerUnit()) {
+            viewHolder.etPacket.setVisibility(View.GONE);
+        } else
+            viewHolder.etPacket.setVisibility(View.VISIBLE);
 
         viewHolder.etComment.setText(memoProductInfos.get(i).getComment());
-        if (memoProductInfos.get(i).getQuantity() == 0)
-            viewHolder.etAmount.setText("");
+
+        if (memoProductInfos.get(i).getCarton() == 0)
+            viewHolder.etCarton.setText("");
         else
-            viewHolder.etAmount.setText("" + memoProductInfos.get(i).getQuantity());
+            viewHolder.etCarton.setText("" + memoProductInfos.get(i).getCarton());
+
+        if (memoProductInfos.get(i).getPacket() == 0)
+            viewHolder.etPacket.setText("");
+        else
+            viewHolder.etPacket.setText("" + memoProductInfos.get(i).getPacket());
 
 
     }
@@ -139,9 +152,8 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
 
         public TextView tvPackSize, tvContainer, tvQuantity, tvPrice;
         public CircularImageView circularImageView;
-        public FloatLabel etAmount, etComment;
+        public FloatLabel etCarton, etComment, etPacket;
         public Button btCalculate, btAddItem, btRemoveItem;
-        public EditText et;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -149,7 +161,8 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
             tvContainer = (TextView) itemView.findViewById(R.id.tvContainer);
             tvQuantity = (TextView) itemView.findViewById(R.id.tvQuantity);
             tvPrice = (TextView) itemView.findViewById(R.id.tvPrice);
-            etAmount = (FloatLabel) itemView.findViewById(R.id.etAmount);
+            etCarton = (FloatLabel) itemView.findViewById(R.id.etCarton);
+            etPacket = (FloatLabel) itemView.findViewById(R.id.etPacket);
             etComment = (FloatLabel) itemView.findViewById(R.id.etComment);
             etComment.getEditText().addTextChangedListener(this);
             btCalculate = (Button) itemView.findViewById(R.id.btCalculate);
@@ -175,28 +188,43 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
 
             try {
                 InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(etAmount.getEditText().getWindowToken(), 0);
+                imm.hideSoftInputFromWindow(etCarton.getEditText().getWindowToken(), 0);
             } catch (Exception e) {
                 // TODO: handle exception
             }
 
-            String temp_quantity = etAmount.getEditText().getText().toString();
+            try {
+                InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(etPacket.getEditText().getWindowToken(), 0);
+            } catch (Exception e) {
+                // TODO: handle exception
+            }
+
+            String temp_Carton = etCarton.getEditText().getText().toString();
+            String temp_Packet = etPacket.getEditText().getText().toString();
             int i = getPosition();
             boolean flag = memoProductInfos.get(i).isAdded();
-
             //IF The product has already been added.Subtract it's price from the total price
             if (flag)
                 totalCost = totalCost - memoProductInfos.get(i).getCost();
 
-            if (temp_quantity == null || temp_quantity.equalsIgnoreCase("")) {
-                if (memoProductInfos.get(i).getQuantity() == 0)
-                showToast(context, "Enter Amount");
-                memoProductInfos.get(i).setQuantity(0);
-                memoProductInfos.get(i).setCost(0);
+            if (temp_Carton == null || temp_Carton.equalsIgnoreCase("")) {
+                if (memoProductInfos.get(i).getCarton() == 0)
+                    memoProductInfos.get(i).setCarton(0);
+                memoProductInfos.get(i).setCost(0.0);
             } else {
-                int quantity = Integer.parseInt(temp_quantity);
-                memoProductInfos.get(i).setQuantity(quantity);
-                memoProductInfos.get(i).setCost(memoProductInfos.get(i).getCostPerUnit() * quantity);
+                int carton = Integer.parseInt(temp_Carton);
+                memoProductInfos.get(i).setCarton(carton);
+                memoProductInfos.get(i).setCost(memoProductInfos.get(i).getCostPerUnit() * carton);
+            }
+
+            if (temp_Packet == null || temp_Packet.equalsIgnoreCase("")) {
+                if (memoProductInfos.get(i).getPacket() == 0)
+                    memoProductInfos.get(i).setPacket(0);
+            } else {
+                int packet = Integer.parseInt(temp_Packet);
+                memoProductInfos.get(i).setPacket(packet);
+                memoProductInfos.get(i).setCost(memoProductInfos.get(i).getCost() + (memoProductInfos.get(i).getCostPerPack() * packet * 1.0));
             }
 
             //IF The product has already been added.Add it's price with the total price

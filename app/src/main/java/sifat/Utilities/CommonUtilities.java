@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.widget.Toast;
 
+import java.text.DecimalFormat;
+
 /**
  * Created by sifat on 11/11/2015.
  */
@@ -120,5 +122,10 @@ public class CommonUtilities {
         context.startActivity(intent);
     }
 
+    public static double getTwoDecimal(double x) {
+        DecimalFormat df = new DecimalFormat("######.##");
+        String dx = df.format(x);
+        return Double.valueOf(dx);
+    }
 
 }

@@ -39,7 +39,8 @@ public class MemoConfirmAdapter extends RecyclerView.Adapter<MemoConfirmAdapter.
         holder.tvProductName.setText(addedProduct.get(position).getProductName());
         holder.tvSize.setText(addedProduct.get(position).getProductSize());
         holder.tvCost.setText("Cost: " + addedProduct.get(position).getCost());
-        holder.tvQuantity.setText("Quantity: " + addedProduct.get(position).getQuantity());
+        holder.tvQuantity.setText("Quantity: " + addedProduct.get(position).getCarton() + " " +
+                addedProduct.get(position).getSellingUnit() + "\nand\n" + addedProduct.get(position).getPacket() + " Packet");
         holder.tvComment.setText("Comment: " + addedProduct.get(position).getComment());
     }
 

@@ -30,7 +30,8 @@ public class CandyInfoProvider extends BaseProvider {
     private static ArrayList<MemoProductInfo> memoProductInfos = new ArrayList<>();
     private static ArrayList<MemoProductInfo> addedProduct = new ArrayList<>();
     private static ArrayList<IntegratedProductInfo> integratedProductInfos = new ArrayList<>();
-    private static int totalItemAdded, totalCost;
+    private static int totalItemAdded;
+    private static double totalCost;
     private static DbOperator dbOperator;
     private static SQLiteDatabase sqlDatabase;
     private static Context context;
@@ -196,11 +197,11 @@ public class CandyInfoProvider extends BaseProvider {
     }
 
     @Override
-    public int getTotalCost() {
+    public double getTotalCost() {
         return totalCost;
     }
 
-    public void setTotalCost(int totalCost) {
+    public void setTotalCost(double totalCost) {
         this.totalCost = totalCost;
     }
 

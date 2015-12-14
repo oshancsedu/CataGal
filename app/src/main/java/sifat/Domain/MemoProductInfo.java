@@ -1,12 +1,17 @@
 package sifat.Domain;
 
+import java.util.StringTokenizer;
+
+import static sifat.Utilities.CommonUtilities.getTwoDecimal;
+
 /**
  * Created by sifat on 11/18/2015.
  */
 public class MemoProductInfo {
 
     String productName, productSize, sellingUnit, packing, comment, calculatedCost;
-    int cost, quantity, costPerUnit, costPerPack, header;
+    int carton, packet, costPerUnit, header;
+    double cost, costPerPack;
     boolean isAdded;
 
     public MemoProductInfo() {
@@ -18,10 +23,11 @@ public class MemoProductInfo {
         this.packing = packing;
         this.sellingUnit = sellingUnit;
         this.costPerUnit = costPerUnit;
-        this.costPerPack = costPerPack;
+        this.costPerPack = setCostPerPack(packing, costPerUnit);
         this.header = header;
-        this.cost = 0;
-        this.quantity = 0;
+        this.cost = 0.0;
+        this.carton = 0;
+        this.packet = 0;
         this.comment = "";
         this.isAdded = false;
     }
@@ -74,20 +80,28 @@ public class MemoProductInfo {
         this.comment = comment;
     }
 
-    public int getCost() {
+    public double getCost() {
         return cost;
     }
 
-    public void setCost(int cost) {
+    public void setCost(double cost) {
         this.cost = cost;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public int getCarton() {
+        return carton;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setCarton(int carton) {
+        this.carton = carton;
+    }
+
+    public int getPacket() {
+        return packet;
+    }
+
+    public void setPacket(int packet) {
+        this.packet = packet;
     }
 
     public int getCostPerUnit() {
@@ -102,7 +116,16 @@ public class MemoProductInfo {
         return header;
     }
 
-    public void setCostPerPack(int costPerPack) {
-        this.costPerPack = costPerPack;
+    public double getCostPerPack() {
+        return costPerPack;
+    }
+
+    public double setCostPerPack(String packing, int costPerUnit) {
+        int pack;
+        double cost;
+        StringTokenizer tokenizer = new StringTokenizer(packing, " ");
+        pack = Integer.parseInt(tokenizer.nextToken());
+        cost = (costPerUnit * 1.0) / (pack * 1.0);
+        return getTwoDecimal(cost);
     }
 }

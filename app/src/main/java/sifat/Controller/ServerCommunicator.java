@@ -134,7 +134,7 @@ public class ServerCommunicator {
             productName = productName + addedProduct.get(i).getProductName() + ",";
             productSize = productSize + addedProduct.get(i).getProductSize() + ",";
             productCost = productCost + addedProduct.get(i).getCost() + ",";
-            productQuantity = productQuantity + addedProduct.get(i).getQuantity() + ",";
+            productQuantity = productQuantity + addedProduct.get(i).getCarton() + ",";
             comment = comment + addedProduct.get(i).getComment() + ",";
             productUnit = productUnit + addedProduct.get(i).getSellingUnit() + ",";
         }
