@@ -45,14 +45,6 @@
 
     </LinearLayout>
 
-    <Spinner
-        android:id="@+id/spDistributor"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="5dp"
-        android:background="@color/app_theme_color_minor"
-        android:padding="5dp" />
 
     <Spinner
         android:id="@+id/spAreaCode"
@@ -63,14 +55,33 @@
         android:background="@color/app_theme_color_minor"
         android:padding="5dp" />
 
-    <Spinner
-        android:id="@+id/spAreaName"
+    <com.devspark.robototextview.widget.RobotoTextView
+        android:id="@+id/tvAreaName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="5dp"
         android:background="@color/app_theme_color_minor"
-        android:padding="5dp" />
+        android:padding="5dp"
+        android:text="AREA NAME"
+        android:textAlignment="center"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/app_theme_color"
+        app:typeface="roboto_thin_italic" />
+
+    <com.devspark.robototextview.widget.RobotoTextView
+        android:id="@+id/tvDistributorName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="5dp"
+        android:background="@color/app_theme_color_minor"
+        android:padding="5dp"
+        android:text="DISTRIBUTOR NAME"
+        android:textAlignment="center"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/app_theme_color"
+        app:typeface="roboto_thin_italic" />
 
     <com.devspark.robototextview.widget.RobotoTextView
         android:id="@+id/tvSupplyDateSelector"

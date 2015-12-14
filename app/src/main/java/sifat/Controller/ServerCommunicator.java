@@ -211,7 +211,6 @@ public class ServerCommunicator {
             JSONArray memoBasicInfosJson = jsonObject.getJSONArray(JSON_TAG_MEMO_BASIC_INFO_ARRAY);
             int size = memoBasicInfosJson.length();
             MemoBasicInfo memoBasicInfo;
-            Log.i("Tag", "done");
             for (int i = 0; i < size; i++) {
                 JSONObject childJson = memoBasicInfosJson.optJSONObject(i);
 
@@ -221,8 +220,6 @@ public class ServerCommunicator {
                 Log.i(LOG_TAG_WEB, areaCode);
                 distributorName = childJson.getString(JSON_TAG_DISTRIBUTOR_NAME);
                 Log.i(LOG_TAG_WEB, distributorName);
-                showToast(context, areaName + "-" + areaCode + "-" + distributorName);
-                Log.i("Tag", areaName + "-" + areaCode + "-" + distributorName);
                 memoBasicInfo = new MemoBasicInfo(areaName, distributorName, areaCode);
                 memoBasicInfos.add(memoBasicInfo);
             }
@@ -231,8 +228,7 @@ public class ServerCommunicator {
             dbOperator.close();
 
         } catch (JSONException e) {
-            e.printStackTrace();
-            Log.i("Tag", "Unable");
+            showToast(context, "Unable to Update!");
         }
     }
 

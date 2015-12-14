@@ -2,7 +2,6 @@ package sifat.Database;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -12,7 +11,6 @@ import java.util.ArrayList;
 import sifat.Domain.IntegratedProductInfo;
 import sifat.Domain.MemoBasicInfo;
 import sifat.Domain.ProductCommonInfo;
-import sifat.Provider.MemoBasicInfoProvider;
 
 import static sifat.Utilities.CommonUtilities.COL_AREA_CODE;
 import static sifat.Utilities.CommonUtilities.COL_AREA_NAME;
@@ -143,22 +141,6 @@ public class DbOperator {
             showToast(context, "Updated");
         else
             showToast(context, "Initial Information saved.Please update for recent information");
-    }
-
-    public void setMemoBasicInfo() {
-        MemoBasicInfoProvider memoBasicInfoProvider = MemoBasicInfoProvider.getProvider(context);
-
-        Cursor c;
-        String query = "Select * from " + TABLE_MEMO_BASIC_INFO;
-        c = sqlDatabase.rawQuery(query, null);
-        c.moveToFirst();
-
-        String areaname = c.getString(c.getColumnIndex(COL_AREA_NAME));
-        memoBasicInfoProvider.setAreaName(areaname);
-        String areacode = c.getString(c.getColumnIndex(COL_AREA_CODE));
-        memoBasicInfoProvider.setAreaCode(areacode);
-        String distributorname = c.getString(c.getColumnIndex(COL_DISTRIBUTOR_NAME));
-        memoBasicInfoProvider.setDistributorName(distributorname);
     }
 
 

@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 import com.devspark.robototextview.widget.RobotoTextView;
 import com.fourmob.datetimepicker.date.DatePickerDialog;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import ca.barrenechea.widget.recyclerview.decoration.StickyHeaderDecoration;
@@ -46,13 +48,16 @@ import static sifat.Utilities.CommonUtilities.showToast;
 public class MemoGenActivity extends ActionBarActivity implements View.OnClickListener, DatePickerDialog.OnDateSetListener {
 
     public static final String DATEPICKER_TAG = "datepicker";
+    private static ArrayList<String> areaCodes = new ArrayList<>();
+    private static ArrayList<String> areaNames = new ArrayList<>();
+    private static ArrayList<String> distributorNames = new ArrayList<>();
     DragTopLayout dragTopLayout;
     private RecyclerView recyclerView;
     private StickyHeaderDecoration decor;
     private Toolbar toolbar;
-    private TextView tvSelectDate, tvItemAdded, tvTotalCost;
+    private TextView tvSelectDate, tvItemAdded, tvTotalCost, tvAreaName, tvDistributorName;
     private DatePickerDialog datePickerDialog;
-    private Spinner spDistributor, spAreaCode, spAreaName;
+    private Spinner spAreaCode;
     private MemoBasicInfoProvider memoBasicInfoProvider;
     private RobotoTextView tvOrderDate, tvUserID;
     private String orderDate, supplyDate;
@@ -60,7 +65,6 @@ public class MemoGenActivity extends ActionBarActivity implements View.OnClickLi
     private ProductInfoProvider provider;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,21 +105,33 @@ public class MemoGenActivity extends ActionBarActivity implements View.OnClickLi
 
         memoBasicInfoProvider = MemoBasicInfoProvider.getProvider(this);
 
-        spDistributor = (Spinner) findViewById(R.id.spDistributor);
-        spAreaName = (Spinner) findViewById(R.id.spAreaName);
+        tvDistributorName = (TextView) findViewById(R.id.tvDistributorName);
+        tvAreaName = (TextView) findViewById(R.id.tvAreaName);
         spAreaCode = (Spinner) findViewById(R.id.spAreaCode);
 
-        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this, R.layout.spinner_header_item, memoBasicInfoProvider.getAreaCodes());
+        areaCodes = memoBasicInfoProvider.getAreaCodes();
+        areaNames = memoBasicInfoProvider.getAreaNames();
+        distributorNames = memoBasicInfoProvider.getDistributorNames();
+
+        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this, R.layout.spinner_header_item, areaCodes);
         spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item);
         spAreaCode.setAdapter(spinnerArrayAdapter);
+        spAreaCode.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
 
-        spinnerArrayAdapter = new ArrayAdapter<String>(this, R.layout.spinner_header_item, memoBasicInfoProvider.getDistributorNames());
-        spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item);
-        spDistributor.setAdapter(spinnerArrayAdapter);
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                int index = spAreaCode.getSelectedItemPosition();
+                tvDistributorName.setText(distributorNames.get(index));
+                tvAreaName.setText(areaNames.get(index));
+            }
 
-        spinnerArrayAdapter = new ArrayAdapter<String>(this, R.layout.spinner_header_item, memoBasicInfoProvider.getAreaNames());
-        spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item);
-        spAreaName.setAdapter(spinnerArrayAdapter);
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                tvDistributorName.setText(DEFULT_DISTRIBUTOR_NAME);
+                tvAreaName.setText(DEFULT_AREA_NAME);
+            }
+        });
+
 
         dragTopLayout = (DragTopLayout) findViewById(R.id.drag_layout);
 
@@ -148,16 +164,12 @@ public class MemoGenActivity extends ActionBarActivity implements View.OnClickLi
             datePickerDialog.show(getSupportFragmentManager(), DATEPICKER_TAG);
         } else if (v.getId() == R.id.fab) {
             String areaName, areaCode, distributorName;
-            areaName = spAreaName.getSelectedItem().toString();
+            areaName = tvAreaName.getText().toString();
             areaCode = spAreaCode.getSelectedItem().toString();
-            distributorName = spDistributor.getSelectedItem().toString();
+            distributorName = tvDistributorName.getText().toString();
 
-            if (areaName.equalsIgnoreCase(DEFULT_AREA_NAME))
-                showToast(this, "Enter Area Name");
-            else if (areaCode.equalsIgnoreCase(DEFULT_AREA_CODE))
+            if (areaCode.equalsIgnoreCase(DEFULT_AREA_CODE))
                 showToast(this, "Enter Area Code");
-            else if (distributorName.equalsIgnoreCase(DEFULT_DISTRIBUTOR_NAME))
-                showToast(this, "Enter Distributor Name");
             else if (supplyDate.equalsIgnoreCase(""))
                 showToast(this, "Enter Supply date");
             else if (MemoAdapter.totalItemAdded == 0)

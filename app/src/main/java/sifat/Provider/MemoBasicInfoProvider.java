@@ -5,7 +5,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
-import java.util.StringTokenizer;
 
 import sifat.Database.DbOperator;
 
@@ -64,41 +63,22 @@ public class MemoBasicInfoProvider {
 
         if (c.getCount() > 0) {
             c.moveToFirst();
-            String areaname = c.getString(c.getColumnIndex(COL_AREA_NAME));
-            setAreaName(areaname);
-            String areacode = c.getString(c.getColumnIndex(COL_AREA_CODE));
-            setAreaCode(areacode);
-            String distributorname = c.getString(c.getColumnIndex(COL_DISTRIBUTOR_NAME));
-            setDistributorName(distributorname);
 
+            while (!c.isAfterLast()) {
+                String areaname = c.getString(c.getColumnIndex(COL_AREA_NAME));
+                areaNames.add(areaname);
+                String areacode = c.getString(c.getColumnIndex(COL_AREA_CODE));
+                areaCodes.add(areacode);
+                String distributorname = c.getString(c.getColumnIndex(COL_DISTRIBUTOR_NAME));
+                distributorNames.add(distributorname);
+                c.moveToNext();
+            }
 
         } else {
-            setAreaName(DEFULT_AREA_NAME);
-            setAreaCode(DEFULT_AREA_CODE);
-            setDistributorName(DEFULT_DISTRIBUTOR_NAME);
+            areaCodes.add(DEFULT_AREA_CODE);
+            areaNames.add(DEFULT_AREA_NAME);
+            distributorNames.add(DEFULT_DISTRIBUTOR_NAME);
         }
-    }
-
-    public void setDistributorName(String distributorName) {
-        StringTokenizer tokenizer = new StringTokenizer(distributorName, ",");
-        while (tokenizer.hasMoreTokens())
-            distributorNames.add(tokenizer.nextToken());
-    }
-
-    public void setAreaName(String areaName) {
-        StringTokenizer tokenizer = new StringTokenizer(areaName, ",");
-
-        while (tokenizer.hasMoreTokens())
-            areaNames.add(tokenizer.nextToken());
-    }
-
-    public void setAreaCode(String areaCode) {
-        StringTokenizer tokenizer = new StringTokenizer(areaCode, ",");
-
-        while (tokenizer.hasMoreTokens())
-            areaCodes.add(tokenizer.nextToken());
-
-        //"-Area Code-,1,12,16"
     }
 
     public ArrayList<String> getAreaCodes() {
