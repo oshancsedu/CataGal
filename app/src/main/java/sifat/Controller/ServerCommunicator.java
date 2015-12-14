@@ -17,6 +17,7 @@ import cz.msebera.android.httpclient.Header;
 import sifat.Adapter.MemoAdapter;
 import sifat.Database.DbOperator;
 import sifat.Domain.IntegratedProductInfo;
+import sifat.Domain.MemoBasicInfo;
 import sifat.Domain.MemoProductInfo;
 import sifat.Domain.ProductCommonInfo;
 import sifat.Utilities.LoopjHttpClient;
@@ -30,6 +31,7 @@ import static sifat.Utilities.CommonUtilities.JSON_TAG_DISTRIBUTOR_NAME;
 import static sifat.Utilities.CommonUtilities.JSON_TAG_HEADER;
 import static sifat.Utilities.CommonUtilities.JSON_TAG_IMAGES;
 import static sifat.Utilities.CommonUtilities.JSON_TAG_INGREDIENT;
+import static sifat.Utilities.CommonUtilities.JSON_TAG_MEMO_BASIC_INFO_ARRAY;
 import static sifat.Utilities.CommonUtilities.JSON_TAG_MRP1;
 import static sifat.Utilities.CommonUtilities.JSON_TAG_MRP1_TITLE;
 import static sifat.Utilities.CommonUtilities.JSON_TAG_MRP2;
@@ -65,7 +67,6 @@ import static sifat.Utilities.CommonUtilities.SHAREDPREF_TAG_USERID;
 import static sifat.Utilities.CommonUtilities.changeActivity;
 import static sifat.Utilities.CommonUtilities.getPref;
 import static sifat.Utilities.CommonUtilities.showToast;
-
 /**
  * Created by sifat on 11/22/2015.
  */
@@ -73,6 +74,7 @@ public class ServerCommunicator {
 
     public ArrayList<MemoProductInfo> addedProduct = new ArrayList<>();
     public ArrayList<ProductCommonInfo> productCommonInfos = new ArrayList<>();
+    public ArrayList<MemoBasicInfo> memoBasicInfos = new ArrayList<>();
     Context context;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
@@ -206,19 +208,31 @@ public class ServerCommunicator {
         Log.i(LOG_TAG_WEB, info);
         try {
             JSONObject jsonObject = new JSONObject(info);
-            Log.i(LOG_TAG_WEB, info);
-            areaName = jsonObject.getString(JSON_TAG_AREA_NAME);
-            Log.i(LOG_TAG_WEB, areaName);
-            areaCode = jsonObject.getString(JSON_TAG_AREA_CODE);
-            Log.i(LOG_TAG_WEB, areaCode);
-            distributorName = jsonObject.getString(JSON_TAG_DISTRIBUTOR_NAME);
-            Log.i(LOG_TAG_WEB, distributorName);
+            JSONArray memoBasicInfosJson = jsonObject.getJSONArray(JSON_TAG_MEMO_BASIC_INFO_ARRAY);
+            int size = memoBasicInfosJson.length();
+            MemoBasicInfo memoBasicInfo;
+            Log.i("Tag", "done");
+            for (int i = 0; i < size; i++) {
+                JSONObject childJson = memoBasicInfosJson.optJSONObject(i);
 
+                areaName = childJson.getString(JSON_TAG_AREA_NAME);
+                Log.i(LOG_TAG_WEB, areaName);
+                areaCode = childJson.getString(JSON_TAG_AREA_CODE);
+                Log.i(LOG_TAG_WEB, areaCode);
+                distributorName = childJson.getString(JSON_TAG_DISTRIBUTOR_NAME);
+                Log.i(LOG_TAG_WEB, distributorName);
+                showToast(context, areaName + "-" + areaCode + "-" + distributorName);
+                Log.i("Tag", areaName + "-" + areaCode + "-" + distributorName);
+                memoBasicInfo = new MemoBasicInfo(areaName, distributorName, areaCode);
+                memoBasicInfos.add(memoBasicInfo);
+            }
             dbOperator.open();
-            dbOperator.updateMemoBasicInfo(distributorName, areaName, areaCode);
+            dbOperator.updateMemoBasicInfo(memoBasicInfos);
             dbOperator.close();
+
         } catch (JSONException e) {
             e.printStackTrace();
+            Log.i("Tag", "Unable");
         }
     }
 

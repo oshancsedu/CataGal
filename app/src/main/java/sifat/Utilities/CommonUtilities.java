@@ -84,7 +84,7 @@ public class CommonUtilities {
     public static final String JSON_TAG_SELLING_UNIT = "sellingUnit";
     public static final String JSON_TAG_COST_PER_UNIT = "costPerUnit";
     public static final String JSON_TAG_PRODUCT_NAME = "product_name";
-
+    public static final String JSON_TAG_MEMO_BASIC_INFO_ARRAY = "memoBasicInfo";
 
 
     public static final String SHAREPREF_TAG = "sifat.mySharedPref";

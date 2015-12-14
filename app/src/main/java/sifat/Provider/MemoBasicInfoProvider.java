@@ -70,6 +70,8 @@ public class MemoBasicInfoProvider {
             setAreaCode(areacode);
             String distributorname = c.getString(c.getColumnIndex(COL_DISTRIBUTOR_NAME));
             setDistributorName(distributorname);
+
+
         } else {
             setAreaName(DEFULT_AREA_NAME);
             setAreaCode(DEFULT_AREA_CODE);

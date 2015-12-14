@@ -10,6 +10,7 @@ import android.util.Log;
 import java.util.ArrayList;
 
 import sifat.Domain.IntegratedProductInfo;
+import sifat.Domain.MemoBasicInfo;
 import sifat.Domain.ProductCommonInfo;
 import sifat.Provider.MemoBasicInfoProvider;
 
@@ -78,14 +79,17 @@ public class DbOperator {
         dbInit.close();
     }
 
-    public void updateMemoBasicInfo(String distributorName, String areaName, String areaCode) {
+    public void updateMemoBasicInfo(ArrayList<MemoBasicInfo> memoBasicInfos) {
         String query = "delete from " + TABLE_MEMO_BASIC_INFO;
         sqlDatabase.execSQL(query);
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(COL_AREA_CODE, areaCode);
-        contentValues.put(COL_AREA_NAME, areaName);
-        contentValues.put(COL_DISTRIBUTOR_NAME, distributorName);
-        sqlDatabase.insert(TABLE_MEMO_BASIC_INFO, null, contentValues);
+        int len = memoBasicInfos.size();
+        for (int i = 0; i < len; i++) {
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(COL_AREA_CODE, memoBasicInfos.get(i).getAreaCode());
+            contentValues.put(COL_AREA_NAME, memoBasicInfos.get(i).getAreaName());
+            contentValues.put(COL_DISTRIBUTOR_NAME, memoBasicInfos.get(i).getDistributorName());
+            sqlDatabase.insert(TABLE_MEMO_BASIC_INFO, null, contentValues);
+        }
         showToast(context, "Updated!");
     }
 
