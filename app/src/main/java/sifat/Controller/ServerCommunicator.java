@@ -56,9 +56,10 @@ import static sifat.Utilities.CommonUtilities.SERVER_REQUEST_AREA_NAME;
 import static sifat.Utilities.CommonUtilities.SERVER_REQUEST_COMMENT;
 import static sifat.Utilities.CommonUtilities.SERVER_REQUEST_DISTRIBUTOR_NAME;
 import static sifat.Utilities.CommonUtilities.SERVER_REQUEST_PASSWORD;
+import static sifat.Utilities.CommonUtilities.SERVER_REQUEST_PRODUCT_CARTON;
 import static sifat.Utilities.CommonUtilities.SERVER_REQUEST_PRODUCT_COST;
 import static sifat.Utilities.CommonUtilities.SERVER_REQUEST_PRODUCT_NAME;
-import static sifat.Utilities.CommonUtilities.SERVER_REQUEST_PRODUCT_QUANTITY;
+import static sifat.Utilities.CommonUtilities.SERVER_REQUEST_PRODUCT_PACKET;
 import static sifat.Utilities.CommonUtilities.SERVER_REQUEST_PRODUCT_SIZE;
 import static sifat.Utilities.CommonUtilities.SERVER_REQUEST_PRODUCT_UNIT;
 import static sifat.Utilities.CommonUtilities.SERVER_REQUEST_SUPPLY_DATE;
@@ -125,18 +126,19 @@ public class ServerCommunicator {
     public void sendMemoInfo(String areaName, String areaCode, String distributorName, String supplyDate) {
         addedProduct = MemoAdapter.addedProduct;
         sharedPreferences = getPref(context);
-        String productName = "", productSize = "", productCost = "", productQuantity = "", comment = "", userID, productUnit = "";
+        String productName = "", productSize = "", productCost = "", carton = "", packet = "", comment = "", userID, productUnit = "";
         userID = sharedPreferences.getString(SHAREDPREF_TAG_USERID, "");
         showToast(context, "Size: " + addedProduct.size() + "\n" + addedProduct.get(0).getProductName());
 
         int size = addedProduct.size();
         for (int i = 0; i < size; i++) {
-            productName = productName + addedProduct.get(i).getProductName() + ",";
-            productSize = productSize + addedProduct.get(i).getProductSize() + ",";
-            productCost = productCost + addedProduct.get(i).getCost() + ",";
-            productQuantity = productQuantity + addedProduct.get(i).getCarton() + ",";
-            comment = comment + addedProduct.get(i).getComment() + ",";
-            productUnit = productUnit + addedProduct.get(i).getSellingUnit() + ",";
+            productName = productName + addedProduct.get(i).getProductName() + " ,";
+            productSize = productSize + addedProduct.get(i).getProductSize() + " ,";
+            productCost = productCost + addedProduct.get(i).getCost() + " ,";
+            carton = carton + addedProduct.get(i).getCarton() + " ,";
+            packet = packet + addedProduct.get(i).getPacket() + " ,";
+            comment = comment + addedProduct.get(i).getComment() + " ,";
+            productUnit = productUnit + addedProduct.get(i).getSellingUnit() + " ,";
         }
 
         RequestParams requestParams = new RequestParams();
@@ -149,7 +151,8 @@ public class ServerCommunicator {
         requestParams.put(SERVER_REQUEST_PRODUCT_SIZE, productSize);
         requestParams.put(SERVER_REQUEST_PRODUCT_COST, productCost);
         requestParams.put(SERVER_REQUEST_PRODUCT_UNIT, productUnit);
-        requestParams.put(SERVER_REQUEST_PRODUCT_QUANTITY, productQuantity);
+        requestParams.put(SERVER_REQUEST_PRODUCT_CARTON, carton);
+        requestParams.put(SERVER_REQUEST_PRODUCT_PACKET, packet);
         requestParams.put(SERVER_REQUEST_COMMENT, comment);
 
         final String memoReceiveUrl = MEMO_RECEIVE_URL;

@@ -103,7 +103,8 @@ public class CommonUtilities {
     public static final String SERVER_REQUEST_PRODUCT_SIZE = "productSize";
     public static final String SERVER_REQUEST_COMMENT = "commentOnProduct";
     public static final String SERVER_REQUEST_PRODUCT_COST = "productCost";
-    public static final String SERVER_REQUEST_PRODUCT_QUANTITY = "productQuantity";
+    public static final String SERVER_REQUEST_PRODUCT_CARTON = "productCarton";
+    public static final String SERVER_REQUEST_PRODUCT_PACKET = "productPacket";
     public static final String SERVER_REQUEST_PRODUCT_UNIT = "productUnit";
 
     public static void showToast(Context context,String message)
