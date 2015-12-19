@@ -89,7 +89,11 @@ public class ServerCommunicator {
 
     public void getMemoBasicInfo() {
         final String updateMemoInfo = MEMO_BASIC_INFO_URL;
-        LoopjHttpClient.post(updateMemoInfo, null, new AsyncHttpResponseHandler() {
+        sharedPreferences = getPref(context);
+        String userID = sharedPreferences.getString(SHAREDPREF_TAG_USERID, "");
+        RequestParams requestParams = new RequestParams();
+        requestParams.put(SERVER_REQUEST_USERID, userID);
+        LoopjHttpClient.get(updateMemoInfo, requestParams, new AsyncHttpResponseHandler() {
 
             @Override
             public void onSuccess(int statusCode, cz.msebera.android.httpclient.Header[] headers, byte[] responseBody) {
@@ -113,6 +117,7 @@ public class ServerCommunicator {
         LoopjHttpClient.get(productInfoURL, null, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                Log.i(LOG_TAG_WEB, new String(responseBody));
                 setProductInfo(new String(responseBody));
             }
 
@@ -132,13 +137,13 @@ public class ServerCommunicator {
 
         int size = addedProduct.size();
         for (int i = 0; i < size; i++) {
-            productName = productName + addedProduct.get(i).getProductName() + " ,";
-            productSize = productSize + addedProduct.get(i).getProductSize() + " ,";
-            productCost = productCost + addedProduct.get(i).getCost() + " ,";
-            carton = carton + addedProduct.get(i).getCarton() + " ,";
-            packet = packet + addedProduct.get(i).getPacket() + " ,";
-            comment = comment + addedProduct.get(i).getComment() + " ,";
-            productUnit = productUnit + addedProduct.get(i).getSellingUnit() + " ,";
+            productName = productName + addedProduct.get(i).getProductName() + " $";
+            productSize = productSize + addedProduct.get(i).getProductSize() + " $";
+            productCost = productCost + addedProduct.get(i).getCost() + " $";
+            carton = carton + addedProduct.get(i).getCarton() + " $";
+            packet = packet + addedProduct.get(i).getPacket() + " $";
+            comment = comment + addedProduct.get(i).getComment() + " $";
+            productUnit = productUnit + addedProduct.get(i).getSellingUnit() + " $";
         }
 
         RequestParams requestParams = new RequestParams();
@@ -154,10 +159,22 @@ public class ServerCommunicator {
         requestParams.put(SERVER_REQUEST_PRODUCT_CARTON, carton);
         requestParams.put(SERVER_REQUEST_PRODUCT_PACKET, packet);
         requestParams.put(SERVER_REQUEST_COMMENT, comment);
+        /*String url=SERVER_REQUEST_AREA_CODE+"="+areaCode+"&"+
+                SERVER_REQUEST_AREA_NAME+"="+areaName+"&"+
+                SERVER_REQUEST_DISTRIBUTOR_NAME+"="+distributorName+"&"+
+                SERVER_REQUEST_SUPPLY_DATE+"="+supplyDate+"&"+
+                SERVER_REQUEST_USERID+"="+userID+"&"+
+                SERVER_REQUEST_PRODUCT_NAME+"="+productName+"&"+
+                SERVER_REQUEST_PRODUCT_SIZE+"="+productSize+"&"+
+                SERVER_REQUEST_PRODUCT_COST+"="+productCost+"&"+
+                SERVER_REQUEST_PRODUCT_UNIT+"="+productUnit+"&"+
+                SERVER_REQUEST_PRODUCT_CARTON+"="+carton+"&"+
+                SERVER_REQUEST_PRODUCT_PACKET+"="+packet+"&"+
+                SERVER_REQUEST_COMMENT+"="+comment;*/
 
         final String memoReceiveUrl = MEMO_RECEIVE_URL;
-
-        LoopjHttpClient.post(memoReceiveUrl, requestParams, new AsyncHttpResponseHandler() {
+        //Log.i(LOG_TAG_WEB,memoReceiveUrl+"?"+url);
+        LoopjHttpClient.get(memoReceiveUrl, requestParams, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 showToast(context, new String(responseBody));
@@ -168,17 +185,15 @@ public class ServerCommunicator {
                 showToast(context, "Please check your internet connection!");
             }
         });
-
     }
 
     public void login(final String userId, String password) {
-        showToast(context, "User: " + userId + "\nPass:" + password);
         RequestParams requestParams = new RequestParams();
         requestParams.put(SERVER_REQUEST_USERID, userId);
         requestParams.put(SERVER_REQUEST_PASSWORD, password);
         final String loginWebSite = LOGIN_URL;
 
-        LoopjHttpClient.post(loginWebSite, requestParams, new AsyncHttpResponseHandler() {
+        LoopjHttpClient.get(loginWebSite, requestParams, new AsyncHttpResponseHandler() {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
@@ -236,6 +251,7 @@ public class ServerCommunicator {
     }
 
     private void setProductInfo(String info) {
+        Log.i(LOG_TAG_WEB, info);
         ProductCommonInfo productCommonInfo;
         IntegratedProductInfo ingrProInfo;
         try {

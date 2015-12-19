@@ -77,27 +77,27 @@ public class BiscuitInfoProvider extends BaseProvider {
             commonInfos.add(productCommonInfo);
             productCommonInfo = new ProductCommonInfo(103, "NutriBake Digestive Biscuit", "digestives_banner", "Wheat flour, bran, peanut, sugar, vegetable oil, liquid glucose, milk and milk products, egg, salt, vanilin powder, sodium bicarbonate, ammonium bicarbonate, citric acid  and food grade flavor etc.");
             commonInfos.add(productCommonInfo);
+            productCommonInfo = new ProductCommonInfo(104, "Bengal All Time (Orange)", "alltime_orange_banner", "wheat flour, sugar, vegetable fat, full cream milk powder, glucose, salt, water, eggs, leavening agent, Permitted flavors & preservative.");
+            commonInfos.add(productCommonInfo);
+            productCommonInfo = new ProductCommonInfo(105, "Bengal All Time (Milk+Coconut)", "alltime_coco_milk_banner", "Wheat flour, sugar, vegetable fat, full cream milk powder,Glucose, salt, water, eggs, leavening agent, natural coconut, permitted flavors and preservative.");
+            commonInfos.add(productCommonInfo);
             productCommonInfo = new ProductCommonInfo(106, "Bengal Orange Cake Biscuit", "orange_cake_banner", "Wheat flour, sugar, vegetable shortening, pour ghee, glucose,  milk powder, salt, ammonium bi carbonate, sodium bi carbonate, citric acid & food grade flavor.");
+            commonInfos.add(productCommonInfo);
+            productCommonInfo = new ProductCommonInfo(107, "Bengal Choco Twin", "choco_twin_banner", "Wheat flour, sugar, vegetable oi, liquid glucose, milk and milk products, cocoa powder, cocoa liquor, egg, salt, vanillin powder, sodium bi carbonate, ammonium bi carbonate, citric acid, foo grade flavor and water.");
             commonInfos.add(productCommonInfo);
             productCommonInfo = new ProductCommonInfo(108, "Bengal Hit Cream Biscuit", "hit_cream_banner", "Wheat Flour, hydrogenated vegetable oil, sugar, corn starch, full cream milk powder, invert suger syrup, vanilla cream powder, whey powder, table salt, leavening agent, permitted flavors.");
             commonInfos.add(productCommonInfo);
             productCommonInfo = new ProductCommonInfo(109, "Bengal B-vita Biscuit", "b_vita_banner", "ingredients");
             commonInfos.add(productCommonInfo);
-            productCommonInfo = new ProductCommonInfo(112, "Bengal Lemon Biscuit", "master_slice_banner", "Wheat flour, sugar, vegetable shortening, glucose, egg, full cream milk powder, salt, ammonium bi carbonate, sodium bi carbonate, citric acid & food grade flavor.");
+            productCommonInfo = new ProductCommonInfo(110, "Bengal Protein Plus", "protein_plus_banner", "wheat flour, full cream milk powder, soya flour, sugar, liquid glucose, vegetable oil, butter oil, salt, egg, leavening agent, food grade flavor.");
             commonInfos.add(productCommonInfo);
-            productCommonInfo = new ProductCommonInfo(113, "Bengal Bingo Toast Biscuit", "master_slice_banner", "Wheat flour, sugar, edible vegetable fat, black caraway, yeast, water and salt.");
+            productCommonInfo = new ProductCommonInfo(111, "Bengal Glucose Biscuit", "glucose_banner", "wheat flour, glucose, egg, sugar, shortening agent, milk powder, starch, salt, food grade flavor.");
+            commonInfos.add(productCommonInfo);
+            productCommonInfo = new ProductCommonInfo(112, "Bengal Lemon Biscuit", "lemon_banner", "Wheat flour, sugar, vegetable shortening, glucose, egg, full cream milk powder, salt, ammonium bi carbonate, sodium bi carbonate, citric acid & food grade flavor.");
+            commonInfos.add(productCommonInfo);
+            productCommonInfo = new ProductCommonInfo(113, "Bengal Bingo Toast Biscuit", "bingo_toast_banner", "Wheat flour, sugar, edible vegetable fat, black caraway, yeast, water and salt.");
             commonInfos.add(productCommonInfo);
             productCommonInfo = new ProductCommonInfo(114, "Kingdom Kheer Cookies", "kingdom_kheer_cookies", "Wheat flour, sugar, vegetable oil, egg, butter oil, milk powder, nut, salt, ammonium bicarbonate, sodium bicarbonate, food grade flavor and water etc.");
-            commonInfos.add(productCommonInfo);
-            productCommonInfo = new ProductCommonInfo(107, "Bengal Choco Twin", "choco_twin_banner", "Wheat flour, sugar, vegetable oi, liquid glucose, milk and milk products, cocoa powder, cocoa liquor, egg, salt, vanillin powder, sodium bi carbonate, ammonium bi carbonate, citric acid, foo grade flavor and water.");
-            commonInfos.add(productCommonInfo);
-            productCommonInfo = new ProductCommonInfo(110, "Bengal Protein Plus", "master_slice_banner", "wheat flour, full cream milk powder, soya flour, sugar, liquid glucose, vegetable oil, butter oil, salt, egg, leavening agent, food grade flavor.");
-            commonInfos.add(productCommonInfo);
-            productCommonInfo = new ProductCommonInfo(111, "Bengal Glucose Biscuit", "master_slice_banner", "wheat flour, glucose, egg, sugar, shortening agent, milk powder, starch, salt, food grade flavor.");
-            commonInfos.add(productCommonInfo);
-            productCommonInfo = new ProductCommonInfo(104, "Bengal All Time (Orange)", "alltime_orange_banner", "wheat flour, sugar, vegetable fat, full cream milk powder, glucose, salt, water, eggs, leavening agent, Permitted flavors & preservative.");
-            commonInfos.add(productCommonInfo);
-            productCommonInfo = new ProductCommonInfo(105, "Bengal All Time (Milk+Coconut)", "alltime_coco_milk_banner", "Wheat flour, sugar, vegetable fat, full cream milk powder,Glucose, salt, water, eggs, leavening agent, natural coconut, permitted flavors and preservative.");
             commonInfos.add(productCommonInfo);
             dbOperator.updateProductCommonInfo(commonInfos, false);
         }
@@ -153,12 +153,12 @@ public class BiscuitInfoProvider extends BaseProvider {
              * Digestives Biscuit
              * ******/
             integratedProductInfo = new IntegratedProductInfo(1031, "Nutribake Digestives Biscuit", "Family Pack", "1 Carton", "8 Box", "Minimum 6 months", "Carton MRP", 480, "Packet MRP", 60,
-                    3, "8 box/carton", "Carton", 375, "10312,10312,10313");
+                    3, "8 box/carton", "Carton", 375, "10311,10312,10313");
             integratedProductInfos.add(integratedProductInfo);
 
 
             integratedProductInfo = new IntegratedProductInfo(1033, "Digestives Biscuit", "Mini Pack", "1 Carton", "40 packet", "Minimum 6 months", "Carton MRP", 192, "Packet MRP", 8,
-                    3, "40 pack/carton", "Carton", 134, "10332,10332,10313");
+                    3, "40 pack/carton", "Carton", 134, "10311,10332,10313");
             integratedProductInfos.add(integratedProductInfo);
 
 
@@ -166,15 +166,15 @@ public class BiscuitInfoProvider extends BaseProvider {
              * Orange Cake Biscuit
              * *****/
             integratedProductInfo = new IntegratedProductInfo(1061, "Bengal Orange Cake Biscuit", "Family Pack", "1 Carton", "5 packet", "Minimum 6 months", "Carton MRP", 200, "Packet MRP", 40,
-                    4, "5 pack/carton", "Carton", 160, "10612,10612,10613");
+                    6, "5 pack/carton", "Carton", 160, "10611,10612,10613");
             integratedProductInfos.add(integratedProductInfo);
 
             integratedProductInfo = new IntegratedProductInfo(1062, "Bengal Orange Cake Biscuit ", "Regular Pack", "1 Carton", "24 packet", "Minimum 6 months", "Carton MRP", 288, "Packet MRP", 12,
-                    4, "24 pack/carton", "Carton", 288, "10622,10622,10613");
+                    6, "24 pack/carton", "Carton", 288, "10611,10622,10613");
             integratedProductInfos.add(integratedProductInfo);
 
             integratedProductInfo = new IntegratedProductInfo(1063, "Orange Cake Biscuit ", "Tin", "1 Carton", "4 Tin", "Minimum 9 months", "Carton MRP", 800, "Tin MRP", 200,
-                    4, "1 tin", "Tin", 165, "10632,10632,10613");
+                    6, "1 tin", "Tin", 165, "10611,10632,10613");
             integratedProductInfos.add(integratedProductInfo);
 
 
@@ -182,14 +182,14 @@ public class BiscuitInfoProvider extends BaseProvider {
              * Hit Cream Biscuit
              * ******/
             integratedProductInfo = new IntegratedProductInfo(1081, "Bengal Hit Cream Biscuit", "Family Pack", "1 Carton", "5 packet", "Minimum 6 months", "Carton MRP", 175, "Packet MRP", 35,
-                    5, "5 pack/carton", "Carton", 135, "1081,10812,10813");
+                    8, "5 pack/carton", "Carton", 135, "1081,10812,10813");
             integratedProductInfos.add(integratedProductInfo);
 
             /*******
              * B-vita Biscuit
              * ******/
             integratedProductInfo = new IntegratedProductInfo(1091, "Bengal B-vita Biscuit", "Family Pack", "1 Carton", "5 packet", "Minimum 6 months", "Carton MRP", 150, "Packet MRP", 30,
-                    6, "5 pack/carton", "Carton", 112, "1091,10912,10913");
+                    9, "5 pack/carton", "Carton", 112, "1091,10912,10913");
             integratedProductInfos.add(integratedProductInfo);
 
 
@@ -197,7 +197,7 @@ public class BiscuitInfoProvider extends BaseProvider {
              * Lemon Biscuit
              * *******/
             integratedProductInfo = new IntegratedProductInfo(1121, "Bengal Lemon Biscuit", "Family Pack", "1 Carton", "8 Packet", "Minimum 6 months", "Carton MRP", 176, "Packet MRP", 22,
-                    7, "8 pack/carton", "Carton", 128, "11211,11212,11213");
+                    12, "8 pack/carton", "Carton", 128, "11211,11212,11213");
             integratedProductInfos.add(integratedProductInfo);
 
 
@@ -205,7 +205,7 @@ public class BiscuitInfoProvider extends BaseProvider {
              * Bingo Toast Biscuit
              * *****/
             integratedProductInfo = new IntegratedProductInfo(1131, "Bingo Toast Biscuit", "Family Pack", "1 Carton", "6 Packet", "Minimum 6 months", "Carton MRP", 300, "Packet MRP", 50,
-                    8, "6 pack/carton", "Carton", 245, "11312,11312,11313");
+                    13, "6 pack/carton", "Carton", 245, "11311,11312,11313");
             integratedProductInfos.add(integratedProductInfo);
 
 
@@ -213,7 +213,7 @@ public class BiscuitInfoProvider extends BaseProvider {
              * Kingdom Kheer Cookies
              * ******/
             integratedProductInfo = new IntegratedProductInfo(1141, "Kingdom Kheer Cookies", "Family Pack", "1 Carton", "5 Packet", "Minimum 6 months", "Carton MRP", 250, "Packet MRP", 50,
-                    9, "5 pack/carton", "Carton", 250, "11412,11412,11413");
+                    14, "5 pack/carton", "Carton", 250, "11411,11412,11413");
             integratedProductInfos.add(integratedProductInfo);
 
 
@@ -221,11 +221,11 @@ public class BiscuitInfoProvider extends BaseProvider {
              * Choco Twin
              * ******/
             integratedProductInfo = new IntegratedProductInfo(1072, "Choco Twin", "Regular Pack", "1 Carton", "12 packet", "Minimum 6 months", "Carton MRP", 480, "Packet MRP", 40,
-                    10, "12 pack/carton", "Carton", 360, "10731,10722,10723");
+                    7, "12 pack/carton", "Carton", 360, "10731,10722,10723");
             integratedProductInfos.add(integratedProductInfo);
 
             integratedProductInfo = new IntegratedProductInfo(1073, "Choco Twin", "Mini Pack", "1 Carton", "40 packet", "Minimum 6 months", "Carton MRP", 400, "Packet MRP", 10,
-                    10, "40 pack/carton", "Carton", 300, "10731,10732,10723");
+                    7, "40 pack/carton", "Carton", 300, "10731,10732,10723");
             integratedProductInfos.add(integratedProductInfo);
 
 
@@ -233,21 +233,21 @@ public class BiscuitInfoProvider extends BaseProvider {
              * Protein Plus Biscuit
              * *******/
             integratedProductInfo = new IntegratedProductInfo(1102, "Protein Plus Biscuit", "Regular Pack", "1 Carton", "24 packet", "Minimum 6 months", "Carton MRP", 312, "Packet MRP", 13,
-                    11, "24 pack/carton", "Carton", 260, "11021,11022,11023");
+                    10, "24 pack/carton", "Carton", 260, "11021,11022,11023");
             integratedProductInfos.add(integratedProductInfo);
 
             /*********
              * Glucose Biscuit
              * ********/
             integratedProductInfo = new IntegratedProductInfo(1112, "Bengal Glucose Biscuit", "Regular Pack", "1 Carton", "24 packet", "Minimum 6 months", "Carton MRP", 120, "Packet MRP", 5,
-                    12, "24 pack/carton", "Carton", 95, "11121,11122,11123");
+                    11, "24 pack/carton", "Carton", 95, "11121,11122,11123");
             integratedProductInfos.add(integratedProductInfo);
 
             /*****
              * All Time (Orange) Biscuit
              * *****/
             integratedProductInfo = new IntegratedProductInfo(1043, "All Time (Orange) Biscuit", "Mini Pack", "1 Carton", "100 packet", "Minimum 6 months", "Carton MRP", 200, "Packet MRP", 2,
-                    13, "100 pack/carton", "Carton", 140, "1041,10432,10433");
+                    4, "100 pack/carton", "Carton", 140, "1041,10432,10433");
             integratedProductInfos.add(integratedProductInfo);
 
 
@@ -255,7 +255,7 @@ public class BiscuitInfoProvider extends BaseProvider {
              * All Time (Milk+Coconut)
              * *******/
             integratedProductInfo = new IntegratedProductInfo(1053, "All Time (Milk+Coconut)", "Mini Pack", "1 Carton", "100 packet", "Minimum 6 months", "Carton MRP", 200, "Packet MRP", 2,
-                    14, "100 pack/carton", "Carton", 140, "10532,10532,10433");
+                    5, "100 pack/carton", "Carton", 140, "10532,10532,10433");
             integratedProductInfos.add(integratedProductInfo);
             dbOperator.updateProductDetailInfo(integratedProductInfos, false);
         }

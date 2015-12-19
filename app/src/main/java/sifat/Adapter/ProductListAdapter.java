@@ -2,7 +2,6 @@ package sifat.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -13,6 +12,7 @@ import android.widget.TextView;
 
 import com.andexert.library.RippleView;
 import com.mikhaellopez.circularimageview.CircularImageView;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -67,13 +67,15 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         } catch (IOException e) {
             e.printStackTrace();
         }*/
-        viewHolder.circularImageView.setImageDrawable(getDrawable("p" + productInfos.get(i).getProduct_images().get(1)));
+        Picasso.with(context).load(getDrawable("p" + productInfos.get(i).getProduct_images().get(1))).into(viewHolder.circularImageView);
+        //viewHolder.circularImageView.setImageDrawable(getDrawable("p" + productInfos.get(i).getProduct_images().get(1)));
     }
 
-    public Drawable getDrawable(String name) {
+    public int getDrawable(String name) {
         Log.e("Tag", name);
-        int resourceId = context.getResources().getIdentifier(name, "drawable", context.getPackageName());
-        return context.getResources().getDrawable(resourceId);
+        //int resourceId =
+        return context.getResources().getIdentifier(name, "drawable", context.getPackageName());
+        //return context.getResources().getDrawable(resourceId);
     }
 
     @Override

@@ -54,10 +54,10 @@ public class CommonUtilities {
     public static final String DEFULT_AREA_CODE = "-Area Code-";
     public static final String DEFULT_DISTRIBUTOR_NAME = "-Distributor Name-";
 
-    public static final String MEMO_BASIC_INFO_URL = "http://inspireitl.com/bengal/memoinfo.php";
-    public static final String LOGIN_URL = "http://inspireitl.com/bengal/login.php";
-    public static final String MEMO_RECEIVE_URL = "http://inspireitl.com/bengal/memoreceive.php";
-    public static final String PRODUCT_INFO_RECEIVE_URL = "http://inspireitl.com/bengal/product.php";
+    public static final String MEMO_BASIC_INFO_URL = "http://bengalbiscuit.aimsil.com/bengal/public/app/memobasicinfo";
+    public static final String LOGIN_URL = "http://bengalbiscuit.aimsil.com/bengal/public/app/login";
+    public static final String MEMO_RECEIVE_URL = "http://bengalbiscuit.aimsil.com/bengal/public/app/memoreceive";
+    public static final String PRODUCT_INFO_RECEIVE_URL = "http://bengalbiscuit.aimsil.com/bengal/public/app/parseproductinfo";
 
     public static final String LOG_TAG_WEB = "webLogTag";
     public static final String LOG_TAG_MEMO = "memoLogTag";

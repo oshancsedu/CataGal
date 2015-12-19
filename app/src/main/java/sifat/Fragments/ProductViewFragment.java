@@ -1,6 +1,5 @@
 package sifat.Fragments;
 
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
+import com.squareup.picasso.Picasso;
 
 import sifat.catagal.R;
 
@@ -43,12 +44,14 @@ public class ProductViewFragment extends Fragment {
             e.printStackTrace();
         }*/
 
-        imageView.setImageDrawable(getDrawable("p" + bgRes));
+        Picasso.with(getActivity()).load(getDrawable("p" + bgRes)).into(imageView);
+        //imageView.setImageDrawable(getDrawable("p" + bgRes));
     }
 
-    public Drawable getDrawable(String name) {
+    public int getDrawable(String name) {
         Log.e("Tag", name);
-        int resourceId = getActivity().getResources().getIdentifier(name, "drawable", getActivity().getPackageName());
-        return this.getResources().getDrawable(resourceId);
+        //int resourceId =
+        return getActivity().getResources().getIdentifier(name, "drawable", getActivity().getPackageName());
+        //return this.getResources().getDrawable(resourceId);
     }
 }
