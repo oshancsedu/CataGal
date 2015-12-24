@@ -87,11 +87,11 @@ public class BiscuitInfoProvider extends BaseProvider {
             commonInfos.add(productCommonInfo);
             productCommonInfo = new ProductCommonInfo(108, "Bengal Hit Cream Biscuit", "hit_cream_banner", "Wheat Flour, hydrogenated vegetable oil, sugar, corn starch, full cream milk powder, invert suger syrup, vanilla cream powder, whey powder, table salt, leavening agent, permitted flavors.");
             commonInfos.add(productCommonInfo);
-            productCommonInfo = new ProductCommonInfo(109, "Bengal B-vita Biscuit", "b_vita_banner", "ingredients");
+            productCommonInfo = new ProductCommonInfo(109, "Bengal B-vita Biscuit", "b_vita_banner", "Wheat flour, hydrogenated vegetable oil, sugar, full cream milk powder, invert sugar syrup, salt, water, egg, levening agent & food grade flavor");
             commonInfos.add(productCommonInfo);
-            productCommonInfo = new ProductCommonInfo(110, "Bengal Protein Plus", "protein_plus_banner", "wheat flour, full cream milk powder, soya flour, sugar, liquid glucose, vegetable oil, butter oil, salt, egg, leavening agent, food grade flavor.");
+            productCommonInfo = new ProductCommonInfo(110, "Bengal Protein Plus", "protein_plus_banner", "Wheat flour, full cream milk powder, soya flour, sugar, liquid glucose, vegetable oil, butter oil, salt, egg, leavening agent, food grade flavor.");
             commonInfos.add(productCommonInfo);
-            productCommonInfo = new ProductCommonInfo(111, "Bengal Glucose Biscuit", "glucose_banner", "wheat flour, glucose, egg, sugar, shortening agent, milk powder, starch, salt, food grade flavor.");
+            productCommonInfo = new ProductCommonInfo(111, "Bengal Glucose Biscuit", "glucose_banner", "Wheat flour, glucose, egg, sugar, shortening agent, milk powder, starch, salt, food grade flavor.");
             commonInfos.add(productCommonInfo);
             productCommonInfo = new ProductCommonInfo(112, "Bengal Lemon Biscuit", "lemon_banner", "Wheat flour, sugar, vegetable shortening, glucose, egg, full cream milk powder, salt, ammonium bi carbonate, sodium bi carbonate, citric acid & food grade flavor.");
             commonInfos.add(productCommonInfo);
@@ -170,7 +170,7 @@ public class BiscuitInfoProvider extends BaseProvider {
             integratedProductInfos.add(integratedProductInfo);
 
             integratedProductInfo = new IntegratedProductInfo(1062, "Bengal Orange Cake Biscuit ", "Regular Pack", "1 Carton", "24 packet", "Minimum 6 months", "Carton MRP", 288, "Packet MRP", 12,
-                    6, "24 pack/carton", "Carton", 288, "10611,10622,10613");
+                    6, "24 pack/carton", "Carton", 208, "10611,10622,10613");
             integratedProductInfos.add(integratedProductInfo);
 
             integratedProductInfo = new IntegratedProductInfo(1063, "Orange Cake Biscuit ", "Tin", "1 Carton", "4 Tin", "Minimum 9 months", "Carton MRP", 800, "Tin MRP", 200,
@@ -213,7 +213,7 @@ public class BiscuitInfoProvider extends BaseProvider {
              * Kingdom Kheer Cookies
              * ******/
             integratedProductInfo = new IntegratedProductInfo(1141, "Kingdom Kheer Cookies", "Family Pack", "1 Carton", "5 Packet", "Minimum 6 months", "Carton MRP", 250, "Packet MRP", 50,
-                    14, "5 pack/carton", "Carton", 250, "11411,11412,11413");
+                    14, "5 pack/carton", "Carton", 186, "11411,11412,11413");
             integratedProductInfos.add(integratedProductInfo);
 
 
@@ -255,7 +255,7 @@ public class BiscuitInfoProvider extends BaseProvider {
              * All Time (Milk+Coconut)
              * *******/
             integratedProductInfo = new IntegratedProductInfo(1053, "All Time (Milk+Coconut)", "Mini Pack", "1 Carton", "100 packet", "Minimum 6 months", "Carton MRP", 200, "Packet MRP", 2,
-                    5, "100 pack/carton", "Carton", 140, "10532,10532,10433");
+                    5, "100 pack/carton", "Carton", 140, "10531,10532,10433");
             integratedProductInfos.add(integratedProductInfo);
             dbOperator.updateProductDetailInfo(integratedProductInfos, false);
         }
