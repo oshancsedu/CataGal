@@ -155,7 +155,7 @@ public class DbOperator {
         public void onCreate(SQLiteDatabase db) {
             query = "CREATE TABLE " + TABLE_MEMO_BASIC_INFO + " (" +
                     COL_AREA_NAME + " varchar(500) NOT NULL," +
-                    COL_AREA_CODE + " varchar(500) NOT NULL," +
+                    COL_AREA_CODE + " varchar(50) NOT NULL," +
                     COL_DISTRIBUTOR_NAME + " varchar(400) NOT NULL" +
                     ");";
             db.execSQL(query);
