@@ -170,7 +170,7 @@ public class BiscuitInfoProvider extends BaseProvider {
             integratedProductInfos.add(integratedProductInfo);
 
             integratedProductInfo = new IntegratedProductInfo(1062, "Bengal Orange Cake Biscuit ", "Regular Pack", "1 Carton", "24 packet", "Minimum 6 months", "Carton MRP", 288, "Packet MRP", 12,
-                    6, "24 pack/carton", "Carton", 208, "10611,10622,10613");
+                    6, "24 pack/carton", "Carton", 208, "10621,10622,10613");
             integratedProductInfos.add(integratedProductInfo);
 
             integratedProductInfo = new IntegratedProductInfo(1063, "Orange Cake Biscuit ", "Tin", "1 Carton", "4 Tin", "Minimum 9 months", "Carton MRP", 800, "Tin MRP", 200,
