@@ -138,7 +138,7 @@ public class ServerCommunicator {
         userID = sharedPreferences.getString(SHAREDPREF_TAG_USERID, "");
         //showToast(context, "Size: " + addedProduct.size() + "\n" + addedProduct.get(0).getProductName());
 
-        int size = addedroduct.size();
+        int size = addedProduct.size();
         for (int i = 0; i < size; i++) {
             productName = productName + addedProduct.get(i).getProductName() + " $";
             productSize = productSize + addedProduct.get(i).getProductSize() + " $";
