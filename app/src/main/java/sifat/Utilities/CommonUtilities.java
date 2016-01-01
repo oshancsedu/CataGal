@@ -54,10 +54,10 @@ public class CommonUtilities {
     public static final String DEFULT_AREA_CODE = "-Area Code-";
     public static final String DEFULT_DISTRIBUTOR_NAME = "-Distributor Name-";
 
-    public static final String MEMO_BASIC_INFO_URL = "http://bengalbiscuit.aimsil.com/bengal/public/app/memobasicinfo";
-    public static final String LOGIN_URL = "http://bengalbiscuit.aimsil.com/bengal/public/app/login";
-    public static final String MEMO_RECEIVE_URL = "http://bengalbiscuit.aimsil.com/bengal/public/app/memoreceive";
-    public static final String PRODUCT_INFO_RECEIVE_URL = "http://bengalbiscuit.aimsil.com/bengal/public/app/parseproductinfo";
+    public static final String MEMO_BASIC_INFO_URL = "http://businessuniversebmd.aimsil.com/bengal/public/app/memobasicinfo";
+    public static final String LOGIN_URL = "http://businessuniversebmd.aimsil.com/bengal/public/app/login";
+    public static final String MEMO_RECEIVE_URL = "http://businessuniversebmd.aimsil.com/bengal/public/app/memoreceive";
+    public static final String PRODUCT_INFO_RECEIVE_URL = "http://businessuniversebmd.aimsil.com/bengal/public/app/parseproductinfo";
 
     public static final String LOG_TAG_WEB = "webLogTag";
     public static final String LOG_TAG_MEMO = "memoLogTag";
@@ -87,7 +87,6 @@ public class CommonUtilities {
     public static final String JSON_TAG_COST_PER_UNIT = "costPerUnit";
     public static final String JSON_TAG_PRODUCT_NAME = "product_name";
     public static final String JSON_TAG_MEMO_BASIC_INFO_ARRAY = "memoBasicInfo";
-
 
     public static final String SHAREPREF_TAG = "sifat.mySharedPref";
     public static final String SHAREDPREF_TAG_SELECTED_ITEM = "selectedItem";

@@ -20,9 +20,11 @@ import sifat.Domain.IntegratedProductInfo;
 import sifat.Domain.MemoBasicInfo;
 import sifat.Domain.MemoProductInfo;
 import sifat.Domain.ProductCommonInfo;
+import sifat.Provider.ProductInfoProvider;
 import sifat.Utilities.LoopjHttpClient;
 import sifat.catagal.MemoGenActivity;
 
+import static sifat.Provider.ProviderSelector.getMyProvider;
 import static sifat.Utilities.CommonUtilities.JSON_TAG_AREA_CODE;
 import static sifat.Utilities.CommonUtilities.JSON_TAG_AREA_NAME;
 import static sifat.Utilities.CommonUtilities.JSON_TAG_BANNER;
@@ -74,6 +76,7 @@ import static sifat.Utilities.CommonUtilities.showToast;
 public class ServerCommunicator {
 
     public ArrayList<MemoProductInfo> addedProduct = new ArrayList<>();
+    public ArrayList<MemoProductInfo> memoProductInfos = new ArrayList<>();
     public ArrayList<ProductCommonInfo> productCommonInfos = new ArrayList<>();
     public ArrayList<MemoBasicInfo> memoBasicInfos = new ArrayList<>();
     Context context;
@@ -133,9 +136,9 @@ public class ServerCommunicator {
         sharedPreferences = getPref(context);
         String productName = "", productSize = "", productCost = "", carton = "", packet = "", comment = "", userID, productUnit = "";
         userID = sharedPreferences.getString(SHAREDPREF_TAG_USERID, "");
-        showToast(context, "Size: " + addedProduct.size() + "\n" + addedProduct.get(0).getProductName());
+        //showToast(context, "Size: " + addedProduct.size() + "\n" + addedProduct.get(0).getProductName());
 
-        int size = addedProduct.size();
+        int size = addedroduct.size();
         for (int i = 0; i < size; i++) {
             productName = productName + addedProduct.get(i).getProductName() + " $";
             productSize = productSize + addedProduct.get(i).getProductSize() + " $";
@@ -145,6 +148,7 @@ public class ServerCommunicator {
             comment = comment + addedProduct.get(i).getComment() + " $";
             productUnit = productUnit + addedProduct.get(i).getSellingUnit() + " $";
         }
+
 
         RequestParams requestParams = new RequestParams();
         requestParams.put(SERVER_REQUEST_AREA_CODE, areaCode);
@@ -177,6 +181,7 @@ public class ServerCommunicator {
         LoopjHttpClient.get(memoReceiveUrl, requestParams, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                cleanUpMemoList();
                 showToast(context, new String(responseBody));
             }
 
@@ -303,4 +308,23 @@ public class ServerCommunicator {
             showToast(context, "Unable to update!");
         }
     }
+
+    private void cleanUpMemoList() {
+        ProductInfoProvider provider = getMyProvider(context);
+        addedProduct = new ArrayList<>();
+        provider.setAddedProduct(addedProduct);
+        memoProductInfos = provider.getProductMemoInfo();
+
+        int size = memoProductInfos.size();
+        for (int i = 0; i < size; i++) {
+            if (memoProductInfos.get(i).isAdded()) {
+                memoProductInfos.get(i).setCost(0.0);
+                memoProductInfos.get(i).setPacket(0);
+                memoProductInfos.get(i).setCarton(0);
+                memoProductInfos.get(i).setComment("");
+                memoProductInfos.get(i).setIsAdded(false);
+            }
+        }
+    }
+
 }

@@ -39,8 +39,8 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
     static Context context;
     private static ArrayList<ProductCommonInfo> commonInfos = new ArrayList<>();
     private static TextView tvTotalCost, tvItemAdded;
+    private static ProductInfoProvider provider;
     private LayoutInflater mInflater;
-    private ProductInfoProvider provider;
 
     public MemoAdapter(Context context, TextView tvTotalCost, TextView tvItemAdded) {
         provider = getMyProvider(context);
