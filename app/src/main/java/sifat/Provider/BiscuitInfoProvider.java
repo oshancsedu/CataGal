@@ -73,7 +73,7 @@ public class BiscuitInfoProvider extends BaseProvider {
             ProductCommonInfo productCommonInfo;
             productCommonInfo = new ProductCommonInfo(101, "Bengal Pine-Apple Cream", "pine_apple_cream_banner", "Wheat flour, sugar, glucose, milk powder, dextrose, egg, vegetable shortening, salt, water, food grade flavour etc.");
             commonInfos.add(productCommonInfo);
-            productCommonInfo = new ProductCommonInfo(102, "Bengal Master Slices", "master_slice_banner", "Wheat flour, sugar, soda, vanilin powder, liquid glucose, amonia, salt, cream of tarter, dalda, coconut powder, citric acid, milk and milk products, water, egg, food grade flavor etc.");
+            productCommonInfo = new ProductCommonInfo(102, "Bengal Master Slice", "master_slice_banner", "Wheat flour, sugar, soda, vanilin powder, liquid glucose, amonia, salt, cream of tarter, dalda, coconut powder, citric acid, milk and milk products, water, egg, food grade flavor etc.");
             commonInfos.add(productCommonInfo);
             productCommonInfo = new ProductCommonInfo(103, "NutriBake Digestive Biscuit", "digestives_banner", "Wheat flour, bran, peanut, sugar, vegetable oil, liquid glucose, milk and milk products, egg, salt, vanilin powder, sodium bicarbonate, ammonium bicarbonate, citric acid  and food grade flavor etc.");
             commonInfos.add(productCommonInfo);
@@ -129,7 +129,7 @@ public class BiscuitInfoProvider extends BaseProvider {
             integratedProductInfos.add(integratedProductInfo);
 
 
-            integratedProductInfo = new IntegratedProductInfo(1013, "Pine-Apple Cream ", "Mini Pack", "1 Carton", "40 packet", "Minimum 6 months", "Carton MRP", 200, "Packet MRP", 5,
+            integratedProductInfo = new IntegratedProductInfo(1013, "Pine-Apple Cream", "Mini Pack", "1 Carton", "40 packet", "Minimum 6 months", "Carton MRP", 200, "Packet MRP", 5,
                     1, "40 pack/carton", "Carton", 155, "10131,10132,10113");
             integratedProductInfos.add(integratedProductInfo);
 
@@ -140,11 +140,11 @@ public class BiscuitInfoProvider extends BaseProvider {
                     2, "6 pack/carton", "Carton", 152, "10221,10212,10213");
             integratedProductInfos.add(integratedProductInfo);
 
-            integratedProductInfo = new IntegratedProductInfo(1022, "Bengal Master Slices ", "Regular Pack", "1 Carton", "24 Packet", "Minimum 6 months", "Carton MRP", 240, "Packet MRP", 10,
+            integratedProductInfo = new IntegratedProductInfo(1022, "Bengal Master Slice", "Regular Pack", "1 Carton", "24 Packet", "Minimum 6 months", "Carton MRP", 240, "Packet MRP", 10,
                     2, "24 pack/carton", "Carton", 190, "10221,10222,10213");
             integratedProductInfos.add(integratedProductInfo);
 
-            integratedProductInfo = new IntegratedProductInfo(1023, "Bengal Master Slices ", "Mini Pack", "1 Carton", "40 packet", "Minimum 6 months", "Carton MRP", 200, "Packet MRP", 5,
+            integratedProductInfo = new IntegratedProductInfo(1023, "Bengal Master Slice", "Mini Pack", "1 Carton", "40 packet", "Minimum 6 months", "Carton MRP", 200, "Packet MRP", 5,
                     2, "40 pack/carton", "Carton", 162, "10231,10232,10213");
             integratedProductInfos.add(integratedProductInfo);
 
@@ -158,7 +158,7 @@ public class BiscuitInfoProvider extends BaseProvider {
 
 
             integratedProductInfo = new IntegratedProductInfo(1033, "Digestives Biscuit", "Mini Pack", "1 Carton", "40 packet", "Minimum 6 months", "Carton MRP", 192, "Packet MRP", 8,
-                    3, "40 pack/carton", "Carton", 134, "10311,10332,10313");
+                    3, "40 pack/carton", "Carton", 134, "10331,10332,10313");
             integratedProductInfos.add(integratedProductInfo);
 
 
@@ -174,7 +174,7 @@ public class BiscuitInfoProvider extends BaseProvider {
             integratedProductInfos.add(integratedProductInfo);
 
             integratedProductInfo = new IntegratedProductInfo(1063, "Orange Cake Biscuit ", "Tin", "1 Carton", "4 Tin", "Minimum 9 months", "Carton MRP", 800, "Tin MRP", 200,
-                    6, "1 tin", "Tin", 165, "10611,10632,10613");
+                    6, "1 tin", "Tin", 165, "10631,10632,10613");
             integratedProductInfos.add(integratedProductInfo);
 
 

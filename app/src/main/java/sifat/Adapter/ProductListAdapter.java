@@ -120,6 +120,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
             rippleView = (RippleView) itemView.findViewById(R.id.rvSingleItem);
             circularImageView = (CircularImageView) itemView.findViewById(R.id.civProductImage);
             rippleView.setOnRippleCompleteListener(this);
+            //circularImageView.setOnClickListener(this);
         }
 
         @Override
