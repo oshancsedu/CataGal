@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.devspark.robototextview.widget.RobotoTextView;
 import com.fourmob.datetimepicker.date.DatePickerDialog;
@@ -29,6 +30,7 @@ import github.chenupt.dragtoplayout.DragTopLayout;
 import sifat.Adapter.MemoAdapter;
 import sifat.Controller.ServerCommunicator;
 import sifat.Fragments.ConfirmationMemoFragment;
+import sifat.Fragments.LogoutDialogFragment;
 import sifat.Provider.MemoBasicInfoProvider;
 import sifat.Provider.ProductInfoProvider;
 
@@ -45,7 +47,7 @@ import static sifat.Utilities.CommonUtilities.showToast;
 /**
  * Created by sifat on 11/16/2015.
  */
-public class MemoGenActivity extends ActionBarActivity implements View.OnClickListener, DatePickerDialog.OnDateSetListener {
+public class MemoGenActivity extends ActionBarActivity implements View.OnClickListener, DatePickerDialog.OnDateSetListener,LogoutDialogFragment.Communicator {
 
     public static final String DATEPICKER_TAG = "datepicker";
     private static ArrayList<String> areaCodes = new ArrayList<>();
@@ -257,13 +259,27 @@ public class MemoGenActivity extends ActionBarActivity implements View.OnClickLi
         }
 
         if (id == R.id.logout) {
+
+
+            FragmentManager manager = getFragmentManager();
+            LogoutDialogFragment logoutDialog = new LogoutDialogFragment();
+            logoutDialog.setCancelable(false);
+            logoutDialog.show(manager, "logoutFragment");
+
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void getMessage(String message) {
+        if(message.equalsIgnoreCase("Yes"))
+        {
             editor = sharedPreferences.edit();
             editor.remove(SHAREDPREF_TAG_USERID);
             editor.commit();
             changeActivity(this, LoginActivity.class);
             finish();
         }
-
-        return super.onOptionsItemSelected(item);
     }
 }

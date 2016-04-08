@@ -145,7 +145,7 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
     }
 
     private String getHeaderName(long headerId) {
-        return commonInfos.get((int) headerId - 1).getHeader();
+        return commonInfos.get((int) headerId-1).getHeader();
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, TextWatcher {

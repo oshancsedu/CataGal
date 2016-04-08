@@ -17,10 +17,13 @@ public class ProviderSelector {
         ProductInfoProvider productInfoProvider = null;
         sharedPreferences = getPref(context);
         String productName = sharedPreferences.getString(SHAREDPREF_TAG_SELECTED_ITEM, "0");
+
         if (productName.equalsIgnoreCase("0"))
             productInfoProvider = BiscuitInfoProvider.getProvider(context);
         else if (productName.equalsIgnoreCase("1"))
             productInfoProvider = CandyInfoProvider.getProvider(context);
+
+
         /*else if (productName.equalsIgnoreCase("Snacks"))
             productInfoProvider = SnacksInfoProvider.getProvider();
         else if (productName.equalsIgnoreCase("Flour"))

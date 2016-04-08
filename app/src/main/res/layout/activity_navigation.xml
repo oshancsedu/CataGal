@@ -23,7 +23,7 @@
             app:wheelColor="@color/app_theme_color"
             app:wheelItemCount="3"
             app:wheelItemRadius="60dp"
-            app:wheelRadius="160dp" />
+            app:wheelRadius="@dimen/wheel_radius" />
 
         <ImageView
             android:id="@+id/ivCompanyName"
