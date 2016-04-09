@@ -23,6 +23,7 @@ import sifat.Domain.MemoProductInfo;
 import sifat.Domain.ProductCommonInfo;
 import sifat.Provider.BiscuitInfoProvider;
 import sifat.Provider.CandyInfoProvider;
+import sifat.Provider.MemoBasicInfoProvider;
 import sifat.Provider.ProductInfoProvider;
 import sifat.catagal.R;
 
@@ -36,34 +37,52 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
         StickyHeaderAdapter<MemoAdapter.HeaderHolder> {
 
     public static ArrayList<MemoProductInfo> addedProduct = new ArrayList<>();
-    public static int totalItemAdded,biscuitCount,candyCount,biscuitType;
-    public static double totalCost;
+    public static int totalItemAdded,totalBiscuitAdded,totalCandyAdded,biscuitCount,candyCount,biscuitType;
+    public static double totalCost,totalBiscuitCost,totalCandyCost;
     public static ArrayList<MemoProductInfo> memoProductInfos = new ArrayList<>();
     static Context context;
     private ServerCommunicator serverCommunicator;
-    private static ArrayList<ProductCommonInfo> commonInfos = new ArrayList<>();
+    private ArrayList<ProductCommonInfo> commonInfos = new ArrayList<>();
     private static TextView tvTotalCost, tvItemAdded;
     private static ProductInfoProvider biscuitProvider,candyProvider;
     private LayoutInflater mInflater;
+    private MemoBasicInfoProvider memoBasicInfoProvider;
 
-    public MemoAdapter(Context context, TextView tvTotalCost, TextView tvItemAdded) {
+    public MemoAdapter(Context context, TextView tvTotalCost, TextView tvItemAdded,MemoBasicInfoProvider memoBasicInfoProvider) {
+
+        this.memoBasicInfoProvider = memoBasicInfoProvider;
+
+        memoProductInfos = this.memoBasicInfoProvider.getMemoProductInfos();
+        addedProduct = this.memoBasicInfoProvider.getAddedProduct();
+        totalCost = this.memoBasicInfoProvider.getTotalCost();
+        totalItemAdded = this.memoBasicInfoProvider.getTotalItemAdded();
 
         biscuitProvider = BiscuitInfoProvider.getProvider(context);
+        totalBiscuitAdded=biscuitProvider.getTotalItemAdded();
+        totalBiscuitCost=biscuitProvider.getTotalCost();
+
         candyProvider = CandyInfoProvider.getProvider(context);
+        totalCandyAdded = candyProvider.getTotalItemAdded();
+        totalCandyCost = candyProvider.getTotalCost();
 
-        memoProductInfos = biscuitProvider.getProductMemoInfo();
-        biscuitCount=memoProductInfos.size();
-        memoProductInfos.addAll(candyProvider.getProductMemoInfo());
-
-        commonInfos = biscuitProvider.getCommonInfo();
+        commonInfos.addAll(biscuitProvider.getCommonInfo());
         biscuitType = commonInfos.size();
         commonInfos.addAll(candyProvider.getCommonInfo());
 
-        addedProduct = biscuitProvider.getAddedProduct();
-        addedProduct.addAll(candyProvider.getAddedProduct());
+        Log.i("Memo", "Size: " + biscuitProvider.getProductMemoInfo().size());
 
-        totalCost = biscuitProvider.getTotalCost()+candyProvider.getTotalCost();
-        totalItemAdded = biscuitProvider.getTotalItemAdded()+candyProvider.getTotalItemAdded();
+        if (memoProductInfos.size()==0)
+        {
+            memoProductInfos.addAll(biscuitProvider.getProductMemoInfo());
+            biscuitCount = memoProductInfos.size();
+            memoProductInfos.addAll(candyProvider.getProductMemoInfo());
+
+            addedProduct.addAll(biscuitProvider.getAddedProduct());
+            addedProduct.addAll(candyProvider.getAddedProduct());
+        }
+
+        totalCost = totalBiscuitCost+totalCandyCost;
+        totalItemAdded = totalBiscuitAdded+totalCandyAdded;
 
         this.context = context;
         mInflater = LayoutInflater.from(context);
@@ -93,11 +112,13 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
     }
 
     public static void updateTotalCost() {
+        totalCost=totalBiscuitCost+totalCandyCost;
         totalCost = getTwoDecimal(totalCost);
         tvTotalCost.setText("Total Order: " + totalCost + " tk");
     }
 
     public static void updateItemOrdered() {
+        totalItemAdded=totalBiscuitAdded+totalCandyAdded;
         tvItemAdded.setText("Total Item Ordered " + totalItemAdded);
     }
 
@@ -153,6 +174,9 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
         long header= (long) memoProductInfos.get(position).getHeader();
         if(position>=biscuitCount)
             header+=biscuitType;
+
+        Log.i("Memo", "getHeaderid: "+header);
+
         return header;
     }
 
@@ -165,7 +189,7 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
 
     @Override
     public void onBindHeaderViewHolder(HeaderHolder viewholder, int position) {
-        String header = getHeaderName(getHeaderId(position),position);
+        String header = getHeaderName(getHeaderId(position), position);
         Log.i("recycle","Position: "+position+" Header: "+header);
         viewholder.header.setText(header);
     }
@@ -174,7 +198,14 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
         /*int pos= (int) headerId-1;
         if(position>=biscuitCount)
             pos+=biscuitCount;*/
+        Log.i("Memo", "Header: " + (headerId - 1));
         return commonInfos.get((int)headerId-1).getHeader();
+    }
+
+    public void clearAddedList() {
+        addedProduct = new ArrayList<>();
+        biscuitProvider.setAddedProduct(addedProduct);
+        candyProvider.setAddedProduct(addedProduct);
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, TextWatcher {
@@ -235,7 +266,12 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
             boolean flag = memoProductInfos.get(i).isAdded();
             //IF The product has already been added.Subtract it's price from the total price
             if (flag)
-                totalCost = totalCost - memoProductInfos.get(i).getCost();
+            {
+                if(i>biscuitCount)
+                    totalBiscuitCost = totalBiscuitCost - memoProductInfos.get(i).getCost();
+                else
+                    totalCandyCost = totalCandyCost - memoProductInfos.get(i).getCost();
+            }
 
             if (temp_Carton == null || temp_Carton.equalsIgnoreCase("")) {
                 if (memoProductInfos.get(i).getCarton() == 0)
@@ -258,7 +294,10 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
 
             //IF The product has already been added.Add it's price with the total price
             if (flag) {
-                totalCost = totalCost + memoProductInfos.get(i).getCost();
+                if(i>biscuitCount)
+                    totalBiscuitCost = totalBiscuitCost + memoProductInfos.get(i).getCost();
+                else
+                    totalCandyCost = totalCandyCost + memoProductInfos.get(i).getCost();
                 updateTotalCost();
             }
             MemoAdapter.setCosttv(tvPrice, i);
@@ -268,11 +307,19 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
             int i = getPosition();
             //showToast(context, "" + addedProduct.indexOf(memoProductInfos.get(i)));
             if (addedProduct.indexOf(memoProductInfos.get(i)) == -1) {
-                totalCost = totalCost + memoProductInfos.get(i).getCost();
+                if(i>biscuitCount)
+                {
+                    totalBiscuitCost = totalBiscuitCost + memoProductInfos.get(i).getCost();
+                    totalBiscuitAdded++;
+                }
+                else
+                {
+                    totalCandyCost = totalCandyCost + memoProductInfos.get(i).getCost();
+                    totalCandyAdded++;
+                }
                 updateTotalCost();
                 memoProductInfos.get(i).setIsAdded(true);
                 addedProduct.add(memoProductInfos.get(i));
-                totalItemAdded++;
                 updateItemOrdered();
                 btnToggle(!memoProductInfos.get(i).isAdded(), btAddItem, btRemoveItem);
             }
@@ -282,16 +329,23 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
             int i = getPosition();
             //showToast(context, "" + addedProduct.indexOf(memoProductInfos.get(i)));
             if (addedProduct.indexOf(memoProductInfos.get(i)) != -1) {
-                totalCost = totalCost - memoProductInfos.get(i).getCost();
+                if(i>biscuitCount)
+                {
+                    totalBiscuitCost = totalBiscuitCost - memoProductInfos.get(i).getCost();
+                    totalBiscuitAdded--;
+                }
+                else
+                {
+                    totalCandyCost = totalCandyCost - memoProductInfos.get(i).getCost();
+                    totalCandyAdded--;
+                }
                 updateTotalCost();
                 memoProductInfos.get(i).setIsAdded(false);
                 addedProduct.remove(memoProductInfos.get(i));
-                totalItemAdded--;
                 updateItemOrdered();
                 btnToggle(!memoProductInfos.get(i).isAdded(), btAddItem, btRemoveItem);
             }
         }
-
 
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {

@@ -197,7 +197,7 @@ public class MemoGenActivity extends ActionBarActivity implements View.OnClickLi
 
 
     protected void setAdapterAndDecor(RecyclerView list) {
-        adapter = new MemoAdapter(this, tvTotalCost, tvItemAdded);
+        adapter = new MemoAdapter(this, tvTotalCost, tvItemAdded,memoBasicInfoProvider);
         decor = new StickyHeaderDecoration(adapter);
 
         list.setAdapter(adapter);
@@ -293,11 +293,15 @@ public class MemoGenActivity extends ActionBarActivity implements View.OnClickLi
     public void refresh() {
         synchronized (adapter)
         {
+            showToast(this,"Data has been sent successfully");
             adapter.notifyDataSetChanged();
-            adapter.totalCost=0.0;
-            adapter.totalItemAdded=0;
+            adapter.totalBiscuitCost=0.0;
+            adapter.totalCandyCost=0.0;
+            adapter.totalBiscuitAdded=0;
+            adapter.totalCandyAdded=0;
             adapter.updateItemOrdered();
             adapter.updateTotalCost();
+            adapter.clearAddedList();
         }
     }
 }

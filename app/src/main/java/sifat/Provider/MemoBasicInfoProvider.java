@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 
 import sifat.Database.DbOperator;
+import sifat.Domain.MemoProductInfo;
 
 import static sifat.Utilities.CommonUtilities.COL_AREA_CODE;
 import static sifat.Utilities.CommonUtilities.COL_AREA_NAME;
@@ -29,6 +30,10 @@ public class MemoBasicInfoProvider {
     private DbOperator dbOperator;
     private Context context;
     private SQLiteDatabase sqlDatabase;
+    private static ArrayList<MemoProductInfo> addedProduct = new ArrayList<>();
+    private static ArrayList<MemoProductInfo> memoProductInfos = new ArrayList<>();
+    private static int totalItemAdded;
+    private static double totalCost;
 
     private MemoBasicInfoProvider(Context context) {
 
@@ -55,6 +60,7 @@ public class MemoBasicInfoProvider {
         }
         return memoBasicInfoProvider;
     }
+
 
     public void setMemoBasicInfo() {
         Cursor c;
@@ -93,7 +99,19 @@ public class MemoBasicInfoProvider {
         return distributorNames;
     }
 
+    public static ArrayList<MemoProductInfo> getMemoProductInfos() {
+        return memoProductInfos;
+    }
 
+    public static ArrayList<MemoProductInfo> getAddedProduct() {
+        return addedProduct;
+    }
 
+    public static int getTotalItemAdded() {
+        return totalItemAdded;
+    }
 
+    public static double getTotalCost() {
+        return totalCost;
+    }
 }

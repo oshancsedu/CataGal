@@ -30,10 +30,10 @@ public class BiscuitInfoProvider extends BaseProvider {
     private static List<Integer> product_images =  new ArrayList<>();
     private static ArrayList<ProductCommonInfo> commonInfos = new ArrayList<>();
     private static ArrayList<MemoProductInfo> memoProductInfos = new ArrayList<>();
-    private static ArrayList<MemoProductInfo> addedProduct = new ArrayList<>();
+    private static ArrayList<MemoProductInfo> addedBiscuit = new ArrayList<>();
     private static ArrayList<IntegratedProductInfo> integratedProductInfos = new ArrayList<>();
-    private static int totalItemAdded;
-    private static double totalCost;
+    private static int totalBiscuitAdded;
+    private static double totalBiscuitCost;
     private static DbOperator dbOperator;
     private static SQLiteDatabase sqlDatabase;
     private static Context context;
@@ -298,28 +298,28 @@ public class BiscuitInfoProvider extends BaseProvider {
     }
 
     public int getTotalItemAdded() {
-        return totalItemAdded;
+        return totalBiscuitAdded;
     }
 
     public void setTotalItemAdded(int totalItemAdded) {
-        this.totalItemAdded = totalItemAdded;
+        this.totalBiscuitAdded = totalItemAdded;
     }
 
     @Override
     public double getTotalCost() {
-        return totalCost;
+        return totalBiscuitCost;
     }
 
     public void setTotalCost(double totalCost) {
-        this.totalCost = totalCost;
+        this.totalBiscuitCost = totalCost;
     }
 
     public ArrayList<MemoProductInfo> getAddedProduct() {
-        return addedProduct;
+        return addedBiscuit;
     }
 
     public void setAddedProduct(ArrayList<MemoProductInfo> addedProduct) {
-        this.addedProduct = addedProduct;
+        this.addedBiscuit = addedProduct;
     }
 
     public ArrayList<ProductCommonInfo> getCommonInfo() {

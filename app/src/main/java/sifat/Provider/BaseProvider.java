@@ -30,6 +30,8 @@ import static sifat.Utilities.CommonUtilities.COL_VALIDITY;
  */
 public abstract class BaseProvider implements ProductInfoProvider {
 
+
+
     public static ArrayList<ProductCommonInfo> setCommonInfo(Cursor c) {
 
         ArrayList<ProductCommonInfo> commonInfos = new ArrayList<>();

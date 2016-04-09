@@ -20,6 +20,7 @@ import sifat.Domain.IntegratedProductInfo;
 import sifat.Domain.MemoBasicInfo;
 import sifat.Domain.MemoProductInfo;
 import sifat.Domain.ProductCommonInfo;
+import sifat.Provider.MemoBasicInfoProvider;
 import sifat.Provider.ProductInfoProvider;
 import sifat.Utilities.LoopjHttpClient;
 import sifat.catagal.MemoGenActivity;
@@ -136,10 +137,7 @@ public class ServerCommunicator {
 
     public void sendMemoInfo(String areaName, String areaCode, String distributorName, String supplyDate) {
 
-        cleanUpMemoList();
-        refreshList.refresh();
-
-        /*addedProduct = MemoAdapter.addedProduct;
+        addedProduct = MemoAdapter.addedProduct;
         sharedPreferences = getPref(context);
         String productName = "", productSize = "", productCost = "", carton = "", packet = "", comment = "", userID, productUnit = "";
         userID = sharedPreferences.getString(SHAREDPREF_TAG_USERID, "");
@@ -155,7 +153,19 @@ public class ServerCommunicator {
             comment = comment + addedProduct.get(i).getComment() + " $";
             productUnit = productUnit + addedProduct.get(i).getSellingUnit() + " $";
         }
+        addedProduct.clear();
 
+        Log.i("Send",productName);
+        Log.i("Send",productSize);
+        Log.i("Send",productCost);
+        Log.i("Send",carton);
+        Log.i("Send",packet);
+        Log.i("Send",comment);
+        Log.i("Send",productUnit);
+
+
+        cleanUpMemoList();
+        refreshList.refresh();
 
         RequestParams requestParams = new RequestParams();
         requestParams.put(SERVER_REQUEST_AREA_CODE, areaCode);
@@ -170,7 +180,7 @@ public class ServerCommunicator {
         requestParams.put(SERVER_REQUEST_PRODUCT_CARTON, carton);
         requestParams.put(SERVER_REQUEST_PRODUCT_PACKET, packet);
         requestParams.put(SERVER_REQUEST_COMMENT, comment);
-        *//*String url=SERVER_REQUEST_AREA_CODE+"="+areaCode+"&"+
+        /*String url=SERVER_REQUEST_AREA_CODE+"="+areaCode+"&"+
                 SERVER_REQUEST_AREA_NAME+"="+areaName+"&"+
                 SERVER_REQUEST_DISTRIBUTOR_NAME+"="+distributorName+"&"+
                 SERVER_REQUEST_SUPPLY_DATE+"="+supplyDate+"&"+
@@ -183,7 +193,7 @@ public class ServerCommunicator {
                 SERVER_REQUEST_PRODUCT_PACKET+"="+packet+"&"+
                 SERVER_REQUEST_COMMENT+"="+comment;*//*
 
-        final String memoReceiveUrl = MEMO_RECEIVE_URL;
+        /*final String memoReceiveUrl = MEMO_RECEIVE_URL;
         //Log.i(LOG_TAG_WEB,memoReceiveUrl+"?"+url);
         LoopjHttpClient.get(memoReceiveUrl, requestParams, new AsyncHttpResponseHandler() {
             @Override
@@ -317,10 +327,8 @@ public class ServerCommunicator {
     }
 
     private void cleanUpMemoList() {
-        ProductInfoProvider provider = getMyProvider(context);
-        addedProduct = new ArrayList<>();
-        provider.setAddedProduct(addedProduct);
-        memoProductInfos = provider.getProductMemoInfo();
+        MemoBasicInfoProvider memoBasicInfoProvider = MemoBasicInfoProvider.getProvider(context);
+        memoProductInfos = memoBasicInfoProvider.getMemoProductInfos();
 
         int size = memoProductInfos.size();
         for (int i = 0; i < size; i++) {
