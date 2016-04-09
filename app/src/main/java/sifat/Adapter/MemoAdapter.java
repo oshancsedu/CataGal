@@ -18,8 +18,11 @@ import com.mikhaellopez.circularimageview.CircularImageView;
 import java.util.ArrayList;
 
 import ca.barrenechea.widget.recyclerview.decoration.StickyHeaderAdapter;
+import sifat.Controller.ServerCommunicator;
 import sifat.Domain.MemoProductInfo;
 import sifat.Domain.ProductCommonInfo;
+import sifat.Provider.BiscuitInfoProvider;
+import sifat.Provider.CandyInfoProvider;
 import sifat.Provider.ProductInfoProvider;
 import sifat.catagal.R;
 
@@ -33,28 +36,43 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
         StickyHeaderAdapter<MemoAdapter.HeaderHolder> {
 
     public static ArrayList<MemoProductInfo> addedProduct = new ArrayList<>();
-    public static int totalItemAdded;
+    public static int totalItemAdded,biscuitCount,candyCount,biscuitType;
     public static double totalCost;
     public static ArrayList<MemoProductInfo> memoProductInfos = new ArrayList<>();
     static Context context;
+    private ServerCommunicator serverCommunicator;
     private static ArrayList<ProductCommonInfo> commonInfos = new ArrayList<>();
     private static TextView tvTotalCost, tvItemAdded;
-    private static ProductInfoProvider provider;
+    private static ProductInfoProvider biscuitProvider,candyProvider;
     private LayoutInflater mInflater;
 
     public MemoAdapter(Context context, TextView tvTotalCost, TextView tvItemAdded) {
-        provider = getMyProvider(context);
-        memoProductInfos = provider.getProductMemoInfo();
-        commonInfos = provider.getCommonInfo();
-        addedProduct = provider.getAddedProduct();
-        totalCost = provider.getTotalCost();
-        totalItemAdded = provider.getTotalItemAdded();
+
+        biscuitProvider = BiscuitInfoProvider.getProvider(context);
+        candyProvider = CandyInfoProvider.getProvider(context);
+
+        memoProductInfos = biscuitProvider.getProductMemoInfo();
+        biscuitCount=memoProductInfos.size();
+        memoProductInfos.addAll(candyProvider.getProductMemoInfo());
+
+        commonInfos = biscuitProvider.getCommonInfo();
+        biscuitType = commonInfos.size();
+        commonInfos.addAll(candyProvider.getCommonInfo());
+
+        addedProduct = biscuitProvider.getAddedProduct();
+        addedProduct.addAll(candyProvider.getAddedProduct());
+
+        totalCost = biscuitProvider.getTotalCost()+candyProvider.getTotalCost();
+        totalItemAdded = biscuitProvider.getTotalItemAdded()+candyProvider.getTotalItemAdded();
+
         this.context = context;
         mInflater = LayoutInflater.from(context);
         this.tvItemAdded = tvItemAdded;
         this.tvTotalCost = tvTotalCost;
         updateItemOrdered();
         updateTotalCost();
+
+        serverCommunicator = new ServerCommunicator();
     }
 
     public static void setCosttv(TextView tvPrice, int i) {
@@ -74,12 +92,12 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
         }
     }
 
-    private static void updateTotalCost() {
+    public static void updateTotalCost() {
         totalCost = getTwoDecimal(totalCost);
         tvTotalCost.setText("Total Order: " + totalCost + " tk");
     }
 
-    private static void updateItemOrdered() {
+    public static void updateItemOrdered() {
         tvItemAdded.setText("Total Item Ordered " + totalItemAdded);
     }
 
@@ -92,6 +110,7 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
         Log.i("recycler", "onBindViewHolder");
+
         btnToggle(!memoProductInfos.get(i).isAdded(), viewHolder.btAddItem, viewHolder.btRemoveItem);
         viewHolder.tvPackSize.setText(memoProductInfos.get(i).getProductSize());
         viewHolder.tvContainer.setText("Unit: " + memoProductInfos.get(i).getSellingUnit());
@@ -99,6 +118,7 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
         setCosttv(viewHolder.tvPrice, i);
         viewHolder.etCarton.setLabel(memoProductInfos.get(i).getSellingUnit());
         viewHolder.etCarton.getEditText().setHint(memoProductInfos.get(i).getSellingUnit());
+
         if (memoProductInfos.get(i).getCostPerPack() == memoProductInfos.get(i).getCostPerUnit()) {
             viewHolder.etPacket.setVisibility(View.GONE);
         } else
@@ -121,14 +141,19 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
 
     @Override
     public int getItemCount() {
-        return memoProductInfos.size();
+
+        candyCount = memoProductInfos.size()-biscuitCount;
+        return candyCount+biscuitCount;
     }
 
     @Override
     public long getHeaderId(int position) {
 
-        Log.i("recycler", "getHeaderid");
-        return (long) memoProductInfos.get(position).getHeader();
+        //Log.i("recycler", "getHeaderid");
+        long header= (long) memoProductInfos.get(position).getHeader();
+        if(position>=biscuitCount)
+            header+=biscuitType;
+        return header;
     }
 
     @Override
@@ -140,12 +165,16 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
 
     @Override
     public void onBindHeaderViewHolder(HeaderHolder viewholder, int position) {
-        String header = getHeaderName(getHeaderId(position));
+        String header = getHeaderName(getHeaderId(position),position);
+        Log.i("recycle","Position: "+position+" Header: "+header);
         viewholder.header.setText(header);
     }
 
-    private String getHeaderName(long headerId) {
-        return commonInfos.get((int) headerId-1).getHeader();
+    private String getHeaderName(long headerId,int position) {
+        /*int pos= (int) headerId-1;
+        if(position>=biscuitCount)
+            pos+=biscuitCount;*/
+        return commonInfos.get((int)headerId-1).getHeader();
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, TextWatcher {

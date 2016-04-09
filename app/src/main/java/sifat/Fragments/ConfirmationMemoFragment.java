@@ -91,6 +91,7 @@ public class ConfirmationMemoFragment extends DialogFragment implements View.OnC
         } else if (v.getId() == R.id.btConfirm) {
             dismiss();
             serverCommunicator = new ServerCommunicator(getActivity());
+            serverCommunicator.setRefresh((ServerCommunicator.RefreshList) getActivity());
             serverCommunicator.sendMemoInfo(areaName, areaCode, distributorName, supplyDate);
         }
     }

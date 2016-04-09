@@ -8,6 +8,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -47,13 +48,16 @@ import static sifat.Utilities.CommonUtilities.showToast;
 /**
  * Created by sifat on 11/16/2015.
  */
-public class MemoGenActivity extends ActionBarActivity implements View.OnClickListener, DatePickerDialog.OnDateSetListener,LogoutDialogFragment.Communicator {
+public class MemoGenActivity extends ActionBarActivity implements View.OnClickListener,
+        DatePickerDialog.OnDateSetListener,
+        LogoutDialogFragment.Communicator,
+        ServerCommunicator.RefreshList{
 
     public static final String DATEPICKER_TAG = "datepicker";
     private static ArrayList<String> areaCodes = new ArrayList<>();
     private static ArrayList<String> areaNames = new ArrayList<>();
     private static ArrayList<String> distributorNames = new ArrayList<>();
-    DragTopLayout dragTopLayout;
+    private DragTopLayout dragTopLayout;
     private RecyclerView recyclerView;
     private StickyHeaderDecoration decor;
     private Toolbar toolbar;
@@ -67,6 +71,7 @@ public class MemoGenActivity extends ActionBarActivity implements View.OnClickLi
     private ProductInfoProvider provider;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
+    private MemoAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -192,7 +197,7 @@ public class MemoGenActivity extends ActionBarActivity implements View.OnClickLi
 
 
     protected void setAdapterAndDecor(RecyclerView list) {
-        final MemoAdapter adapter = new MemoAdapter(this, tvTotalCost, tvItemAdded);
+        adapter = new MemoAdapter(this, tvTotalCost, tvItemAdded);
         decor = new StickyHeaderDecoration(adapter);
 
         list.setAdapter(adapter);
@@ -213,6 +218,7 @@ public class MemoGenActivity extends ActionBarActivity implements View.OnClickLi
     @Override
     protected void onPause() {
         super.onPause();
+
         EventBus.getDefault().unregister(this);
         provider.setAddedProduct(MemoAdapter.addedProduct);
         provider.setTotalCost(MemoAdapter.totalCost);
@@ -280,6 +286,18 @@ public class MemoGenActivity extends ActionBarActivity implements View.OnClickLi
             editor.commit();
             changeActivity(this, LoginActivity.class);
             finish();
+        }
+    }
+
+    @Override
+    public void refresh() {
+        synchronized (adapter)
+        {
+            adapter.notifyDataSetChanged();
+            adapter.totalCost=0.0;
+            adapter.totalItemAdded=0;
+            adapter.updateItemOrdered();
+            adapter.updateTotalCost();
         }
     }
 }

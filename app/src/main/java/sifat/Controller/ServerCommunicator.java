@@ -79,6 +79,7 @@ public class ServerCommunicator {
     public ArrayList<MemoProductInfo> memoProductInfos = new ArrayList<>();
     public ArrayList<ProductCommonInfo> productCommonInfos = new ArrayList<>();
     public ArrayList<MemoBasicInfo> memoBasicInfos = new ArrayList<>();
+    private static RefreshList refreshList;
     Context context;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
@@ -89,6 +90,8 @@ public class ServerCommunicator {
     public ServerCommunicator(Context context) {
         this.context = context;
     }
+
+    public ServerCommunicator(){}
 
     public void getMemoBasicInfo() {
         final String updateMemoInfo = MEMO_BASIC_INFO_URL;
@@ -132,7 +135,11 @@ public class ServerCommunicator {
     }
 
     public void sendMemoInfo(String areaName, String areaCode, String distributorName, String supplyDate) {
-        addedProduct = MemoAdapter.addedProduct;
+
+        cleanUpMemoList();
+        refreshList.refresh();
+
+        /*addedProduct = MemoAdapter.addedProduct;
         sharedPreferences = getPref(context);
         String productName = "", productSize = "", productCost = "", carton = "", packet = "", comment = "", userID, productUnit = "";
         userID = sharedPreferences.getString(SHAREDPREF_TAG_USERID, "");
@@ -163,7 +170,7 @@ public class ServerCommunicator {
         requestParams.put(SERVER_REQUEST_PRODUCT_CARTON, carton);
         requestParams.put(SERVER_REQUEST_PRODUCT_PACKET, packet);
         requestParams.put(SERVER_REQUEST_COMMENT, comment);
-        /*String url=SERVER_REQUEST_AREA_CODE+"="+areaCode+"&"+
+        *//*String url=SERVER_REQUEST_AREA_CODE+"="+areaCode+"&"+
                 SERVER_REQUEST_AREA_NAME+"="+areaName+"&"+
                 SERVER_REQUEST_DISTRIBUTOR_NAME+"="+distributorName+"&"+
                 SERVER_REQUEST_SUPPLY_DATE+"="+supplyDate+"&"+
@@ -174,7 +181,7 @@ public class ServerCommunicator {
                 SERVER_REQUEST_PRODUCT_UNIT+"="+productUnit+"&"+
                 SERVER_REQUEST_PRODUCT_CARTON+"="+carton+"&"+
                 SERVER_REQUEST_PRODUCT_PACKET+"="+packet+"&"+
-                SERVER_REQUEST_COMMENT+"="+comment;*/
+                SERVER_REQUEST_COMMENT+"="+comment;*//*
 
         final String memoReceiveUrl = MEMO_RECEIVE_URL;
         //Log.i(LOG_TAG_WEB,memoReceiveUrl+"?"+url);
@@ -189,7 +196,7 @@ public class ServerCommunicator {
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
                 showToast(context, "Please check your internet connection!");
             }
-        });
+        });*/
     }
 
     public void login(final String userId, String password) {
@@ -325,6 +332,16 @@ public class ServerCommunicator {
                 memoProductInfos.get(i).setIsAdded(false);
             }
         }
+        refreshList.refresh();
+    }
+
+    public interface RefreshList{
+        public void refresh();
+    };
+
+    public void setRefresh(RefreshList refreshList)
+    {
+        this.refreshList = refreshList;
     }
 
 }
