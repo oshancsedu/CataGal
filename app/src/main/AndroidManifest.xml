@@ -17,7 +17,6 @@
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -34,11 +33,6 @@
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".LoginActivity"
-            android:label="Login"
-            android:screenOrientation="portrait"></activity>
-
-        <activity
-            android:name=".TestAct"
             android:label="Login"
             android:screenOrientation="portrait"></activity>
 

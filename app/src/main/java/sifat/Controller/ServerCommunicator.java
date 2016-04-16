@@ -194,7 +194,7 @@ public class ServerCommunicator {
                 SERVER_REQUEST_PRODUCT_PACKET+"="+packet+"&"+
                 SERVER_REQUEST_COMMENT+"="+comment;*/
 
-        final String memoReceiveUrl = MEMO_RECEIVE_URL+"1234";
+        final String memoReceiveUrl = MEMO_RECEIVE_URL;
         //Log.i(LOG_TAG_WEB,memoReceiveUrl+"?"+url);
         LoopjHttpClient.get(memoReceiveUrl, requestParams, new AsyncHttpResponseHandler() {
             @Override
