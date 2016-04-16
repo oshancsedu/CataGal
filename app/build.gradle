@@ -36,7 +36,7 @@ dependencies {
     compile 'com.github.chenupt.android:springindicator:1.0.2@aar'
     compile 'com.google.guava:guava:18.0'
     compile 'com.github.emanzanoaxa:RippleEffect:52ea2a0ab6'
-    compile 'ca.barrenechea.header-decor:header-decor:0.2.2'
+    compile 'ca.barrenechea.header-decor:header-decor:0.2.6'
     compile 'com.mikhaellopez:circularimageview:2.0.2'
     compile 'com.github.lukedeighton:wheelview:0.3.1'
     compile 'com.github.chenupt.android:dragtoplayout:1.2.1@aar'

@@ -36,6 +36,12 @@
             android:name=".LoginActivity"
             android:label="Login"
             android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".TestAct"
+            android:label="Login"
+            android:screenOrientation="portrait"></activity>
+
     </application>
 
 </manifest>
