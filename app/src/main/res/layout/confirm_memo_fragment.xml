@@ -17,6 +17,33 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/white" />
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/app_theme_color"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/tvBiscuitCost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total Biscuit"
+            android:layout_gravity="left"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/white"/>
+
+
+        <TextView
+            android:id="@+id/tvCandyCost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total Candy"
+            android:layout_gravity="right"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/white"/>
+
+    </FrameLayout>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvSelectedProductList"
         android:layout_width="match_parent"
@@ -37,12 +64,13 @@
         <info.hoang8f.widget.FButton
             android:id="@+id/btEdit"
             android:layout_width="0dp"
-            android:layout_height="65dp"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_marginTop="4dp"
             android:layout_weight="1"
             android:padding="5dp"
             android:text="Edit"
+            android:layout_marginRight="5dp"
             android:textColor="@android:color/white"
             fbutton:buttonColor="@color/red_400"
             fbutton:shadowEnabled="true" />
@@ -50,11 +78,12 @@
         <info.hoang8f.widget.FButton
             android:id="@+id/btConfirm"
             android:layout_width="0dp"
-            android:layout_height="65dp"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_marginTop="4dp"
+            android:layout_marginLeft="5dp"
             android:layout_weight="1"
-            android:padding="5dp"
+            android:padding="15dp"
             android:text="Confirm"
             android:textColor="@android:color/white"
             fbutton:buttonColor="@color/cyan_700"

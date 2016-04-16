@@ -153,7 +153,9 @@ public class ServerCommunicator {
             comment = comment + addedProduct.get(i).getComment() + " $";
             productUnit = productUnit + addedProduct.get(i).getSellingUnit() + " $";
         }
-        addedProduct.clear();
+
+/*
+
 
         Log.i("Send",productName);
         Log.i("Send",productSize);
@@ -163,9 +165,7 @@ public class ServerCommunicator {
         Log.i("Send",comment);
         Log.i("Send",productUnit);
 
-
-        cleanUpMemoList();
-        refreshList.refresh();
+*/
 
         RequestParams requestParams = new RequestParams();
         requestParams.put(SERVER_REQUEST_AREA_CODE, areaCode);
@@ -180,6 +180,7 @@ public class ServerCommunicator {
         requestParams.put(SERVER_REQUEST_PRODUCT_CARTON, carton);
         requestParams.put(SERVER_REQUEST_PRODUCT_PACKET, packet);
         requestParams.put(SERVER_REQUEST_COMMENT, comment);
+
         /*String url=SERVER_REQUEST_AREA_CODE+"="+areaCode+"&"+
                 SERVER_REQUEST_AREA_NAME+"="+areaName+"&"+
                 SERVER_REQUEST_DISTRIBUTOR_NAME+"="+distributorName+"&"+
@@ -191,14 +192,17 @@ public class ServerCommunicator {
                 SERVER_REQUEST_PRODUCT_UNIT+"="+productUnit+"&"+
                 SERVER_REQUEST_PRODUCT_CARTON+"="+carton+"&"+
                 SERVER_REQUEST_PRODUCT_PACKET+"="+packet+"&"+
-                SERVER_REQUEST_COMMENT+"="+comment;*//*
+                SERVER_REQUEST_COMMENT+"="+comment;*/
 
-        /*final String memoReceiveUrl = MEMO_RECEIVE_URL;
+        final String memoReceiveUrl = MEMO_RECEIVE_URL+"1234";
         //Log.i(LOG_TAG_WEB,memoReceiveUrl+"?"+url);
         LoopjHttpClient.get(memoReceiveUrl, requestParams, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+
+                addedProduct.clear();
                 cleanUpMemoList();
+                refreshList.refresh();
                 showToast(context, new String(responseBody));
             }
 
@@ -206,7 +210,7 @@ public class ServerCommunicator {
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
                 showToast(context, "Please check your internet connection!");
             }
-        });*/
+        });
     }
 
     public void login(final String userId, String password) {

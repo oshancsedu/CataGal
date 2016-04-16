@@ -11,9 +11,12 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import sifat.Adapter.MemoConfirmAdapter;
 import sifat.Controller.ServerCommunicator;
+import sifat.Provider.BiscuitInfoProvider;
+import sifat.Provider.CandyInfoProvider;
 import sifat.catagal.R;
 
 import static sifat.Utilities.CommonUtilities.DIALOG_HEADER_AREA_CODE;
@@ -28,11 +31,14 @@ public class ConfirmationMemoFragment extends DialogFragment implements View.OnC
 
     private View view;
     private RecyclerView recyclerView;
-    private TextView tvDialogHeader;
+    private TextView tvDialogHeader,tvBiscuitCost,tvCandyCost;
     private Button btEdit, btConfirm;
     private String header, supplyDate, areaName, areaCode, distributorName;
     private MemoConfirmAdapter adapter;
     private ServerCommunicator serverCommunicator;
+    private BiscuitInfoProvider biscuitInfoProvider;
+    private CandyInfoProvider candyInfoProvider;
+    private double biscuitCost,candyCost;
 
     public static ConfirmationMemoFragment newInstance(String supplyDate, String areaName, String areaCode, String distributorName) {
         ConfirmationMemoFragment memoFragment = new ConfirmationMemoFragment();
@@ -48,11 +54,24 @@ public class ConfirmationMemoFragment extends DialogFragment implements View.OnC
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        setStyle(DialogFragment.STYLE_NORMAL, android.R.style.Theme_Black_NoTitleBar_Fullscreen);
+
+        biscuitInfoProvider = BiscuitInfoProvider.getProvider(getActivity());
+        candyInfoProvider = CandyInfoProvider.getProvider(getActivity());
+
+        biscuitCost = biscuitInfoProvider.getTotalCost();
+        candyCost = candyInfoProvider.getTotalCost();
+
         supplyDate = getArguments().getString(DIALOG_HEADER_SUPPLY_DATE);
         areaName = getArguments().getString(DIALOG_HEADER_AREA_NAME);
         areaCode = getArguments().getString(DIALOG_HEADER_AREA_CODE);
         distributorName = getArguments().getString(DIALOG_HEADER_DISTRIBUTOR_NAME);
-        header = "Area Name: " + areaName + "\nArea Code: " + areaCode + "\nDistributor: " + distributorName + "\nSupply Date: " + supplyDate;
+        header = "Area Name: " + areaName +
+                "\nArea Code: " + areaCode +
+                "\nDistributor: " + distributorName +
+                "\nSupply Date: " + supplyDate +
+                "\nTotal Cost: "+(biscuitCost+candyCost);
         //showToast(getActivity(), header);
     }
 
@@ -62,6 +81,13 @@ public class ConfirmationMemoFragment extends DialogFragment implements View.OnC
         view = inflater.inflate(R.layout.confirm_memo_fragment, container, false);
         tvDialogHeader = (TextView) view.findViewById(R.id.tvDialogHeader);
         tvDialogHeader.setText(header);
+
+        tvBiscuitCost = (TextView) view.findViewById(R.id.tvBiscuitCost);
+        tvBiscuitCost.setText("Biscuit: "+biscuitCost+" tk");
+
+        tvCandyCost = (TextView) view.findViewById(R.id.tvCandyCost);
+        tvCandyCost.setText("Candy: "+candyCost+" tk");
+
         btEdit = (Button) view.findViewById(R.id.btEdit);
         btEdit.setOnClickListener(this);
         btConfirm = (Button) view.findViewById(R.id.btConfirm);

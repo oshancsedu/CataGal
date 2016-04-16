@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.iangclifton.android.floatlabel.FloatLabel;
 import com.mikhaellopez.circularimageview.CircularImageView;
@@ -267,7 +268,7 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
             //IF The product has already been added.Subtract it's price from the total price
             if (flag)
             {
-                if(i>biscuitCount)
+                if(i<=biscuitCount)
                     totalBiscuitCost = totalBiscuitCost - memoProductInfos.get(i).getCost();
                 else
                     totalCandyCost = totalCandyCost - memoProductInfos.get(i).getCost();
@@ -294,7 +295,7 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
 
             //IF The product has already been added.Add it's price with the total price
             if (flag) {
-                if(i>biscuitCount)
+                if(i<=biscuitCount)
                     totalBiscuitCost = totalBiscuitCost + memoProductInfos.get(i).getCost();
                 else
                     totalCandyCost = totalCandyCost + memoProductInfos.get(i).getCost();
@@ -306,8 +307,9 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
         public void addToBucket() {
             int i = getPosition();
             //showToast(context, "" + addedProduct.indexOf(memoProductInfos.get(i)));
+
             if (addedProduct.indexOf(memoProductInfos.get(i)) == -1) {
-                if(i>biscuitCount)
+                if(i<=biscuitCount)
                 {
                     totalBiscuitCost = totalBiscuitCost + memoProductInfos.get(i).getCost();
                     totalBiscuitAdded++;
@@ -329,7 +331,7 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
             int i = getPosition();
             //showToast(context, "" + addedProduct.indexOf(memoProductInfos.get(i)));
             if (addedProduct.indexOf(memoProductInfos.get(i)) != -1) {
-                if(i>biscuitCount)
+                if(i<=biscuitCount)
                 {
                     totalBiscuitCost = totalBiscuitCost - memoProductInfos.get(i).getCost();
                     totalBiscuitAdded--;
@@ -371,5 +373,25 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
             super(itemView);
             header = (TextView) itemView.findViewById(R.id.tvListHeader);
         }
+    }
+
+    public static void setTotalBiscuitCost() {
+        biscuitProvider.setTotalCost(totalBiscuitCost);
+        //return totalBiscuitCost;
+    }
+
+    public static void setTotalBiscuitAdded() {
+        biscuitProvider.setTotalItemAdded(totalBiscuitAdded);
+        //return totalBiscuitAdded;
+    }
+
+    public static void setTotalCandyCost() {
+        candyProvider.setTotalCost(totalCandyCost);
+        //return totalCandyCost;
+    }
+
+    public static void setTotalCandyAdded() {
+        candyProvider.setTotalItemAdded(totalCandyAdded);
+        //return totalCandyAdded;
     }
 }

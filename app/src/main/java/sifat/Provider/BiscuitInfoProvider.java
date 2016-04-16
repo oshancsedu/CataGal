@@ -32,8 +32,8 @@ public class BiscuitInfoProvider extends BaseProvider {
     private static ArrayList<MemoProductInfo> memoProductInfos = new ArrayList<>();
     private static ArrayList<MemoProductInfo> addedBiscuit = new ArrayList<>();
     private static ArrayList<IntegratedProductInfo> integratedProductInfos = new ArrayList<>();
-    private static int totalBiscuitAdded;
-    private static double totalBiscuitCost;
+    public static int totalBiscuitAdded;
+    public static double totalBiscuitCost;
     private static DbOperator dbOperator;
     private static SQLiteDatabase sqlDatabase;
     private static Context context;

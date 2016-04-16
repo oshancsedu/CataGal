@@ -175,6 +175,11 @@ public class MemoGenActivity extends ActionBarActivity implements View.OnClickLi
             areaCode = spAreaCode.getSelectedItem().toString();
             distributorName = tvDistributorName.getText().toString();
 
+            adapter.setTotalBiscuitAdded();
+            adapter.setTotalBiscuitCost();
+            adapter.setTotalCandyAdded();
+            adapter.setTotalCandyCost();
+
             if (areaCode.equalsIgnoreCase(DEFULT_AREA_CODE))
                 showToast(this, "Enter Area Code");
             else if (supplyDate.equalsIgnoreCase(""))
@@ -265,8 +270,6 @@ public class MemoGenActivity extends ActionBarActivity implements View.OnClickLi
         }
 
         if (id == R.id.logout) {
-
-
             FragmentManager manager = getFragmentManager();
             LogoutDialogFragment logoutDialog = new LogoutDialogFragment();
             logoutDialog.setCancelable(false);
@@ -299,7 +302,13 @@ public class MemoGenActivity extends ActionBarActivity implements View.OnClickLi
             adapter.totalCandyCost=0.0;
             adapter.totalBiscuitAdded=0;
             adapter.totalCandyAdded=0;
+
+            adapter.setTotalCandyCost();
+            adapter.setTotalBiscuitCost();
+            adapter.setTotalCandyAdded();
+            adapter.setTotalBiscuitAdded();
             adapter.updateItemOrdered();
+
             adapter.updateTotalCost();
             adapter.clearAddedList();
         }
