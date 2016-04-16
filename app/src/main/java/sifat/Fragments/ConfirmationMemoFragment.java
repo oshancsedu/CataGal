@@ -71,7 +71,7 @@ public class ConfirmationMemoFragment extends DialogFragment implements View.OnC
                 "\nArea Code: " + areaCode +
                 "\nDistributor: " + distributorName +
                 "\nSupply Date: " + supplyDate +
-                "\nTotal Cost: "+(biscuitCost+candyCost);
+                "\nTotal Cost: "+(biscuitCost+candyCost)+" tk";
         //showToast(getActivity(), header);
     }
 
