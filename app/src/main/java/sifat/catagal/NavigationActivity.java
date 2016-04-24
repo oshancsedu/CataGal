@@ -4,9 +4,13 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 
+import com.crashlytics.android.Crashlytics;
 import com.lukedeighton.wheelview.WheelView;
 
+import io.fabric.sdk.android.Fabric;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -32,13 +36,15 @@ public class NavigationActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_navigation);
 
         final WheelView wheelView = (WheelView) findViewById(R.id.wheelview);
         navItems.add(R.drawable.biscuit);
         navItems.add(R.drawable.candy);
-        //navItems.add(R.drawable.snack);
         navItems.add(R.drawable.flour);
+
+        //Log.d("TAG", "onCreate: "+navItems.get(100));
 
         //create data for the adapter
         List<Map.Entry<String, Integer>> entries = new ArrayList<Map.Entry<String, Integer>>(ITEM_COUNT);
@@ -47,6 +53,7 @@ public class NavigationActivity extends Activity {
             //Log.i("Wheel",entry.toString());
             entries.add(entry);
         }
+
 
         //populate the adapter, that knows how to draw each item (as you would do with a ListAdapter)
         wheelView.setAdapter(new MaterialColorAdapter(entries, this, navItems));

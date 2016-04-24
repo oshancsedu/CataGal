@@ -7,8 +7,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 
+import com.crashlytics.android.Crashlytics;
 import com.iangclifton.android.floatlabel.FloatLabel;
 
+import io.fabric.sdk.android.Fabric;
 import sifat.Controller.ServerCommunicator;
 
 import static sifat.Utilities.CommonUtilities.SHAREDPREF_TAG_USERID;
@@ -27,6 +29,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_login);
         init();
     }

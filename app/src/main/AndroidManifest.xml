@@ -6,10 +6,10 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name="sifat.Application.FastOrderApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_cover"
         android:label="@string/app_name"
-        android:largeHeap="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
         <activity
@@ -34,8 +34,11 @@
         <activity
             android:name=".LoginActivity"
             android:label="Login"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait">
+        </activity>
 
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="f9ff9e88766f2ebeb252d819422ce87e110899d8" />
     </application>
-
 </manifest>
