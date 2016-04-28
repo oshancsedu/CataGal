@@ -25,6 +25,8 @@ import static sifat.Utilities.CommonUtilities.TABLE_PRODUCT_DETAIL_INFO;
  */
 public class BiscuitInfoProvider extends BaseProvider {
 
+    public static int totalBiscuitAdded;
+    public static double totalBiscuitCost;
     private volatile static BiscuitInfoProvider biscuitInfoProvider;
     private static ArrayList<ProductInfo> productInfos = new ArrayList<>();
     private static List<Integer> product_images =  new ArrayList<>();
@@ -32,8 +34,6 @@ public class BiscuitInfoProvider extends BaseProvider {
     private static ArrayList<MemoProductInfo> memoProductInfos = new ArrayList<>();
     private static ArrayList<MemoProductInfo> addedBiscuit = new ArrayList<>();
     private static ArrayList<IntegratedProductInfo> integratedProductInfos = new ArrayList<>();
-    public static int totalBiscuitAdded;
-    public static double totalBiscuitCost;
     private static DbOperator dbOperator;
     private static SQLiteDatabase sqlDatabase;
     private static Context context;
@@ -169,14 +169,13 @@ public class BiscuitInfoProvider extends BaseProvider {
                     6, "5 pack/carton", "Carton", 160, "10611,10612,10613");
             integratedProductInfos.add(integratedProductInfo);
 
-            integratedProductInfo = new IntegratedProductInfo(1062, "Bengal Orange Cake Biscuit ", "Regular Pack", "1 Carton", "24 packet", "Minimum 6 months", "Carton MRP", 288, "Packet MRP", 12,
+            integratedProductInfo = new IntegratedProductInfo(1062, "Bengal Orange Cake Biscuit", "Regular Pack", "1 Carton", "24 packet", "Minimum 6 months", "Carton MRP", 288, "Packet MRP", 12,
                     6, "24 pack/carton", "Carton", 208, "10621,10622,10613");
             integratedProductInfos.add(integratedProductInfo);
 
-            integratedProductInfo = new IntegratedProductInfo(1063, "Orange Cake Biscuit ", "Tin", "1 Carton", "4 Tin", "Minimum 9 months", "Carton MRP", 800, "Tin MRP", 200,
+            integratedProductInfo = new IntegratedProductInfo(1063, "Bengal Orange Cake Biscuit", "Tin", "1 Carton", "4 Tin", "Minimum 9 months", "Carton MRP", 800, "Tin MRP", 200,
                     6, "1 tin", "Tin", 165, "10631,10632,10613");
             integratedProductInfos.add(integratedProductInfo);
-
 
             /*******
              * Hit Cream Biscuit

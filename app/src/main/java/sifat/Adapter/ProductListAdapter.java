@@ -11,8 +11,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.andexert.library.RippleView;
+import com.bumptech.glide.Glide;
 import com.mikhaellopez.circularimageview.CircularImageView;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -26,6 +26,8 @@ import sifat.catagal.R;
 import static sifat.Provider.ProviderSelector.getMyProvider;
 import static sifat.Utilities.CommonUtilities.SINGLE_PRODUCT_COMMON_INFO;
 import static sifat.Utilities.CommonUtilities.SINGLE_PRODUCT_DETAIL;
+
+//import com.squareup.picasso.Picasso;
 
 /**
  * Created by sifat on 11/12/2015.
@@ -58,16 +60,8 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         Log.i("recycler", "onBindViewHolder");
         viewHolder.item.setText(productInfos.get(i).getSize());
 
-        /*InputStream ims = null;
-        try {
-            ims = context.getAssets().open(productInfos.get(i).getProduct_images().get(1) + ".jpg");
-            // load image as Drawable
-            Drawable d = Drawable.createFromStream(ims, null);
-            viewHolder.circularImageView.setImageDrawable(d);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
-        Picasso.with(context).load(getDrawable("p" + productInfos.get(i).getProduct_images().get(1))).into(viewHolder.circularImageView);
+        Glide.with(context).load(getDrawable("p" + productInfos.get(i).getProduct_images().get(1))).centerCrop().into(viewHolder.circularImageView);
+        //Picasso.with(context).load(getDrawable("p" + productInfos.get(i).getProduct_images().get(1))).into(viewHolder.circularImageView);
         //viewHolder.circularImageView.setImageDrawable(getDrawable("p" + productInfos.get(i).getProduct_images().get(1)));
     }
 

@@ -24,12 +24,11 @@ android {
         minSdkVersion 15
         targetSdkVersion 23
         versionCode 1
-        versionName "1.1"
+        versionName "1.1.1"
     }
     buildTypes {
         release {
             minifyEnabled false
-            multiDexEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -62,8 +61,7 @@ dependencies {
     compile 'com.github.johnkil.android-robototextview:robototextview:2.4.3'
     compile 'com.iangclifton.android:floatlabel:1.0.4'
     compile 'com.android.support:design:23.0.+'
-    compile 'com.squareup.picasso:picasso:2.5.2'
-    compile 'com.android.support:multidex:1.0.1'
+    compile 'com.github.bumptech.glide:glide:3.6.1'
     compile('com.crashlytics.sdk.android:crashlytics:2.5.5@aar') {
         transitive = true;
     }

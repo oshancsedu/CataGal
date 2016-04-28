@@ -9,9 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.squareup.picasso.Picasso;
+import com.bumptech.glide.Glide;
 
 import sifat.catagal.R;
+
+//import com.squareup.picasso.Picasso;
 
 public class ProductViewFragment extends Fragment {
 
@@ -44,7 +46,8 @@ public class ProductViewFragment extends Fragment {
             e.printStackTrace();
         }*/
 
-        Picasso.with(getActivity()).load(getDrawable("p" + bgRes)).into(imageView);
+        Glide.with(getActivity()).load(getDrawable("p" + bgRes)).into(imageView);
+        //Picasso.with(getActivity()).load(getDrawable("p" + bgRes)).into(imageView);
         //imageView.setImageDrawable(getDrawable("p" + bgRes));
     }
 
