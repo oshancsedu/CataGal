@@ -8,7 +8,6 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,7 +15,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.devspark.robototextview.widget.RobotoTextView;
 import com.fourmob.datetimepicker.date.DatePickerDialog;
@@ -294,6 +292,7 @@ public class MemoGenActivity extends ActionBarActivity implements View.OnClickLi
 
     @Override
     public void refresh() {
+
         synchronized (adapter)
         {
             showToast(this,"Data has been sent successfully");

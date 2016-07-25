@@ -21,11 +21,9 @@ import sifat.Domain.MemoBasicInfo;
 import sifat.Domain.MemoProductInfo;
 import sifat.Domain.ProductCommonInfo;
 import sifat.Provider.MemoBasicInfoProvider;
-import sifat.Provider.ProductInfoProvider;
 import sifat.Utilities.LoopjHttpClient;
 import sifat.catagal.MemoGenActivity;
 
-import static sifat.Provider.ProviderSelector.getMyProvider;
 import static sifat.Utilities.CommonUtilities.JSON_TAG_AREA_CODE;
 import static sifat.Utilities.CommonUtilities.JSON_TAG_AREA_NAME;
 import static sifat.Utilities.CommonUtilities.JSON_TAG_BANNER;
@@ -181,7 +179,7 @@ public class ServerCommunicator {
         requestParams.put(SERVER_REQUEST_PRODUCT_PACKET, packet);
         requestParams.put(SERVER_REQUEST_COMMENT, comment);
 
-        /*String url=SERVER_REQUEST_AREA_CODE+"="+areaCode+"&"+
+        String url=SERVER_REQUEST_AREA_CODE+"="+areaCode+"&"+
                 SERVER_REQUEST_AREA_NAME+"="+areaName+"&"+
                 SERVER_REQUEST_DISTRIBUTOR_NAME+"="+distributorName+"&"+
                 SERVER_REQUEST_SUPPLY_DATE+"="+supplyDate+"&"+
@@ -192,14 +190,14 @@ public class ServerCommunicator {
                 SERVER_REQUEST_PRODUCT_UNIT+"="+productUnit+"&"+
                 SERVER_REQUEST_PRODUCT_CARTON+"="+carton+"&"+
                 SERVER_REQUEST_PRODUCT_PACKET+"="+packet+"&"+
-                SERVER_REQUEST_COMMENT+"="+comment;*/
+                SERVER_REQUEST_COMMENT+"="+comment;
 
         final String memoReceiveUrl = MEMO_RECEIVE_URL;
-        //Log.i(LOG_TAG_WEB,memoReceiveUrl+"?"+url);
+        Log.i(LOG_TAG_WEB,memoReceiveUrl+"?"+url);
         LoopjHttpClient.get(memoReceiveUrl, requestParams, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-
+                Log.i(LOG_TAG_WEB,new String(responseBody));
                 addedProduct.clear();
                 cleanUpMemoList();
                 refreshList.refresh();
@@ -208,6 +206,7 @@ public class ServerCommunicator {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                Log.i(LOG_TAG_WEB,new String(responseBody));
                 showToast(context, "Please check your internet connection!");
             }
         });
@@ -344,7 +343,6 @@ public class ServerCommunicator {
                 memoProductInfos.get(i).setIsAdded(false);
             }
         }
-        refreshList.refresh();
     }
 
     public interface RefreshList{
